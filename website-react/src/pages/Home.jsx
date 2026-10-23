@@ -100,7 +100,7 @@ function Work() {
         <Head eyebrow="Featured work" title="A collection of stories, beautifully presented">
           <p>A selection of projects showing the objective, the work completed and what was delivered.</p>
         </Head>
-        <CarouselStacked slides={FEATURED} label="Featured books" />
+        <CarouselStacked slides={FEATURED} label="Featured books" bleed />
         <p className="center work__cta">
           <Link className="btn btn--primary" to="/books">Browse all books</Link>{" "}
           <Link className="btn btn--secondary" to="/portfolio">See the portfolio</Link>
