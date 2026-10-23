@@ -146,11 +146,11 @@ const WW_CSS = `
 .ww-caption { position: absolute; top: 50%; left: 5%; transform: translateY(-50%); width: 26%; opacity: 0; pointer-events: none; }
 .ww-caption > * { pointer-events: inherit; }
 .ww-title { font-family: var(--ww-font-title, inherit); font-weight: 700; font-size: clamp(1.8rem, 3.1vw, 2.9rem); line-height: 1.12; letter-spacing: -.02em; }
-.ww-index { position: absolute; top: 7.5%; right: 2.5%; margin: 0; padding: 0; list-style: none; text-align: right; line-height: 1.75; color: var(--ww-muted, rgba(255,255,255,.65)); font-size: clamp(.72rem, .9vw, .85rem); max-width: 22%; }
-.ww-index button { background: none; border: 0; padding: 0; font: inherit; color: inherit; cursor: pointer; text-align: right; transition: color .2s ease; }
-.ww-index button:hover { color: var(--ww-fg, #fff); }
+.ww-index { position: absolute; top: 50%; right: 2.5%; transform: translateY(-50%); margin: 0; padding: 0; list-style: none; text-align: right; line-height: 1.95; color: var(--ww-fg, #fff); font-size: clamp(1rem, 1.25vw, 1.2rem); font-weight: 600; max-width: 30%; }
+.ww-index button { background: none; border: 0; padding: 0; font: inherit; color: inherit; opacity: .72; cursor: pointer; text-align: right; transition: color .2s ease, opacity .2s ease, font-size .2s ease; }
+.ww-index button:hover { opacity: 1; }
 .ww-index button:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; }
-.ww-index button[aria-current="true"] { color: var(--ww-accent, #f28c28); font-weight: 600; }
+.ww-index button[aria-current="true"] { color: var(--ww-accent, #f28c28); opacity: 1; font-weight: 800; font-size: 1.12em; }
 @media (max-width: 640px) { .ww-index, .ww-caption { display: none; } }
 `;
 
