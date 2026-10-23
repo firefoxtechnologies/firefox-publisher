@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-label="The Quiet Tide by L. Okafor">
+<defs><filter id="gr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 -.25"/></filter><radialGradient id="vg" cx=".5" cy=".5" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".38"/></radialGradient></defs>
+
+<rect width="600" height="900" fill="#12294a"/>
+<g stroke="#fff" stroke-opacity=".12"><path d="M60 0 V900"/><path d="M120 0 V900"/><path d="M180 0 V900"/><path d="M240 0 V900"/><path d="M300 0 V900"/><path d="M360 0 V900"/><path d="M420 0 V900"/><path d="M480 0 V900"/><path d="M540 0 V900"/><path d="M0 60 H600"/><path d="M0 120 H600"/><path d="M0 180 H600"/><path d="M0 240 H600"/><path d="M0 300 H600"/><path d="M0 360 H600"/><path d="M0 420 H600"/><path d="M0 480 H600"/><path d="M0 540 H600"/><path d="M0 600 H600"/><path d="M0 660 H600"/><path d="M0 720 H600"/><path d="M0 780 H600"/><path d="M0 840 H600"/></g>
+<circle cx="440" cy="236" r="112" fill="#f28c28"/>
+<path d="M60 236 H330" stroke="#fff" stroke-width="3"/>
+<g font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" fill="#fff">
+<text x="60" y="120" font-size="22" letter-spacing="6" font-weight="700">NON-FICTION</text>
+<text x="60" y="540" font-size="40" font-weight="700" letter-spacing="2">THE</text>
+<text x="52" y="660" font-size="150" font-weight="800" letter-spacing="-6">Quiet</text>
+<text x="52" y="784" font-size="150" font-weight="800" letter-spacing="-6">Tide</text>
+<text x="60" y="840" font-size="20" letter-spacing="3" opacity=".85">ON SLOWING DOWN IN A LOUD WORLD</text>
+<text x="540" y="120" font-size="20" text-anchor="end" letter-spacing="6" font-weight="700">L. OKAFOR</text></g>
+<rect width="600" height="900" filter="url(#gr)" opacity="0.25"/>
+<rect width="600" height="900" fill="url(#vg)"/>
+<rect x="0" y="0" width="22" height="900" fill="#000" opacity=".16"/><rect x="22" y="0" width="3" height="900" fill="#fff" opacity=".22"/>
+</svg>

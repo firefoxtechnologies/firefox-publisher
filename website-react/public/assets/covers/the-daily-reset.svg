@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-label="The Daily Reset by R. Ahmadi">
+<defs><filter id="gr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 -.25"/></filter><radialGradient id="vg" cx=".5" cy=".5" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".38"/></radialGradient></defs>
+
+<rect width="600" height="900" fill="#f28c28"/>
+<rect x="0" y="0" width="600" height="320" fill="#12294a"/>
+<g fill="#ffd9b0"><rect x="60" y="250" width="46" height="70"/><rect x="130" y="228" width="46" height="92"/><rect x="200" y="206" width="46" height="114"/><rect x="270" y="184" width="46" height="136"/><rect x="340" y="162" width="46" height="158"/><rect x="410" y="140" width="46" height="180"/><rect x="480" y="118" width="46" height="202"/></g>
+<path d="M60 230 L130 200 L200 170 L270 130 L340 120 L410 90 L480 60" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="480" cy="60" r="11" fill="#fff"/>
+<g font-family="'Arial Black', Impact, 'Helvetica Neue', Arial, sans-serif" fill="#12294a">
+<text x="52" y="440" font-size="74" textLength="490" lengthAdjust="spacingAndGlyphs">THE DAILY</text>
+<text x="52" y="600" font-size="160" textLength="490" lengthAdjust="spacingAndGlyphs" fill="#fff">RESET</text>
+<text x="52" y="662" font-size="25" letter-spacing="2" font-family="Arial, sans-serif" font-weight="700">SMALL STEPS. STEADY CHANGE.</text>
+<text x="52" y="836" font-size="26" letter-spacing="10" font-family="Arial, sans-serif" font-weight="700">R. AHMADI</text></g>
+<g transform="translate(118 112)"><circle r="66" fill="#f28c28"/><circle r="60" fill="#12294a"/><circle r="58" fill="none" stroke="#f28c28" stroke-width="2" stroke-dasharray="3 5"/>
+<g fill="#fff" text-anchor="middle" font-family="Arial, sans-serif" font-weight="800"><text x="0" y="-6" font-size="36" >30</text><text x="0" y="20" font-size="15" letter-spacing="2">DAY PLAN</text></g></g>
+<rect width="600" height="900" filter="url(#gr)" opacity="0.3"/>
+<rect width="600" height="900" fill="url(#vg)"/>
+<rect x="0" y="0" width="22" height="900" fill="#000" opacity=".16"/><rect x="22" y="0" width="3" height="900" fill="#fff" opacity=".22"/>
+</svg>

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-label="The Quiet Flame by A. Reyes">
+<defs><filter id="gr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 -.25"/></filter><radialGradient id="vg" cx=".5" cy=".5" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".38"/></radialGradient><linearGradient id="au" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8e7a8"/><stop offset=".5" stop-color="#c79a35"/><stop offset="1" stop-color="#8a6420"/></linearGradient></defs>
+
+<rect width="600" height="900" fill="#0a0a0d"/>
+<rect x="40" y="40" width="520" height="820" fill="none" stroke="url(#au)" stroke-width="3"/><rect x="52" y="52" width="496" height="796" fill="none" stroke="url(#au)" stroke-width="1"/>
+<g transform="translate(300 500)" fill="url(#au)"><path d="M0 0 L-330 10 L-330 -10Z" opacity="0.9"/><path d="M0 0 L-328 -33 L-326 -53Z" opacity="0.55"/><path d="M0 0 L-321 -76 L-316 -95Z" opacity="0.9"/><path d="M0 0 L-309 -117 L-301 -135Z" opacity="0.55"/><path d="M0 0 L-291 -156 L-281 -173Z" opacity="0.9"/><path d="M0 0 L-268 -193 L-256 -209Z" opacity="0.55"/><path d="M0 0 L-240 -226 L-226 -240Z" opacity="0.9"/><path d="M0 0 L-209 -256 L-193 -268Z" opacity="0.55"/><path d="M0 0 L-173 -281 L-156 -291Z" opacity="0.9"/><path d="M0 0 L-135 -301 L-117 -309Z" opacity="0.55"/><path d="M0 0 L-95 -316 L-76 -321Z" opacity="0.9"/><path d="M0 0 L-53 -326 L-33 -328Z" opacity="0.55"/><path d="M0 0 L-10 -330 L10 -330Z" opacity="0.9"/><path d="M0 0 L33 -328 L53 -326Z" opacity="0.55"/><path d="M0 0 L76 -321 L95 -316Z" opacity="0.9"/><path d="M0 0 L117 -309 L135 -301Z" opacity="0.55"/><path d="M0 0 L156 -291 L173 -281Z" opacity="0.9"/><path d="M0 0 L193 -268 L209 -256Z" opacity="0.55"/><path d="M0 0 L226 -240 L240 -226Z" opacity="0.9"/><path d="M0 0 L256 -209 L268 -193Z" opacity="0.55"/><path d="M0 0 L281 -173 L291 -156Z" opacity="0.9"/><path d="M0 0 L301 -135 L309 -117Z" opacity="0.55"/><path d="M0 0 L316 -95 L321 -76Z" opacity="0.9"/><path d="M0 0 L326 -53 L328 -33Z" opacity="0.55"/><path d="M0 0 L330 -10 L330 10Z" opacity="0.9"/></g>
+<g fill="none" stroke="#0a0a0d" stroke-width="10"><path d="M50 500 A250 250 0 0 1 550 500"/><path d="M110 500 A190 190 0 0 1 490 500"/><path d="M170 500 A130 130 0 0 1 430 500"/></g>
+<g fill="none" stroke="url(#au)" stroke-width="4"><path d="M50 500 A250 250 0 0 1 550 500"/><path d="M110 500 A190 190 0 0 1 490 500"/><path d="M170 500 A130 130 0 0 1 430 500"/><path d="M230 500 A70 70 0 0 1 370 500"/></g>
+<path d="M300 380 c28 40 40 62 28 90 c-6 14 -18 20 -28 20 c-10 0 -22 -6 -28 -20 c-12 -28 0 -50 28 -90Z" fill="#fff0c0"/>
+<rect x="276" y="490" width="48" height="30" fill="url(#au)"/><path d="M60 520 H540" stroke="url(#au)" stroke-width="3"/><path d="M60 530 H540" stroke="url(#au)" stroke-width="1"/>
+<g text-anchor="middle" fill="url(#au)" font-family="Georgia, 'Palatino Linotype', serif">
+<text x="300" y="616" font-size="22" letter-spacing="6" font-family="Arial, sans-serif" font-weight="700">A MEDITATION ON STILLNESS</text>
+<text x="300" y="700" font-size="72" letter-spacing="8">THE QUIET</text><text x="300" y="780" font-size="72" letter-spacing="30">FLAME</text>
+<text x="300" y="830" font-size="22" letter-spacing="14" font-family="Arial, sans-serif">A. REYES</text></g>
+<rect width="600" height="900" filter="url(#gr)" opacity="0.4"/>
+<rect width="600" height="900" fill="url(#vg)"/>
+<rect x="0" y="0" width="22" height="900" fill="#000" opacity=".16"/><rect x="22" y="0" width="3" height="900" fill="#fff" opacity=".22"/>
+</svg>

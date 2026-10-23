@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 900" width="600" height="900" role="img" aria-label="The Last Lighthouse by E. Marlowe">
+<defs><filter id="gr" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="4"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .9 -.25"/></filter><radialGradient id="vg" cx=".5" cy=".5" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".38"/></radialGradient></defs>
+
+<rect width="600" height="900" fill="#f1e4c8"/>
+<rect x="42" y="42" width="516" height="816" fill="none" stroke="#12294a" stroke-width="6"/>
+<circle cx="300" cy="400" r="150" fill="#e8742a"/>
+<g fill="#12294a"><rect x="150" y="318" width="300" height="2.5" opacity=".18"/><rect x="150" y="336" width="300" height="2.5" opacity=".18"/><rect x="150" y="354" width="300" height="2.5" opacity=".18"/><rect x="150" y="372" width="300" height="2.5" opacity=".18"/><rect x="150" y="390" width="300" height="2.5" opacity=".18"/><rect x="150" y="408" width="300" height="2.5" opacity=".18"/><rect x="150" y="426" width="300" height="2.5" opacity=".18"/><rect x="150" y="444" width="300" height="2.5" opacity=".18"/><rect x="150" y="462" width="300" height="2.5" opacity=".18"/></g>
+<path d="M270 640 L282 330 L318 330 L330 640Z" fill="#12294a"/>
+<path d="M276 560 H324 L326 585 H274Z M279 470 H321 L323 495 H277Z M282 395 H318 L320 418 H280Z" fill="#f1e4c8"/>
+<rect x="276" y="300" width="48" height="32" fill="#12294a"/><rect x="284" y="306" width="32" height="20" fill="#f6c453"/><path d="M270 300 L300 268 L330 300Z" fill="#c4402f"/>
+<path d="M300 316 L560 250 M300 316 L560 380" stroke="#f6c453" stroke-width="10" opacity=".55"/>
+<path d="M42 640 Q120 610 200 640 T360 640 T520 640 T558 632 V858 H42Z" fill="#1d5fa8"/>
+<path d="M42 676 Q110 654 180 676 T320 676 T460 676 T558 670" fill="none" stroke="#12294a" stroke-width="3" opacity=".7"/><path d="M42 702 Q110 680 180 702 T320 702 T460 702 T558 696" fill="none" stroke="#12294a" stroke-width="4" opacity=".7"/><path d="M42 728 Q110 706 180 728 T320 728 T460 728 T558 722" fill="none" stroke="#12294a" stroke-width="3" opacity=".7"/><path d="M42 754 Q110 732 180 754 T320 754 T460 754 T558 748" fill="none" stroke="#12294a" stroke-width="4" opacity=".7"/><path d="M42 780 Q110 758 180 780 T320 780 T460 780 T558 774" fill="none" stroke="#12294a" stroke-width="3" opacity=".7"/><path d="M42 806 Q110 784 180 806 T320 806 T460 806 T558 800" fill="none" stroke="#12294a" stroke-width="4" opacity=".7"/>
+<g font-family="'Arial Black', Impact, Arial, sans-serif" fill="#12294a" text-anchor="middle">
+<text x="300" y="118" font-size="26" letter-spacing="6" font-family="Arial, sans-serif" font-weight="700">A NOVEL OF THE NORTH COAST</text>
+<text x="300" y="190" font-size="78" >THE LAST</text><text x="300" y="252" font-size="58" letter-spacing="2">LIGHTHOUSE</text>
+<text x="300" y="822" font-size="28" letter-spacing="10" font-family="Arial, sans-serif" font-weight="700" fill="#f1e4c8">E. MARLOWE</text>
+</g>
+<rect width="600" height="900" filter="url(#gr)" opacity="0.35"/>
+<rect width="600" height="900" fill="url(#vg)"/>
+<rect x="0" y="0" width="22" height="900" fill="#000" opacity=".16"/><rect x="22" y="0" width="3" height="900" fill="#fff" opacity=".22"/>
+</svg>
