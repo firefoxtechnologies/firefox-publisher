@@ -4,6 +4,7 @@ import Hero from "../components/Hero.jsx";
 import { ContactForm, Estimator, Readiness } from "../components/Tools.jsx";
 import { Reveal, Ticks, stagger } from "../components/ui.jsx";
 import CountUp from "../components/ui/count-up";
+import GradientCard from "../components/ui/gradient-card";
 import { ParentLink } from "../components/Layout.jsx";
 import WorksWheel from "../components/ui/works-wheel";
 import CarouselStacked from "../components/ui/carousel-07";
@@ -191,6 +192,13 @@ function Timeline() {
   );
 }
 
+// "Our approach" cards: brand-coloured gradients, one decorative illustration each.
+const APPROACH = [
+  { badgeText: "Editorial", badgeColor: "#f28c28", title: "Editorial integrity", description: "Objective feedback, clear edits and milestone check-ins so your voice gets sharper, not lost.", imageUrl: "/assets/illustrations/author-desk.svg", gradient: "linear-gradient(135deg, #fff1e1 0%, #ffd7ab 100%)" },
+  { badgeText: "Design", badgeColor: "#1d5fa8", title: "Design that works", description: "Covers and layouts suited to your audience that meet retailer standards.", imageUrl: "/assets/illustrations/open-book-digital.svg", gradient: "linear-gradient(135deg, #eaf3fd 0%, #c6dcf4 100%)" },
+  { badgeText: "Strategy", badgeColor: "#12294a", title: "Long-term thinking", description: "Launch is day one. We plan for your backlist, your readers and your next title.", imageUrl: "/assets/illustrations/ereader-stack.svg", gradient: "linear-gradient(135deg, #e6ecf5 0%, #bccbe0 100%)" },
+];
+
 function About() {
   return (
     <section className="section" id="about">
@@ -199,13 +207,11 @@ function About() {
           <p>Our mission is to help authors and creators present, publish and promote their work with professional care.</p>
           <p className="parent-line">Firefox Publishers is the publishing arm and a child company of <strong><ParentLink /></strong>, the digital agency behind our web, search and brand work.</p>
         </Head>
-        <div className="grid grid--3">
-          {[
-            ["Editorial integrity", "Objective feedback, clear edits and milestone check-ins so your voice gets sharper, not lost."],
-            ["Design that works", "Covers and layouts suited to your audience that meet retailer standards."],
-            ["Long-term thinking", "Launch is day one. We plan for your backlist, your readers and your next title."],
-          ].map(([t, p], i) => (
-            <Reveal as="article" className="card" key={t} delay={stagger(i)}><h3>{t}</h3><p>{p}</p></Reveal>
+        <div className="grid grid--3 about__grid">
+          {APPROACH.map((c, i) => (
+            <Reveal key={c.title} delay={stagger(i)} className="about__item">
+              <GradientCard {...c} />
+            </Reveal>
           ))}
         </div>
       </div>

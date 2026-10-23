@@ -540,3 +540,5 @@ h1, h2 { font-weight: 800; }
   .tm__dup { display: none; }
 }
 
+.about__item { height: 100%; }
+.about__grid { align-items: stretch; margin-top: var(--s6); }
