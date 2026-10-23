@@ -79,7 +79,6 @@ function Services() {
           <Link className="btn btn--primary" to={current.to}>View more</Link>
         </div>
       </div>
-      <p className="note center svc__note">Confirm the final service list before launch; only list what Firefox Publishers actually offers.</p>
     </section>
   );
 }
