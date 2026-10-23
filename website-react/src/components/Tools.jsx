@@ -4,28 +4,44 @@ import { Reveal } from "./ui.jsx";
 
 const plural = (n) => n + (n === 1 ? " week" : " weeks");
 
-export function Estimator() {
-  const [k, setK] = useState(60);
-  const editorial = k <= 35 ? 2 : k <= 120 ? 3 : 4;
+// Illustrative schedule from manuscript length (k = thousands of words).
+// Editorial grows with length (about one week per 15k words, two at the least);
+// production grows more slowly; discovery gets a second week for very long books.
+export function estimateWeeks(k) {
   const rows = [
-    ["Discovery", 1],
-    ["Editorial", editorial],
-    ["Design & production", 5 - editorial],
+    ["Discovery", k > 120 ? 2 : 1],
+    ["Editorial", Math.max(2, Math.ceil(k / 15))],
+    ["Design & production", 2 + Math.ceil(k / 50)],
     ["Launch prep", 2],
   ];
-  const total = rows.reduce((s, r) => s + r[1], 0);
+  const total = rows.reduce((sum, r) => sum + r[1], 0);
+  return { rows, total };
+}
+
+export function Estimator() {
+  const [k, setK] = useState(60);
+  const { rows, total } = estimateWeeks(k);
+  const months = (total / 4.345).toFixed(1);
   return (
-    <Reveal className="estimator" id="estimator">
-      <h3>Timeline estimator</h3>
-      <p>Slide to your manuscript length for a rough, illustrative schedule. We confirm a real timeline in your written scope.</p>
-      <label htmlFor="words">Manuscript length: <strong id="words-out">{(k * 1000).toLocaleString()} words</strong></label>
-      <input type="range" id="words" min="10" max="200" step="5" value={k} onChange={(e) => setK(Number(e.target.value))} />
-      <dl className="est" id="est-out" aria-live="polite">
-        {rows.map(([name, n]) => (
-          <div key={name}><dt>{name}</dt><dd>{plural(n)}</dd></div>
-        ))}
-        <div className="total"><dt>Approx. total</dt><dd>{plural(total)}</dd></div>
-      </dl>
+    <Reveal className="estimator">
+      <div className="est__field">
+        <label htmlFor="words">Manuscript length: <strong id="words-out">{(k * 1000).toLocaleString()} words</strong></label>
+        <input type="range" id="words" min="10" max="200" step="5" value={k} onChange={(e) => setK(Number(e.target.value))} />
+        <div className="est__ends" aria-hidden="true"><span>10,000</span><span>200,000</span></div>
+      </div>
+
+      <div className="est__result" aria-live="polite">
+        <p className="est__headline"><strong>{total} {total === 1 ? "week" : "weeks"}</strong> <span>(approx. {months} months)</span></p>
+        <dl className="est" id="est-out">
+          {rows.map(([name, n]) => (
+            <div key={name}><dt>{name}</dt><dd>{plural(n)}</dd></div>
+          ))}
+        </dl>
+      </div>
+
+      <p className="est__note">
+        Assumes standard editing rounds and one cover revision cycle. This is an illustration; we confirm a real timeline in your written scope.
+      </p>
     </Reveal>
   );
 }

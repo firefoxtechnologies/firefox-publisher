@@ -46,6 +46,27 @@ export const SERVICES = [
   { title: "Graphic & Marketing Design", to: "/digital-creative-services", text: "Social graphics, one-sheets and promotional materials in a consistent style.", d: I.code },
 ];
 
+// Photo and caption for each service in the ring carousel. Photos are from
+// Pexels (free licence) and live in public/assets/services/.
+const SERVICE_MEDIA = [
+  ["book-writing", "Manuscript"],
+  ["book-editing", "Editorial"],
+  ["cover-interior-design", "Design"],
+  ["book-publishing", "Publishing"],
+  ["book-printing", "Production"],
+  ["book-marketing", "Marketing"],
+  ["author-branding", "Branding"],
+  ["audiobook-production", "Audio"],
+  ["video-trailers", "Video"],
+  ["web-design-seo", "Digital"],
+  ["articles-web-content", "Content"],
+  ["graphic-marketing-design", "Design"],
+];
+SERVICES.forEach((s, i) => {
+  s.image = `/assets/services/${SERVICE_MEDIA[i][0]}.jpg`;
+  s.meta = SERVICE_MEDIA[i][1];
+});
+
 export const STATS = [
   { label: "Services", end: 12 },
   { label: "Publishing packages", end: 5 },

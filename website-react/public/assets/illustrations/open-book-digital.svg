@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800"><style>.o{stroke:#1c1c1c;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;fill:none}.y{fill:#f3e4a2}.b{fill:#9cb1cd}.t{fill:#b8957a}.c{fill:#faeee0}.w{fill:#fff}.g{fill:#b5c9a8}.tl{stroke:#b8957a;stroke-width:6;stroke-linecap:round;fill:none}.dl{stroke:#1c1c1c;stroke-width:4;stroke-linecap:round;fill:none}</style><rect width="800" height="800" fill="#fff"/>
+<!-- cover -->
+<path class="o b" d="M80 520v190c130-36 240-26 320 20 80-46 190-56 320-20V520z"/>
+<!-- pages -->
+<path class="o w" d="M104 500c126-30 232-14 296 34v168c-64-48-170-64-296-34z"/>
+<path class="o w" d="M696 500c-126-30-232-14-296 34v168c64-48 170-64 296-34z"/>
+<path class="tl" d="M140 548c70-14 130-8 220 20M140 586c70-14 130-8 220 20M140 624c70-14 130-8 190 14"/>
+<path class="tl" d="M660 548c-70-14-130-8-220 20M660 586c-70-14-130-8-220 20M660 624c-70-14-130-8-190 14"/>
+<!-- tablet rising -->
+<g transform="rotate(-8 400 280)">
+<rect class="o y" x="290" y="100" width="220" height="300" rx="24"/>
+<rect class="o c" x="308" y="122" width="184" height="244" rx="10"/>
+<rect class="o b" x="326" y="140" width="148" height="80"/>
+<path class="dl" d="M326 206l38-34 28 22 26-20 56 42"/>
+<path class="tl" d="M326 248h148M326 270h130M326 292h148M326 314h100"/>
+<circle class="o c" cx="400" cy="384" r="7"/>
+</g>
+<!-- flying pages -->
+<g transform="rotate(18 170 330)"><rect class="o w" x="130" y="290" width="70" height="90" rx="4"/><path class="tl" d="M144 316h42M144 334h42M144 352h28"/></g>
+<g transform="rotate(-16 650 280)"><rect class="o w" x="610" y="240" width="70" height="90" rx="4"/><path class="tl" d="M624 266h42M624 284h42M624 302h28"/></g>
+<g transform="rotate(10 600 440)"><rect class="o y" x="570" y="410" width="54" height="70" rx="4"/><path class="dl" d="M582 434h30M582 450h30"/></g>
+<g transform="rotate(-12 210 470)"><rect class="o y" x="185" y="440" width="54" height="70" rx="4"/><path class="dl" d="M197 464h30M197 480h30"/></g>
+<path class="o y" d="M130 150l8 22 22 8-22 8-8 22-8-22-22-8 22-8z"/>
+<path class="o y" d="M680 120l6 16 16 6-16 6-6 16-6-16-16-6 16-6z"/>
+<path class="o" d="M90 240v22M79 251h22M720 410v22M709 421h22"/>
+</svg>
