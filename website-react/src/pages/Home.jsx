@@ -5,6 +5,7 @@ import { ContactForm, Estimator, Readiness } from "../components/Tools.jsx";
 import { Reveal, Ticks, stagger } from "../components/ui.jsx";
 import CountUp from "../components/ui/count-up";
 import GradientCard from "../components/ui/gradient-card";
+import { Compare2 } from "../components/ui/compare-2";
 import { ParentLink } from "../components/Layout.jsx";
 import WorksWheel from "../components/ui/works-wheel";
 import CarouselStacked from "../components/ui/carousel-07";
@@ -218,23 +219,39 @@ function About() {
   );
 }
 
+const SUPPORT_COLUMNS = [
+  {
+    title: "Done-with-you services",
+    groups: [
+      { heading: "Editorial", items: ["Editorial roadmap with annotated feedback"] },
+      { heading: "Design", items: ["Cover concepts with revision rounds"] },
+      { heading: "Production", items: ["Print and e-book files, proofs and distribution set-up"] },
+      { heading: "Launch", items: ["Launch playbook with outreach templates"] },
+    ],
+  },
+  {
+    title: "Tools & support",
+    groups: [
+      { heading: "Tracking", items: ["Milestone tracker with dates, files and approvals"] },
+      { heading: "Retail", items: ["Retail metadata checklist and pricing guide"] },
+      { heading: "Brand", items: ["Brand toolkit: typography, colours, social assets"] },
+      { heading: "Growth", items: ["Post-launch growth plan"] },
+    ],
+  },
+];
+
 function Support() {
   return (
-    <section className="section section--ice" id="support">
+    <section className="section support" id="support">
       <div className="wrap">
         <Head eyebrow="What you get" title="Support from first draft to launch">
           <p>Hands-on services and practical tools that keep your project clear, on schedule and ready for readers.</p>
         </Head>
-        <div className="grid grid--2 gets support__grid">
-          <Reveal className="support__card">
-            <h3>Done-with-you services</h3>
-            <Ticks items={["Editorial roadmap with annotated feedback", "Cover concepts with revision rounds", "Print and e-book files, proofs and distribution set-up", "Launch playbook with outreach templates"]} />
-          </Reveal>
-          <Reveal className="support__card" delay={70}>
-            <h3>Tools &amp; support</h3>
-            <Ticks items={["Milestone tracker with dates, files and approvals", "Retail metadata checklist and pricing guide", "Brand toolkit: typography, colours, social assets", "Post-launch growth plan"]} />
-          </Reveal>
-        </div>
+      </div>
+      <div className="wrap">
+        <Reveal className="support__compare">
+          <Compare2 columns={SUPPORT_COLUMNS} />
+        </Reveal>
       </div>
     </section>
   );

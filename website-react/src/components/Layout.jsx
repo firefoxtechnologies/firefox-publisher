@@ -96,6 +96,7 @@ const WORK_LINKS = [
 ];
 const FLAT_LINKS = NAV.filter((n) => n.id && n.id !== "services");
 const SERVICE_PAGES = [
+  { to: "/book-writing", label: "Book Writing" },
   { to: "/publishing", label: "Publishing" },
   { to: "/author-branding-marketing", label: "Author Branding & Marketing" },
   { to: "/audio-video-production", label: "Audio & Video Production" },
@@ -237,7 +238,7 @@ function Header() {
 
 const FOOTER_COLUMNS = [
   { title: "Company", links: [{ label: "About", href: "/#about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
-  { title: "Services", links: [{ label: "Publishing", href: "/publishing" }, { label: "Author Branding & Marketing", href: "/author-branding-marketing" }, { label: "Audio & Video Production", href: "/audio-video-production" }, { label: "Digital & Creative Services", href: "/digital-creative-services" }] },
+  { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Publishing", href: "/publishing" }, { label: "Author Branding & Marketing", href: "/author-branding-marketing" }, { label: "Audio & Video Production", href: "/audio-video-production" }, { label: "Digital & Creative Services", href: "/digital-creative-services" }] },
   { title: "Contact", links: [{ label: SITE.email, href: "mailto:" + SITE.email }, { label: SITE.phone, href: SITE.phoneHref }, { label: "333 Washington St #233, Hoboken NJ 07030" }] },
 ];
 

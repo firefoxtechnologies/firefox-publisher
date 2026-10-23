@@ -32,7 +32,7 @@ const I = {
 
 // `extra` holds the shapes an icon needs besides its main path (rect, circle).
 export const SERVICES = [
-  { title: "Book Writing", to: "/publishing", text: "Shape your ideas into a clear, compelling manuscript with a writing partner.", d: I.write },
+  { title: "Book Writing", to: "/book-writing", text: "Shape your ideas into a clear, compelling manuscript with a writing partner.", d: I.write },
   { title: "Book Editing", to: "/publishing", text: "Developmental, line and copy editing that sharpens clarity and reader appeal.", d: I.edit },
   { title: "Cover & Interior Design", to: "/publishing", text: "Covers and layouts that suit your genre and meet retailer standards.", d: I.design, rect: { x: 4, y: 3, width: 16, height: 18, rx: 2 } },
   { title: "Book Publishing", to: "/publishing", text: "Production, ISBNs, metadata and distribution set-up for print and digital.", d: I.publish },
