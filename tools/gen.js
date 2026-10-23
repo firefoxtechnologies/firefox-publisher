@@ -6,11 +6,11 @@ const head = (title, desc) => `<!DOCTYPE html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>${title} | Firefox Publishing</title>
+  <title>${title} | Firefox Publishers</title>
   <meta name="description" content="${desc}">
   <link rel="icon" href="assets/logo.jpg">
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Firefox Publishing">
+  <meta property="og:site_name" content="Firefox Publishers">
   <meta property="og:image" content="assets/logo.jpg">
   <noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
   <meta name="theme-color" content="#12294a">
@@ -27,7 +27,7 @@ const head = (title, desc) => `<!DOCTYPE html>
   <div class="topbar"><div class="wrap topbar__in"><span class="topbar__brand">A child company of <strong><a class="parent-link" href="https://firefoxtechnologies.com/" target="_blank" rel="noopener">Firefox Technologies</a></strong></span><span class="topbar__links"><a class="plain" href="mailto:contactus@firefoxpublishing.com">contactus@firefoxpublishing.com</a><a class="plain" href="tel:+12014645345">+1 201-464-5345</a><a href="index.html#contact">Get a free consultation</a></span></div></div>
   <header class="header">
     <div class="wrap header__in">
-      <a class="brand" href="index.html" aria-label="Firefox Publishing, home">
+      <a class="brand" href="index.html" aria-label="Firefox Publishers, home">
         <img src="assets/logo.jpg" alt="">
         <span>FIREFOX<small>PUBLISHING</small></span>
       </a>
@@ -49,12 +49,12 @@ const foot = `  </main>
   <footer class="footer">
     <div class="wrap">
       <div class="footer__cols">
-        <div><strong>FIREFOX PUBLISHING</strong><p style="margin-top:12px">Helping authors present, publish and promote their work with professional care.</p><p class="footer__parent">A child company of <a class="parent-link" href="https://firefoxtechnologies.com/" target="_blank" rel="noopener">Firefox Technologies</a>.</p></div>
+        <div><strong>FIREFOX PUBLISHERS</strong><p style="margin-top:12px">Helping authors present, publish and promote their work with professional care.</p><p class="footer__parent">A child company of <a class="parent-link" href="https://firefoxtechnologies.com/" target="_blank" rel="noopener">Firefox Technologies</a>.</p></div>
         <div><p class="fhead">Company</p><a href="index.html#about">About</a><a href="portfolio.html">Portfolio</a><a href="books.html">Books</a><a href="index.html#process">Process</a><a href="index.html#contact">Contact</a></div>
         <div><p class="fhead">Services</p><a href="publishing.html">Publishing</a><a href="author-branding-marketing.html">Author Branding &amp; Marketing</a><a href="audio-video-production.html">Audio &amp; Video Production</a><a href="digital-creative-services.html">Digital &amp; Creative Services</a></div>
         <div><p class="fhead">Contact</p><a href="mailto:contactus@firefoxpublishing.com">contactus@firefoxpublishing.com</a><a href="tel:+12014645345">+1 201-464-5345</a><address>333 Washington St #233<br>Hoboken, New Jersey 07030, USA</address></div>
       </div>
-      <small>Fees apply; results vary. We do not guarantee sales or bestseller status.<br>&copy; <span id="year">2026</span> Firefox Publishing. Part of Firefox Technologies.</small>
+      <small>Fees apply; results vary. We do not guarantee sales or bestseller status.<br>&copy; <span id="year">2026</span> Firefox Publishers. Part of Firefox Technologies.</small>
     </div>
   </footer>
   <script src="script.js"></script>
@@ -134,7 +134,7 @@ ${s.items.map(i => `          <article class="card reveal"><h3>${i[0]}</h3><p>${
 
 const projects = services.concat(services.slice(0, 2));
 fs.writeFileSync(path.join(out, "portfolio.html"),
-  head("Portfolio", "Selected Firefox Publishing projects: objective, work completed and deliverables.") + `    <section class="page-hero">
+  head("Portfolio", "Selected Firefox Publishers projects: objective, work completed and deliverables.") + `    <section class="page-hero">
       <div class="wrap">
         <p class="crumbs"><a href="index.html">Home</a> / Portfolio</p>
         <h1>Portfolio</h1>
@@ -156,7 +156,7 @@ ${projects.map((s, n) => `          <article class="work" data-cat="${s.file}">
               <h3>Project title ${n + 1}</h3>
               <dl>
                 <dt>Objective</dt><dd>What the client wanted to achieve.</dd>
-                <dt>Work completed</dt><dd>What Firefox Publishing did.</dd>
+                <dt>Work completed</dt><dd>What Firefox Publishers did.</dd>
                 <dt>Deliverables</dt><dd>What was handed over.</dd>
               </dl>
             </div>
@@ -217,7 +217,7 @@ const classicCard = ([f, t, a, p, genre]) => `          <article class="product 
           </article>`;
 const genres = [...new Set(sampleBooks.map((b) => b[4]))];
 fs.writeFileSync(path.join(out, "books.html"),
-  head("Books", "Sample books showing the covers and formats Firefox Publishing produces.") + `    <section class="page-hero">
+  head("Books", "Sample books showing the covers and formats Firefox Publishers produces.") + `    <section class="page-hero">
       <div class="wrap">
         <p class="crumbs"><a href="index.html">Home</a> / Books</p>
         <h1>Books</h1>
@@ -236,7 +236,7 @@ ${genres.map((x) => `          <button type="button" class="chip" data-genre="${
 ${sampleBooks.map(bookCard).join(String.fromCharCode(10))}
         </div>
 
-        <p class="note">These are original sample covers with invented titles and authors, shown for layout only. Replace them with books Firefox Publishing has published, and only with the author's permission.</p>
+        <p class="note">These are original sample covers with invented titles and authors, shown for layout only. Replace them with books Firefox Publishers has published, and only with the author's permission.</p>
         <div class="section__head classics-head">
           <p class="eyebrow">Public-domain classics</p>
           <h2>Classics we can format and publish</h2>
@@ -245,7 +245,7 @@ ${sampleBooks.map(bookCard).join(String.fromCharCode(10))}
         <div class="grid grid--3 classics-grid">
 ${classics.map(classicCard).join(String.fromCharCode(10))}
         </div>
-        <p class="note">Source: <a href="https://standardebooks.org/" target="_blank" rel="noopener">Standard Ebooks</a> (CC0 1.0). Texts and artwork are believed to be in the U.S. public domain and may still be copyrighted in other countries, so check local law before publishing outside the United States. These titles are not Firefox Publishing originals.</p>
+        <p class="note">Source: <a href="https://standardebooks.org/" target="_blank" rel="noopener">Standard Ebooks</a> (CC0 1.0). Texts and artwork are believed to be in the U.S. public domain and may still be copyrighted in other countries, so check local law before publishing outside the United States. These titles are not Firefox Publishers originals.</p>
       </div>
     </section>
 ` + cta + foot);
