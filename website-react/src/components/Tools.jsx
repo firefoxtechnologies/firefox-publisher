@@ -70,15 +70,22 @@ export function Readiness() {
   );
 }
 
+const DIAL_CODES = ["+1 US/CA", "+44 UK", "+91 IN", "+971 UAE", "+61 AU", "+92 PK", "+49 DE", "+86 CN"];
+
 const RULES = {
   name: (v) => (v.trim() ? "" : "Please enter your name."),
   email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? "" : "Please enter a valid email address, like name@example.com."),
+  phone: (v) => {
+    if (!v.trim()) return "Please enter your phone number.";
+    const digits = v.replace(/\D/g, "").length;
+    return /^[+()\d\s.-]+$/.test(v.trim()) && digits >= 7 && digits <= 15 ? "" : "Please enter a valid phone number, like +1 201 555 0123.";
+  },
   message: (v) => (v.trim().length >= 10 ? "" : "Please tell us a little about your project (at least 10 characters)."),
 };
 
 // Front-end only: wire to a backend or form service before launch.
 export function ContactForm({ plan }) {
-  const [values, setValues] = useState({ name: "", email: "", interest: INTERESTS[0], message: "" });
+  const [values, setValues] = useState({ name: "", email: "", dial: DIAL_CODES[0], phone: "", interest: INTERESTS[0], message: "" });
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("");
   const [lastPlan, setLastPlan] = useState(null);
@@ -110,7 +117,10 @@ export function ContactForm({ plan }) {
 
   const field = (k, label, input) => (
     <div className="field">
-      <label htmlFor={k}>{label}</label>
+      <label htmlFor={k}>
+        {label}
+        <span className="req" aria-hidden="true"> *</span>
+      </label>
       {input}
       <span className="err" id={k + "-err"}>{errors[k] || ""}</span>
     </div>
@@ -118,20 +128,41 @@ export function ContactForm({ plan }) {
   const invalid = (k) => (submitted ? String(Boolean(errors[k])) : undefined);
 
   return (
-    <Reveal as="form" className="form" id="contact-form" noValidate onSubmit={submit}>
+    <Reveal className="cx__shell">
+    <form className="form" id="contact-form" noValidate onSubmit={submit}>
+      <h3 className="cx__ftitle">Contact us</h3>
       <div className="row2">
-        {field("name", "Name", <input id="name" name="name" type="text" autoComplete="name" required value={values.name} onChange={set("name")} aria-invalid={invalid("name")} />)}
-        {field("email", "Email", <input id="email" name="email" type="email" autoComplete="email" required value={values.email} onChange={set("email")} aria-invalid={invalid("email")} />)}
+        {field("name", "Name", <input id="name" name="name" type="text" aria-required="true" autoComplete="name" required placeholder="Your full name" value={values.name} onChange={set("name")} aria-invalid={invalid("name")} />)}
+        {field("email", "Email", <input id="email" name="email" type="email" aria-required="true" autoComplete="email" required placeholder="name@example.com" value={values.email} onChange={set("email")} aria-invalid={invalid("email")} />)}
       </div>
-      <div className="field">
-        <label htmlFor="interest">I am interested in</label>
-        <select id="interest" name="interest" value={values.interest} onChange={set("interest")}>
-          {INTERESTS.map((o) => <option key={o}>{o}</option>)}
-        </select>
+      <div className="row2">
+        {field("phone", "Phone number", (
+          <div className="phone" data-invalid={invalid("phone")}>
+            <select aria-label="Country code" value={values.dial} onChange={set("dial")}>
+              {DIAL_CODES.map((c) => <option key={c} value={c}>{c}</option>)}
+            </select>
+            <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel-national" required aria-required="true" placeholder="555 0123" value={values.phone} onChange={set("phone")} aria-invalid={invalid("phone")} />
+          </div>
+        ))}
+        <div className="field">
+          <label htmlFor="interest">Subject</label>
+          <select id="interest" name="interest" value={values.interest} onChange={set("interest")}>
+            {INTERESTS.map((o) => <option key={o}>{o}</option>)}
+          </select>
+        </div>
       </div>
-      {field("message", "Your message", <textarea id="message" name="message" required value={values.message} onChange={set("message")} aria-invalid={invalid("message")} />)}
-      <button className="btn btn--primary" type="submit">Send message</button>
+      {field("message", "Your message", <textarea id="message" name="message" aria-required="true" required placeholder="Tell us about your book and what you need help with" value={values.message} onChange={set("message")} aria-invalid={invalid("message")} />)}
+      <p className="form__req"><span className="req" aria-hidden="true">*</span> Required fields</p>
+      <button className="btn btn--primary" type="submit">
+        Send message
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+      </button>
       <p className="form__status" id="form-status" role="status">{status}</p>
+      <p className="cx__privacy">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 11v5M12 8h.01" /></svg>
+        <span>By sending this message you agree to be contacted about your project. We respect your data and will never share your information without your consent.</span>
+      </p>
+    </form>
     </Reveal>
   );
 }

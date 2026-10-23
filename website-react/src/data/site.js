@@ -130,3 +130,17 @@ export const SHELF = [
   { file: "evenings-like-this", title: "Evenings Like This by J. Navarro" },
   { file: "the-quiet-flame", title: "The Quiet Flame by A. Reyes" },
 ];
+
+// PLACEHOLDERS. These are not real testimonials or ratings: they show the layout only.
+// Replace each with a verified quote, the author's name, their rating (if you show one)
+// and their written permission, then then delete `sample`. The cards no longer show a "Sample" tag, so nothing on the page marks these as placeholders.
+export const TESTIMONIALS = [
+  { quote: "The editorial feedback sharpened my manuscript without taking my voice away from it.", name: "Jane Doe", role: "Fiction author", sample: true },
+  { quote: "Clear communication at every stage. I always knew what was happening and what came next.", name: "John Smith", role: "Non-fiction author", sample: true },
+  { quote: "My cover and layout looked professional from day one, ready for every retailer.", name: "Mary Major", role: "Fantasy author", sample: true },
+  { quote: "They explained ISBNs, metadata and distribution in plain language. I felt in good hands.", name: "Richard Roe", role: "First-time author", sample: true },
+  { quote: "The launch plan gave me a realistic path to readers, with no exaggerated promises.", name: "Jane Roe", role: "Memoir author", sample: true },
+  { quote: "Fast, careful and friendly. Every revision round made the book better.", name: "Joe Bloggs", role: "Poetry author", sample: true },
+  { quote: "The audiobook and trailer extended my book far beyond the page.", name: "Erika Mustermann", role: "Children's author", sample: true },
+  { quote: "A team that treats your book like it matters. I would work with them again.", name: "Juan Perez", role: "Self-help author", sample: true },
+];

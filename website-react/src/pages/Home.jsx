@@ -11,7 +11,7 @@ import Pricing from "../components/ui/pricing-7";
 import CallToAction from "../components/ui/cta-3";
 import ScrollRevealContent from "../components/ui/scroll-reveal-content-a";
 import { BOOKS } from "../data/catalog.js";
-import { PACKAGES, SERVICES, SITE, STAGES, STATS } from "../data/site.js";
+import { PACKAGES, SERVICES, SITE, STAGES, STATS, TESTIMONIALS } from "../data/site.js";
 import { usePageMeta } from "../hooks.js";
 
 function Head({ eyebrow, title, children }) {
@@ -230,7 +230,6 @@ function Support() {
             <Ticks items={["Milestone tracker with dates, files and approvals", "Retail metadata checklist and pricing guide", "Brand toolkit: typography, colours, social assets", "Post-launch growth plan"]} />
           </Reveal>
         </div>
-        <p className="note center">Verified testimonials will appear here once we have permission to publish them.</p>
       </div>
     </section>
   );
@@ -276,21 +275,82 @@ function ToolsSection() {
   );
 }
 
+const CONTACT_CARDS = [
+  { label: "Email us", value: SITE.email, href: "mailto:" + SITE.email, icon: "M4 6h16v12H4zM4 7l8 6 8-6" },
+  { label: "Call us", value: SITE.phone, href: SITE.phoneHref, icon: "M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" },
+  { label: "Our headquarters", value: "333 Washington St #233, Hoboken, NJ 07030", href: "https://www.google.com/maps/search/?api=1&query=333+Washington+St+%23233+Hoboken+NJ+07030", icon: "M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z", external: true },
+];
+
+const STAR = "M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z";
+
+function TestimonialCard({ t }) {
+  return (
+    <figure className="tm__card">
+      <div className="tm__stars" aria-hidden="true">
+        {[0, 1, 2, 3, 4].map((i) => <svg key={i} viewBox="0 0 24 24"><path d={STAR} /></svg>)}
+      </div>
+      <blockquote className="tm__quote">&ldquo;{t.quote}&rdquo;</blockquote>
+      <figcaption className="tm__who">
+        <span className="tm__avatar" aria-hidden="true">{t.name.charAt(0)}</span>
+        <span className="tm__id"><strong>{t.name}</strong></span>
+      </figcaption>
+    </figure>
+  );
+}
+
+// One scrolling row. The set is rendered twice and the track slides by half its width,
+// so the loop is seamless. The copy is hidden from assistive tech.
+function TestimonialRow({ items, reverse }) {
+  return (
+    <div className={"tm__row" + (reverse ? " tm__row--rev" : "")}>
+      <div className="tm__track">
+        {items.map((t) => <TestimonialCard key={t.quote} t={t} />)}
+        <div className="tm__dup" aria-hidden="true">
+          {items.map((t) => <TestimonialCard key={t.quote} t={t} />)}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function Testimonials() {
+  const half = Math.ceil(TESTIMONIALS.length / 2);
+  return (
+    <section className="section tm" id="testimonials">
+      <div className="wrap">
+        <Head eyebrow="Testimonials" title="What authors say about working with us">
+          <p>Feedback from authors on the editing, design and support they received.</p>
+        </Head>
+      </div>
+      <div className="tm__rows">
+        <TestimonialRow items={TESTIMONIALS.slice(0, half)} />
+        <TestimonialRow items={TESTIMONIALS.slice(half)} reverse />
+      </div>
+    </section>
+  );
+}
+
 function Contact({ plan }) {
   return (
-    <section className="section" id="contact">
-      <div className="wrap split">
-        <Reveal>
+    <section className="section cx" id="contact">
+      <div className="wrap cx__grid">
+        <Reveal className="cx__intro">
           <p className="eyebrow">Ready to begin?</p>
-          <h2>Tell us about your story</h2>
-          <p style={{ marginTop: 16, color: "var(--slate)" }}>Share a few details and we will reply with the next step. No obligation.</p>
-          <Ticks style={{ marginTop: 24 }} items={["A plain-language scope and timeline", "Clear deliverables before you commit", "A reply from a real person"]} />
-          <address className="contact-card">
-            <strong>Firefox Publishers</strong><br />333 Washington St #233<br />Hoboken, New Jersey 07030, USA<br />
-            <a href={SITE.phoneHref}>{SITE.phone}</a><br />
-            <a href={"mailto:" + SITE.email}>{SITE.email}</a>
-          </address>
-          <p style={{ marginTop: 16, fontSize: ".9rem", color: "var(--slate)" }}>Firefox Publishers is a child company of <ParentLink />.</p>
+          <h2 className="cx__title">Tell us about your story</h2>
+          <p className="cx__sub">Share a few details and we will reply with the next step. No obligation.</p>
+          <ul className="cx__cards">
+            {CONTACT_CARDS.map((c) => (
+              <li key={c.label}>
+                <a className="cx__card" href={c.href} {...(c.external ? { target: "_blank", rel: "noopener" } : {})}>
+                  <span className="cx__ic" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d={c.icon} /></svg>
+                  </span>
+                  <span className="cx__txt"><small>{c.label}</small><strong>{c.value}</strong></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <p className="cx__parent">Firefox Publishers is a child company of <ParentLink />.</p>
         </Reveal>
         <ContactForm plan={plan} />
       </div>
@@ -317,6 +377,7 @@ export default function Home() {
       <Support />
       <StoryCta />
       <ToolsSection />
+      <Testimonials />
       <Contact plan={plan} />
     </>
   );
