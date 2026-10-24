@@ -1,5 +1,5 @@
 export const SITE = {
-  email: "contactus@firefoxpublishing.com",
+  email: "contactus@firefoxpublisher.com",
   phone: "+1 201-464-5345",
   phoneHref: "tel:+12014645345",
   parentUrl: "https://firefoxtechnologies.com/",
@@ -30,14 +30,14 @@ const I = {
 // `extra` holds the shapes an icon needs besides its main path (rect, circle).
 export const SERVICES = [
   { title: "Book Writing", to: "/book-writing", text: "Shape your ideas into a clear, compelling manuscript with a writing partner.", d: I.write },
-  { title: "Book Editing", to: "/publishing", text: "Developmental, line and copy editing that sharpens clarity and reader appeal.", d: I.edit },
-  { title: "Cover & Interior Design", to: "/publishing", text: "Covers and layouts that suit your genre and meet retailer standards.", d: I.design, rect: { x: 4, y: 3, width: 16, height: 18, rx: 2 } },
-  { title: "Book Publishing", to: "/publishing", text: "Production, ISBNs, metadata and distribution set-up for print and digital.", d: I.publish },
-  { title: "Book Printing", to: "/publishing", text: "Print-ready files and proofs for paperback and hardcover editions.", d: I.print },
-  { title: "Book Marketing", to: "/author-branding-marketing", text: "Launch planning, reviews and audience-building to help your book be found.", d: I.market },
-  { title: "Author Branding & Illustration", to: "/author-branding-marketing", text: "A consistent author identity, with custom illustration where your project needs it.", d: I.brand },
-  { title: "Audiobook Production", to: "/audio-video-production", text: "Narration, recording and production to extend your book into audio.", d: I.audio, rect: { x: 9, y: 3, width: 6, height: 11, rx: 3 } },
-  { title: "Book Video Trailers", to: "/audio-video-production", text: "Short trailers and promo clips that introduce your story.", d: I.video, rect: { x: 3, y: 6, width: 12, height: 12, rx: 2 } },
+  { title: "Book Editing", to: "/book-editing", text: "Developmental, line and copy editing that sharpens clarity and reader appeal.", d: I.edit },
+  { title: "Cover & Interior Design", to: "/ebook-design", text: "Covers and layouts that suit your genre and meet retailer standards.", d: I.design, rect: { x: 4, y: 3, width: 16, height: 18, rx: 2 } },
+  { title: "Book Publishing", to: "/ebook-publishing", text: "Production, ISBNs, metadata and distribution set-up for print and digital.", d: I.publish },
+  { title: "Book Printing", to: "/book-printing", text: "Print-ready files and proofs for paperback and hardcover editions.", d: I.print },
+  { title: "Book Marketing", to: "/book-marketing", text: "Launch planning, reviews and audience-building to help your book be found.", d: I.market },
+  { title: "Author Branding & Illustration", to: "/author-branding-illustration", text: "A consistent author identity, with custom illustration where your project needs it.", d: I.brand },
+  { title: "Audiobook Production", to: "/audiobook-production", text: "Narration, recording and production to extend your book into audio.", d: I.audio, rect: { x: 9, y: 3, width: 6, height: 11, rx: 3 } },
+  { title: "Book Video Trailers", to: "/book-trailers", text: "Short trailers and promo clips that introduce your story.", d: I.video, rect: { x: 3, y: 6, width: 12, height: 12, rx: 2 } },
 ];
 
 // Photo and caption for each service in the ring carousel. Photos are from
@@ -129,9 +129,9 @@ export const TESTIMONIALS = [
 // "Where is your book now?" stages, from first idea to launch.
 export const BOOK_STAGES = [
   { id: "idea", short: "You have a concept but nothing on the page yet.", label: "Just an idea", summary: "You have a concept, some notes or a story in your head, but nothing is on the page yet.", next: ["Shape the idea into a clear premise and audience", "Plan chapters and a realistic writing schedule", "Choose between writing it yourself or with a writer"], help: [["Book Writing", "/book-writing"]], cta: "Talk through my idea" },
-  { id: "writing", short: "You are part-way through a draft.", label: "Writing it", summary: "You are part-way through a draft and want to keep going, or you have got stuck.", next: ["Set a finish line and a weekly word count", "Get feedback on the opening chapters early", "Fill the gaps with help where you are stuck"], help: [["Book Writing", "/book-writing"], ["Book Editing", "/publishing"]], cta: "Get help finishing" },
-  { id: "draft", short: "The first draft is done and needs feedback.", label: "Draft finished", summary: "The first draft is done. It is time for honest feedback before anything else.", next: ["Developmental review of structure and pacing", "Line and copy edit once the story is settled", "Final proofread before design begins"], help: [["Book Editing", "/publishing"]], cta: "Plan my edit" },
-  { id: "edited", short: "Revised, read by others and ready to become a book.", label: "Edited & polished", summary: "The manuscript has been revised and read by others. It is ready to become a book.", next: ["Cover concepts that suit your genre and readers", "Interior layout for print and digital", "ISBNs, metadata and retailer set-up"], help: [["Cover & Interior Design", "/publishing"], ["Book Publishing", "/publishing"]], cta: "Start design" },
-  { id: "designed", short: "Cover and files are done. Time to print and publish.", label: "Designed & formatted", summary: "You have a cover and finished files. Time to print, publish and plan your launch.", next: ["Proof copies and final print checks", "Distribution to print and digital retailers", "Launch timeline, messaging and outreach"], help: [["Book Printing", "/publishing"], ["Book Marketing", "/author-branding-marketing"]], cta: "Plan my launch" },
-  { id: "launch", short: "Your book is out, or about to be.", label: "Ready to launch", summary: "Your book is out or about to be. Now it needs readers, reviews and momentum.", next: ["Review and outreach plan for the first weeks", "Author brand, website and social assets", "Audiobook or trailer to reach new readers"], help: [["Book Marketing", "/author-branding-marketing"], ["Audiobook Production", "/audio-video-production"]], cta: "Grow my readership" },
+  { id: "writing", short: "You are part-way through a draft.", label: "Writing it", summary: "You are part-way through a draft and want to keep going, or you have got stuck.", next: ["Set a finish line and a weekly word count", "Get feedback on the opening chapters early", "Fill the gaps with help where you are stuck"], help: [["Book Writing", "/book-writing"], ["Book Editing", "/book-editing"]], cta: "Get help finishing" },
+  { id: "draft", short: "The first draft is done and needs feedback.", label: "Draft finished", summary: "The first draft is done. It is time for honest feedback before anything else.", next: ["Developmental review of structure and pacing", "Line and copy edit once the story is settled", "Final proofread before design begins"], help: [["Book Editing", "/book-editing"]], cta: "Plan my edit" },
+  { id: "edited", short: "Revised, read by others and ready to become a book.", label: "Edited & polished", summary: "The manuscript has been revised and read by others. It is ready to become a book.", next: ["Cover concepts that suit your genre and readers", "Interior layout for print and digital", "ISBNs, metadata and retailer set-up"], help: [["Cover & Interior Design", "/ebook-design"], ["Book Publishing", "/ebook-publishing"]], cta: "Start design" },
+  { id: "designed", short: "Cover and files are done. Time to print and publish.", label: "Designed & formatted", summary: "You have a cover and finished files. Time to print, publish and plan your launch.", next: ["Proof copies and final print checks", "Distribution to print and digital retailers", "Launch timeline, messaging and outreach"], help: [["Book Printing", "/book-printing"], ["Book Marketing", "/book-marketing"]], cta: "Plan my launch" },
+  { id: "launch", short: "Your book is out, or about to be.", label: "Ready to launch", summary: "Your book is out or about to be. Now it needs readers, reviews and momentum.", next: ["Review and outreach plan for the first weeks", "Author brand, website and social assets", "Audiobook or trailer to reach new readers"], help: [["Book Marketing", "/book-marketing"], ["Audiobook Production", "/audiobook-production"]], cta: "Grow my readership" },
 ];

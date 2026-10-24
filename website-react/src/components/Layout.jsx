@@ -98,6 +98,15 @@ const WORK_LINKS = [
 const FLAT_LINKS = NAV.filter((n) => n.id && n.id !== "services");
 const SERVICE_PAGES = [
   { to: "/book-writing", label: "Book Writing" },
+  { to: "/book-editing", label: "Book Editing" },
+  { to: "/ebook-design", label: "Ebook Cover & Interior Design" },
+  { to: "/ebook-publishing", label: "Ebook Publishing" },
+  { to: "/book-printing", label: "Book Printing" },
+  { to: "/book-marketing", label: "Book Marketing" },
+  { to: "/author-branding-illustration", label: "Author Branding & Illustration" },
+  { to: "/audiobook-production", label: "Audiobook Production" },
+  { to: "/book-trailers", label: "Book Video Trailers" },
+  { to: "/ebook-publishing-services", label: "Ebook Publishing Services" },
   { to: "/publishing", label: "Publishing" },
   { to: "/author-branding-marketing", label: "Author Branding & Marketing" },
   { to: "/audio-video-production", label: "Audio & Video Production" },
@@ -238,7 +247,7 @@ function Header() {
 
 const FOOTER_COLUMNS = [
   { title: "Company", links: [{ label: "About", href: "/#about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
-  { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Publishing", href: "/publishing" }, { label: "Author Branding & Marketing", href: "/author-branding-marketing" }, { label: "Audio & Video Production", href: "/audio-video-production" }] },
+  { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Book Editing", href: "/book-editing" }, { label: "Ebook Cover & Interior Design", href: "/ebook-design" }, { label: "Ebook Publishing", href: "/ebook-publishing" }, { label: "Book Printing", href: "/book-printing" }, { label: "Book Marketing", href: "/book-marketing" }, { label: "Author Branding & Illustration", href: "/author-branding-illustration" }, { label: "Audiobook Production", href: "/audiobook-production" }, { label: "Book Video Trailers", href: "/book-trailers" }, { label: "Ebook Publishing Services", href: "/ebook-publishing-services" }, { label: "Publishing", href: "/publishing" }, { label: "Author Branding & Marketing", href: "/author-branding-marketing" }, { label: "Audio & Video Production", href: "/audio-video-production" }] },
   { title: "Contact", links: [{ label: SITE.email, href: "mailto:" + SITE.email }, { label: SITE.phone, href: SITE.phoneHref }, { label: "333 Washington St #233, Hoboken NJ 07030" }] },
 ];
 
