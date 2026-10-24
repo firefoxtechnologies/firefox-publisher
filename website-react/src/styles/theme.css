@@ -821,3 +821,36 @@ h1, h2 { font-weight: 800; }
 .brand__name > span:last-child { font-size: .9rem; letter-spacing: .03em; margin-top: 5px; }
 .footer-lockup__name > span:last-child { font-size: 1.05rem; letter-spacing: .03em; }
 @media (max-width: 860px) { .brand__name > span:last-child { font-size: .74rem; } }
+
+/* Wordmark in the Firefox Technologies style: bold FIREFOX, lighter line below, both white, same width */
+.brand__name > span:first-child { font-size: 1.75rem; font-weight: 800; letter-spacing: .02em; }
+.brand__name > span:last-child { color: #fff; font-weight: 500; font-size: 1.12rem; letter-spacing: 0; margin-top: 4px; }
+.footer-lockup__name > span:first-child { font-size: 2.1rem; font-weight: 800; letter-spacing: .02em; }
+.footer-lockup__name > span:last-child { color: #fff; font-weight: 500; font-size: 1.35rem; letter-spacing: 0; margin-top: 5px; }
+@media (max-width: 860px) { .brand__name > span:first-child { font-size: 1.35rem; } .brand__name > span:last-child { font-size: .86rem; } }
+
+/* PUBLISHERS: letters spread evenly so the word is exactly as wide as FIREFOX */
+.brand__name > .spread, .footer-lockup__name > .spread { display: flex; justify-content: space-between; text-align: left; letter-spacing: 0; }
+.brand__name > .spread { font-size: .9rem; margin-top: 5px; }
+.footer-lockup__name > .spread { font-size: 1.1rem; margin-top: 6px; }
+@media (max-width: 860px) { .brand__name > .spread { font-size: .72rem; } }
+.brand .brand__name > span.spread, .footer-lockup .footer-lockup__name > span.spread { display: flex; justify-content: space-between; width: 0; min-width: 100%; }
+.brand .brand__name > span.spread { font-size: .9rem; }
+.footer-lockup .footer-lockup__name > span.spread { font-size: 1.1rem; }
+.brand .brand__name > span.spread > span, .footer-lockup .footer-lockup__name > span.spread > span { font-size: inherit; font-weight: 500; letter-spacing: 0; color: #fff; }
+@media (max-width: 860px) { .brand .brand__name > span.spread { font-size: .72rem; } }
+
+/* Wordmark uses Montserrat, the same geometric sans as the Firefox Technologies logo */
+.brand .brand__name, .footer-lockup .footer-lockup__name { font-family: "Montserrat", "Plus Jakarta Sans", sans-serif; }
+.brand .brand__name > span:first-child, .footer-lockup .footer-lockup__name > span:first-child { font-weight: 800; letter-spacing: .01em; }
+.brand .brand__name > span.spread > span, .footer-lockup .footer-lockup__name > span.spread > span { font-family: inherit; font-weight: 500; }
+.brand .brand__name > span.spread { font-size: 1rem; }
+.footer-lockup .footer-lockup__name > span.spread { font-size: 1.25rem; }
+@media (max-width: 860px) { .brand .brand__name > span.spread { font-size: .8rem; } }
+.header__in { background: rgb(11, 28, 53); backdrop-filter: none; }
+.hwf-logo span, .hwf-logo .footer-lockup span { opacity: 1 !important; }
+
+/* Footer text: exact white, no dimming */
+.hwf-root .hwf-top, .hwf-root .hwf-rule, .hwf-root .hwf-col h2, .hwf-root .hwf-brand strong, .hwf-root .hwf-legal a { color: #fff; }
+.hwf-root .hwf-brand > span, .hwf-root .hwf-col a, .hwf-root .hwf-legal, .hwf-root .hwf-up { color: #fff; opacity: 1; }
+.hwf-root .hwf-col li, .hwf-root .hwf-col li > * { color: #fff; opacity: 1 !important; }

@@ -137,7 +137,7 @@ function Header() {
       <div className="wrap header__in">
         <Link className="brand" to="/" aria-label="Firefox Publisher, home">
           <img className="brand__fox" src="/assets/logo-fox-mark.webp" alt="" width="700" height="379" />
-          <span className="brand__name" aria-label="Firefox Publishers"><span aria-hidden="true">FIREFOX</span><span aria-hidden="true">PUBLISHERS</span></span>
+          <span className="brand__name" aria-label="Firefox Publisher"><span aria-hidden="true">FIREFOX</span><span className="spread" aria-hidden="true">{[..."PUBLISHER"].map((c, i) => <span key={i}>{c}</span>)}</span></span>
         </Link>
         <button
           ref={btnRef}
@@ -254,7 +254,7 @@ function Footer() {
       logo={(
         <span className="footer-lockup">
           <img className="footer-fox" src="/assets/logo-fox-mark.webp" alt="" width="700" height="379" />
-          <span className="footer-lockup__name" aria-label="Firefox Publishers"><span aria-hidden="true">FIREFOX</span><span aria-hidden="true">PUBLISHERS</span></span>
+          <span className="footer-lockup__name" aria-label="Firefox Publisher"><span aria-hidden="true">FIREFOX</span><span className="spread" aria-hidden="true">{[..."PUBLISHER"].map((c, i) => <span key={i}>{c}</span>)}</span></span>
         </span>
       )}
       meta={`\u00a9${new Date().getFullYear()} \u00b7 Hoboken, New Jersey`}
@@ -265,7 +265,7 @@ function Footer() {
       }
       columns={FOOTER_COLUMNS}
       renderLink={renderFooterLink}
-      palette={{ background: "#12294a", ink: "#eaf3fd", warm: "#f28c28" }}
+      palette={{ background: "#0b1c35", ink: "#eaf3fd", warm: "#f28c28" }}
       fontFamily='"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif'
       monoFamily='"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif'
       dotOpacity={0.4}
