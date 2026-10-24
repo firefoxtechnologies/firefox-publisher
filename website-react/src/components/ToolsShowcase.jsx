@@ -17,7 +17,7 @@ const ART = [
   ["/assets/stages/writing.jpg", "Hands typing a manuscript on a laptop"],
   ["/assets/stages/draft.jpg", "A finished draft on the desk next to a laptop"],
   ["/assets/stages/edited.jpg", "A hand marking up a manuscript with a red pen"],
-  ["/assets/stages/designed.jpg", "A stack of plain hardcover books in different colours"],
+  ["/assets/stages/designed.jpg", "A hand holding open a book with a cleanly laid-out photo spread"],
   ["/assets/stages/launch.jpg", "A bookstore table with a display of new books"],
 ];
 
