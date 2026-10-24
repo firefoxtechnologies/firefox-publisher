@@ -28,7 +28,7 @@ function Head({ eyebrow, title, children }) {
 
 function Stats() {
   return (
-    <section className="stats-wrap" aria-label="Firefox Publishers at a glance">
+    <section className="stats-wrap" aria-label="Firefox Publisher at a glance">
       <div className="wrap">
         <dl className="stats">
           {STATS.map((s) => (
@@ -205,7 +205,7 @@ function About() {
       <div className="wrap">
         <Head eyebrow="Our approach" title="A capable publishing partner">
           <p>Our mission is to help authors and creators present, publish and promote their work with professional care.</p>
-          <p className="parent-line">Firefox Publishers is the publishing arm and a child company of <strong><ParentLink /></strong>, the digital agency behind our web, search and brand work.</p>
+          <p className="parent-line">Firefox Publisher is the publishing arm and a child company of <strong><ParentLink /></strong>, the digital agency behind our web, search and brand work.</p>
         </Head>
         <div className="grid grid--3 about__grid">
           {APPROACH.map((c, i) => (
@@ -372,7 +372,7 @@ function Contact({ plan }) {
               </li>
             ))}
           </ul>
-          <p className="cx__parent">Firefox Publishers is a child company of <ParentLink />.</p>
+          <p className="cx__parent">Firefox Publisher is a child company of <ParentLink />.</p>
         </Reveal>
         <ContactForm plan={plan} />
       </div>
@@ -382,7 +382,7 @@ function Contact({ plan }) {
 
 export default function Home() {
   usePageMeta(
-    "Firefox Publishers | Your Story. Our Craft.",
+    "Firefox Publisher | Your Story. Our Craft.",
     "Publishing and creative services that help authors present their work professionally and build their brands."
   );
   const [plan, setPlan] = useState(null);

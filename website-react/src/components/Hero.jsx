@@ -80,9 +80,9 @@ function TypedHeadline() {
 // Home hero: the sample covers fly out of a 3D corridor as you scroll the wheel.
 export default function Hero() {
   return (
-    <section id="top" aria-label="Firefox Publishers">
+    <section id="top" aria-label="Firefox Publisher">
       <PerspectiveTunnelHero images={IMAGES} className="hero--dark tunnel-hero" hint="Scroll to explore">
-        <p className="eyebrow">Firefox Publishers</p>
+        <p className="eyebrow">Firefox Publisher</p>
         <TypedHeadline />
         <p className="lead">Publishing and creative services that help authors present their work professionally and build their brands.</p>
         <div className="hero__cta">

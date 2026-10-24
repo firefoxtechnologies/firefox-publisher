@@ -5,7 +5,7 @@ import { BOOKS, CLASSICS, GENRES } from "../data/catalog.js";
 import { usePageMeta } from "../hooks.js";
 
 export default function Books() {
-  usePageMeta("Books | Firefox Publishers", "Sample books showing the covers and formats Firefox Publishers produces.");
+  usePageMeta("Books | Firefox Publisher", "Sample books showing the covers and formats Firefox Publisher produces.");
   const [genre, setGenre] = useState("all");
   const chips = ["all", ...GENRES];
   return (
@@ -49,7 +49,7 @@ export default function Books() {
             ))}
           </div>
 
-          <p className="note">These are original sample covers with invented titles and authors, shown for layout only. Replace them with books Firefox Publishers has published, and only with the author's permission.</p>
+          <p className="note">These are original sample covers with invented titles and authors, shown for layout only. Replace them with books Firefox Publisher has published, and only with the author's permission.</p>
           <div className="section__head classics-head">
             <p className="eyebrow">Public-domain classics</p>
             <h2>Classics we can format and publish</h2>
@@ -71,7 +71,7 @@ export default function Books() {
               </Reveal>
             ))}
           </div>
-          <p className="note">Source: <a href="https://standardebooks.org/" target="_blank" rel="noopener">Standard Ebooks</a> (CC0 1.0). Texts and artwork are believed to be in the U.S. public domain and may still be copyrighted in other countries, so check local law before publishing outside the United States. These titles are not Firefox Publishers originals.</p>
+          <p className="note">Source: <a href="https://standardebooks.org/" target="_blank" rel="noopener">Standard Ebooks</a> (CC0 1.0). Texts and artwork are believed to be in the U.S. public domain and may still be copyrighted in other countries, so check local law before publishing outside the United States. These titles are not Firefox Publisher originals.</p>
         </div>
       </section>
       <CtaBand />

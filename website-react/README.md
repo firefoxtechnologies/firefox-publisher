@@ -1,4 +1,4 @@
-# Firefox Publishers (React)
+# Firefox Publisher (React)
 
 React + Vite + React Router version of the static site in `../website`.
 

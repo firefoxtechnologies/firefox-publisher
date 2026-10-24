@@ -165,7 +165,7 @@ const HWF_CSS = `
 .hwf-brand strong { display: block; font-size: 20px; font-weight: 700; line-height: 1.5; margin-bottom: 4px; }
 .hwf-brand span { opacity: .6; }
 .hwf-logo { margin-bottom: 14px; line-height: 0; }
-.hwf-logo img { display: block; height: 60px; width: auto; border-radius: 7px; background: #fff; padding: 3px; }
+.hwf-logo img { display: block; height: 64px; width: auto; border-radius: 50%; }
 .hwf-col h2 { margin: 0 0 6px; font: inherit; font-size: 18px; font-weight: 700; line-height: 1.5; letter-spacing: 0; color: var(--hwf-ink); }
 .hwf-col ul { list-style: none; margin: 0; padding: 0; }
 .hwf-col li { padding-block: 5px; }
@@ -201,7 +201,7 @@ const HWF_CSS = `
 export default function HalftoneWordmarkFooter({
   wordmark = "halden",
   logo,
-  label = "Halden Studio",
+  label,
   meta = "©2026 · Oslo / Lisbon",
   legal,
   columns = DEFAULT_COLUMNS,
@@ -495,7 +495,7 @@ export default function HalftoneWordmarkFooter({
       <div className="hwf-top">
         <div className="hwf-brand">
           {logo ? <div className="hwf-logo">{logo}</div> : null}
-          <strong>{label}</strong>
+          {label ? <strong>{label}</strong> : null}
           <span>{meta}</span>
         </div>
         {columns.map((col) => (

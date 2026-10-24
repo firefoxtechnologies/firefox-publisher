@@ -11,7 +11,7 @@ const STEPS = [
 ];
 
 export default function ServicePage({ service: s }) {
-  usePageMeta(`${s.name} | Firefox Publishers`, s.short);
+  usePageMeta(`${s.name} | Firefox Publisher`, s.short);
   const others = SERVICE_PAGES.filter((o) => o.path !== s.path);
   return (
     <>

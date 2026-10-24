@@ -136,9 +136,9 @@ function Header() {
   return (
     <header className="header">
       <div className="wrap header__in">
-        <Link className="brand" to="/" aria-label="Firefox Publishers, home">
-          <img src="/assets/logo.jpg" alt="" />
-          <span>FIREFOX<small>PUBLISHERS</small></span>
+        <Link className="brand" to="/" aria-label="Firefox Publisher, home">
+          <img src="/assets/logo.svg" alt="" />
+          <span>Firefox<small>Publisher</small></span>
         </Link>
         <button
           ref={btnRef}
@@ -251,9 +251,13 @@ function renderFooterLink(l) {
 function Footer() {
   return (
     <HalftoneWordmarkFooter
-      wordmark="firefox publishers"
-      logo={<img src="/assets/logo.jpg" alt="Firefox Publishers logo" width="68" height="56" />}
-      label="Firefox Publishers"
+      wordmark="firefox publisher"
+      logo={(
+        <span className="logo-lockup">
+          <img src="/assets/logo.svg" alt="" width="64" height="64" />
+          <span>Firefox<small>Publisher</small></span>
+        </span>
+      )}
       meta={`\u00a9${new Date().getFullYear()} \u00b7 Hoboken, New Jersey`}
       legal={
         <>

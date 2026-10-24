@@ -1,4 +1,4 @@
-/* Firefox Publishers — built from the Brand Kit (Concept 01, Oct 2026) */
+/* Firefox Publisher — built from the Brand Kit (Concept 01, Oct 2026) */
 :root {
   --navy: #12294a;
   --white: #ffffff;
@@ -79,7 +79,7 @@ p { margin: 0; }
 .brand { display: flex; align-items: center; gap: var(--s3); text-decoration: none; color: var(--navy); }
 .brand img { height: 48px; width: auto; mix-blend-mode: multiply; }
 .brand span { font-weight: 800; letter-spacing: .02em; font-size: 1.05rem; line-height: 1.1; }
-.brand small { display: block; font-weight: 500; letter-spacing: .12em; font-size: .7rem; }
+.brand small { display: block; font-weight: 500; letter-spacing: .12em; font-size: .7rem; text-transform: uppercase; }
 .nav { display: flex; align-items: center; gap: var(--s6); }
 .nav a:not(.btn) { color: var(--navy); text-decoration: none; font-weight: 600; font-size: .95rem; }
 .nav a:not(.btn):hover { color: var(--deep); }
@@ -379,7 +379,7 @@ address { font-style: normal; }
 .topbar { background: #0b1c35; }
 .header { background: var(--navy); border-bottom: 1px solid rgba(255,255,255,.12); backdrop-filter: none; }
 .brand { color: #fff; }
-.brand img { mix-blend-mode: normal; background: #fff; border-radius: 7px; padding: 2px; height: 46px; }
+.brand img { mix-blend-mode: normal; border-radius: 50%; height: 46px; }
 .nav a:not(.btn) { color: #e6eef9; }
 .nav a:not(.btn):hover { color: var(--glacier); }
 .nav .btn--primary { background: var(--glacier); border-color: var(--glacier); color: #fff; }
@@ -425,3 +425,6 @@ address { font-style: normal; }
   .drift { display: none; }
   .shelf .cover { animation: none; }
 }
+
+.logo-lockup { display: inline-flex; align-items: center; gap: 12px; color: #fff; font-weight: 800; font-size: 1.35rem; line-height: 1.1; letter-spacing: .02em; }
+.logo-lockup small { display: block; font-weight: 500; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; }

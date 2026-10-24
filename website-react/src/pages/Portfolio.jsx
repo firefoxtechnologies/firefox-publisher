@@ -5,7 +5,7 @@ import { PROJECTS, PROJECT_CATS } from "../data/catalog.js";
 import { usePageMeta } from "../hooks.js";
 
 export default function Portfolio() {
-  usePageMeta("Portfolio | Firefox Publishers", "Selected projects showing the objective, the work completed and what was delivered.");
+  usePageMeta("Portfolio | Firefox Publisher", "Selected projects showing the objective, the work completed and what was delivered.");
   const [filter, setFilter] = useState("all");
   const chips = [{ id: "all", label: "All" }, ...PROJECT_CATS];
   const label = (id) => PROJECT_CATS.find((c) => c.id === id).label;
@@ -37,7 +37,7 @@ export default function Portfolio() {
                   <h3>{p.title}</h3>
                   <dl>
                     <dt>Objective</dt><dd>What the client wanted to achieve.</dd>
-                    <dt>Work completed</dt><dd>What Firefox Publishers did.</dd>
+                    <dt>Work completed</dt><dd>What Firefox Publisher did.</dd>
                     <dt>Deliverables</dt><dd>What was handed over.</dd>
                   </dl>
                 </div>

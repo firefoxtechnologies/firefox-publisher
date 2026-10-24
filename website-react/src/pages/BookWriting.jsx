@@ -154,7 +154,7 @@ function TypedTitle() {
 
 export default function BookWriting() {
   usePageMeta(
-    "Book Writing Services | Firefox Publishers",
+    "Book Writing Services | Firefox Publisher",
     "Turn your idea into a book. Fiction, nonfiction, ghostwriting, memoir, children's books and editing, with a simple process and help whenever you need it."
   );
 
@@ -195,7 +195,7 @@ export default function BookWriting() {
             <p className="eyebrow">Book writing services</p>
             <h2>Turn Your Ideas Into a Beautifully Written Book</h2>
             <p>You&rsquo;ve got a story to tell, an idea to share, or a book you&rsquo;ve been dreaming about for years. There&rsquo;s just one tiny problem&hellip; where do you start?</p>
-            <p><strong>That&rsquo;s where Firefox Publishers comes in!</strong></p>
+            <p><strong>That&rsquo;s where Firefox Publisher comes in!</strong></p>
             <p>We help turn your ideas into beautifully written books, without making the writing process feel like homework. Whether you&rsquo;re dreaming of a thrilling novel, a business book, or a story for little readers, we&rsquo;re here to help you put it all into words.</p>
           </Reveal>
           <Reveal className="bw-intro__quote" delay={80}>
@@ -240,10 +240,10 @@ export default function BookWriting() {
       {/* Why us */}
       <section className="section" id="bw-why">
         <div className="wrap">
-          <Head eyebrow="Why Firefox Publishers?" title="Writing a book should feel exciting">
+          <Head eyebrow="Why Firefox Publisher?" title="Writing a book should feel exciting">
             <p>Because writing a book should feel exciting, not like wrestling with a thousand blank pages.</p>
           </Head>
-          <AppleCardCarousel cards={WHY_CARDS} label="Why Firefox Publishers" />
+          <AppleCardCarousel cards={WHY_CARDS} label="Why Firefox Publisher" />
           <p className="center bw-cta"><Link className="btn btn--primary" to="/#contact">Let&rsquo;s make something amazing</Link></p>
         </div>
       </section>
@@ -253,12 +253,12 @@ export default function BookWriting() {
         <div className="wrap bw-final__in">
           <h2>Ready to Make Your Book Dreams a Reality?</h2>
           <p>That story you&rsquo;ve been thinking about? Those ideas you&rsquo;ve been saving for later? Let&rsquo;s give them a few chapters, a little personality, and a chance to be read!</p>
-          <p>Whether you&rsquo;re starting with a blank page or a nearly finished manuscript, Firefox Publishers is ready to help you take the next step. Your future readers are out there. Let&rsquo;s give them something to read!</p>
+          <p>Whether you&rsquo;re starting with a blank page or a nearly finished manuscript, Firefox Publisher is ready to help you take the next step. Your future readers are out there. Let&rsquo;s give them something to read!</p>
           <div className="hero__cta">
             <Link className="btn btn--primary" to="/#contact">Let&rsquo;s write that book!</Link>
             <Link className="btn btn--ghost" to="/#contact">Talk to our team</Link>
           </div>
-          <p className="bw-final__tag">Firefox Publishers &mdash; Your Ideas. Our Words. Your Book.</p>
+          <p className="bw-final__tag">Firefox Publisher &mdash; Your Ideas. Our Words. Your Book.</p>
         </div>
       </section>
 
@@ -295,7 +295,7 @@ export default function BookWriting() {
         description={
           <>
             <p>Maybe you&rsquo;ve written three chapters. Maybe you&rsquo;ve got a folder full of notes. Or maybe your entire book exists in your head while you&rsquo;re trying to fall asleep.</p>
-            <p>We&rsquo;ve seen enough blank pages to know that every great book begins somewhere. At Firefox Publishers, we&rsquo;ll help you turn those scattered thoughts into a story with structure, purpose, and personality.</p>
+            <p>We&rsquo;ve seen enough blank pages to know that every great book begins somewhere. At Firefox Publisher, we&rsquo;ll help you turn those scattered thoughts into a story with structure, purpose, and personality.</p>
             <strong>You bring the spark. Let&rsquo;s build the story.</strong>
           </>
         }
