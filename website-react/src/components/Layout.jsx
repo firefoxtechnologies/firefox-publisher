@@ -147,7 +147,7 @@ function Header() {
       <div className="wrap header__in">
         <Link className="brand" to="/" aria-label="Firefox Publisher, home">
           <img className="brand__fox" src="/assets/logo-fox-mark.webp" alt="" width="700" height="379" />
-          <span className="brand__name" aria-label="Firefox Publisher"><span aria-hidden="true">FIREFOX</span><span className="spread" aria-hidden="true">{[..."PUBLISHER"].map((c, i) => <span key={i}>{c}</span>)}</span></span>
+          <span className="brand__name" role="img" aria-label="Firefox Publisher"><span aria-hidden="true">FIREFOX</span><span className="spread" aria-hidden="true">{[..."PUBLISHER"].map((c, i) => <span key={i}>{c}</span>)}</span></span>
         </Link>
         <button
           ref={btnRef}
@@ -247,7 +247,7 @@ function Header() {
 
 const FOOTER_COLUMNS = [
   { title: "Company", links: [{ label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
-  { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Book Editing", href: "/book-editing" }, { label: "Ebook Cover & Interior Design", href: "/ebook-design" }, { label: "Ebook Publishing", href: "/ebook-publishing" }, { label: "Book Printing", href: "/book-printing" }, { label: "Book Marketing", href: "/book-marketing" }, { label: "Author Branding & Illustration", href: "/author-branding-illustration" }, { label: "Audiobook Production", href: "/audiobook-production" }, { label: "Book Video Trailers", href: "/book-trailers" }, { label: "Ebook Publishing Services", href: "/ebook-publishing-services" }, { label: "Publishing", href: "/publishing" }, { label: "Author Branding & Marketing", href: "/author-branding-marketing" }, { label: "Audio & Video Production", href: "/audio-video-production" }] },
+  { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Book Editing", href: "/book-editing" }, { label: "Ebook Cover & Interior Design", href: "/ebook-design" }, { label: "Ebook Publishing", href: "/ebook-publishing" }, { label: "Book Marketing", href: "/book-marketing" }, { label: "Audiobook Production", href: "/audiobook-production" }, { label: "All services: what we do", href: "/#services" }] },
   { title: "Contact", links: [{ label: SITE.email, href: "mailto:" + SITE.email }, { label: SITE.phone, href: SITE.phoneHref }, { label: "333 Washington St #233, Hoboken NJ 07030" }] },
 ];
 
@@ -264,7 +264,7 @@ function Footer() {
       logo={(
         <span className="footer-lockup">
           <img className="footer-fox" src="/assets/logo-fox-mark.webp" alt="" width="700" height="379" />
-          <span className="footer-lockup__name" aria-label="Firefox Publisher"><span aria-hidden="true">FIREFOX</span><span className="spread" aria-hidden="true">{[..."PUBLISHER"].map((c, i) => <span key={i}>{c}</span>)}</span></span>
+          <span className="footer-lockup__name" role="img" aria-label="Firefox Publisher"><span aria-hidden="true">FIREFOX</span><span className="spread" aria-hidden="true">{[..."PUBLISHER"].map((c, i) => <span key={i}>{c}</span>)}</span></span>
         </span>
       )}
       meta={`\u00a9${new Date().getFullYear()} \u00b7 Hoboken, New Jersey`}
