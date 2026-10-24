@@ -135,7 +135,7 @@ function Packages({ onPlan }) {
           tiers={TIERS}
           defaultValue="starter"
           renderCta={(tier) => (
-            <Link className="btn btn--primary" to="/#contact" onClick={() => onPlan({ name: tier.name })}>
+            <Link className="btn btn--primary" to="/#contact" data-plan={tier.name} onClick={() => onPlan({ name: tier.name })}>
               Start {tier.label} package
             </Link>
           )}

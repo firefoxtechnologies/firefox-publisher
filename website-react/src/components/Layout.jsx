@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { NAV, SERVICES, SITE } from "../data/site.js";
 import { prefersReducedMotion, useRafScroll } from "../hooks.js";
+import ContactPopup from "./ContactPopup.jsx";
 import HalftoneWordmarkFooter from "./ui/halftone-wordmark-footer";
 import {
   NavigationMenu,
@@ -294,6 +295,7 @@ export default function Layout() {
       <ScrollProgress />
       <BackToTop />
       <ScrollManager />
+      <ContactPopup />
     </>
   );
 }

@@ -59,9 +59,9 @@ export function Estimator() {
   );
 }
 
-const DIAL_CODES = ["+1 US/CA", "+44 UK", "+91 IN", "+971 UAE", "+61 AU", "+92 PK", "+49 DE", "+86 CN"];
+export const DIAL_CODES = ["+1 US/CA", "+44 UK", "+91 IN", "+971 UAE", "+61 AU", "+92 PK", "+49 DE", "+86 CN"];
 
-const RULES = {
+export const RULES = {
   name: (v) => (v.trim() ? "" : "Please enter your name."),
   email: (v) => (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? "" : "Please enter a valid email address, like name@example.com."),
   phone: (v) => {
