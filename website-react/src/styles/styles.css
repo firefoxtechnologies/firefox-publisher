@@ -428,3 +428,8 @@ address { font-style: normal; }
 
 .logo-lockup { display: inline-flex; align-items: center; gap: 12px; color: #fff; font-weight: 800; font-size: 1.35rem; line-height: 1.1; letter-spacing: .02em; }
 .logo-lockup small { display: block; font-weight: 500; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; }
+
+/* Easier tapping on touch screens */
+@media (pointer: coarse) {
+  .hwf-col a, .nm-mobile a, .cx__parent a { display: inline-block; padding-block: 8px; }
+}

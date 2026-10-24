@@ -1,33 +1,46 @@
 import { useState } from "react";
-import { INTERESTS, READINESS, READINESS_MSGS } from "../data/site.js";
+import { INTERESTS, READINESS, READINESS_MSGS, SITE } from "../data/site.js";
 import { Reveal } from "./ui.jsx";
 
 const plural = (n) => n + (n === 1 ? " week" : " weeks");
 
-// Illustrative schedule from manuscript length (k = thousands of words).
-// Editorial grows with length (about one week per 15k words, two at the least);
-// production grows more slowly; discovery gets a second week for very long books.
+// Illustrative schedule from manuscript length (k = thousands of words, 10 to 2,000).
+// Every length fits within 3 months: the longest manuscript (2,000,000 words) is the
+// ceiling at 13 weeks, and shorter ones scale down from there (7 weeks at 10k words).
+// Length is scaled logarithmically, so ordinary book lengths still show a clear difference.
+const MIN_K = 10;
+const MAX_K = 2000;
 export function estimateWeeks(k) {
+  const t = Math.min(1, Math.max(0, Math.log(k / MIN_K) / Math.log(MAX_K / MIN_K)));
   const rows = [
-    ["Discovery", k > 120 ? 2 : 1],
-    ["Editorial", Math.max(2, Math.ceil(k / 15))],
-    ["Design & production", 2 + Math.ceil(k / 50)],
+    ["Discovery", 1],
+    ["Editorial", Math.min(6, Math.ceil(2 + 4 * t))],
+    ["Design & production", Math.min(4, Math.ceil(2 + 2 * t))],
     ["Launch prep", 2],
   ];
   const total = rows.reduce((sum, r) => sum + r[1], 0);
   return { rows, total };
 }
 
+// The slider runs 0 to 100 and maps onto 10k to 2M words on a curve, rounded to tidy steps.
+const kFromSlider = (pos) => {
+  const raw = MIN_K * Math.pow(MAX_K / MIN_K, pos / 100);
+  const step = raw < 100 ? 5 : raw < 500 ? 25 : 100;
+  return Math.min(MAX_K, Math.max(MIN_K, Math.round(raw / step) * step));
+};
+const sliderFromK = (k) => Math.round((Math.log(k / MIN_K) / Math.log(MAX_K / MIN_K)) * 100);
+
 export function Estimator() {
-  const [k, setK] = useState(60);
+  const [pos, setPos] = useState(() => sliderFromK(60));
+  const k = kFromSlider(pos);
   const { rows, total } = estimateWeeks(k);
   const months = (total / 4.345).toFixed(1);
   return (
     <Reveal className="estimator">
       <div className="est__field">
         <label htmlFor="words">Manuscript length: <strong id="words-out">{(k * 1000).toLocaleString()} words</strong></label>
-        <input type="range" id="words" min="10" max="200" step="5" value={k} onChange={(e) => setK(Number(e.target.value))} />
-        <div className="est__ends" aria-hidden="true"><span>10,000</span><span>200,000</span></div>
+        <input type="range" id="words" min="0" max="100" step="1" value={pos} onChange={(e) => setPos(Number(e.target.value))} aria-valuetext={`${(k * 1000).toLocaleString()} words`} />
+        <div className="est__ends" aria-hidden="true"><span>10,000</span><span>2,000,000</span></div>
       </div>
 
       <div className="est__result" aria-live="polite">
@@ -108,11 +121,22 @@ export function ContactForm({ plan }) {
     });
     setErrors(next);
     setSubmitted(true);
-    setStatus(
-      Object.keys(next).length
-        ? "Please fix the highlighted fields."
-        : "Thank you. The form is not connected to email yet, so this message was not sent."
-    );
+    const first = Object.keys(next)[0];
+    if (first) {
+      setStatus("Please fix the highlighted fields.");
+      document.getElementById(first)?.focus();
+      return;
+    }
+    // No mail service is connected yet, so hand the message to the visitor's email app.
+    const body = [
+      "Name: " + values.name.trim(),
+      "Email: " + values.email.trim(),
+      "Phone: " + values.dial.split(" ")[0] + " " + values.phone.trim(),
+      "",
+      values.message.trim(),
+    ].join("\n");
+    window.location.href = "mailto:" + SITE.email + "?subject=" + encodeURIComponent(values.interest) + "&body=" + encodeURIComponent(body);
+    setStatus("Your email app should open with your message ready to send. If it doesn't, email us at " + SITE.email + ".");
   };
 
   const field = (k, label, input) => (
@@ -122,7 +146,7 @@ export function ContactForm({ plan }) {
         <span className="req" aria-hidden="true"> *</span>
       </label>
       {input}
-      <span className="err" id={k + "-err"}>{errors[k] || ""}</span>
+      <span className="err" id={k + "-err"} role={errors[k] ? "alert" : undefined}>{errors[k] || ""}</span>
     </div>
   );
   const invalid = (k) => (submitted ? String(Boolean(errors[k])) : undefined);

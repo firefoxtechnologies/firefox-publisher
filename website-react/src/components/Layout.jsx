@@ -107,10 +107,10 @@ function Header() {
   const [open, setOpen] = useState(false);
   const [preview, setPreview] = useState(0);
   const btnRef = useRef(null);
-  const { pathname } = useLocation();
+  const { pathname, hash, key } = useLocation();
   const active = useActiveSection(pathname === "/");
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => setOpen(false), [pathname, hash, key]);
   useEffect(() => {
     if (!open) return;
     const onKey = (e) => {
