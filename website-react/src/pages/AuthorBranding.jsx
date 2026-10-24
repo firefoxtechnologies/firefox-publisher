@@ -180,7 +180,7 @@ export default function AuthorBranding() {
             <p className="bw-hero__note">Your words tell the story. Your style makes it unforgettable!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/hero-ebook-mockup.png" alt="A tablet showing a digital book floating above a printed edition" width="1370" height="1027" />
+            <img src="/assets/services/author-branding.jpg" alt="An author building a personal brand" width="900" height="900" />
           </div>
         </div>
       </section>

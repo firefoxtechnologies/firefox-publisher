@@ -182,7 +182,7 @@ export default function EbookDesign() {
             <p className="bw-hero__note">Great stories deserve great designs. Let&rsquo;s make yours stand out!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/hero-ebook-mockup.png" alt="A tablet showing a digital book floating above a printed edition" width="1370" height="1027" />
+            <img src="/assets/services/cover-interior-design.jpg" alt="Colourful book covers and interior layouts" width="900" height="900" />
           </div>
         </div>
       </section>

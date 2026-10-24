@@ -183,7 +183,7 @@ export default function BookWriting() {
             <p className="bw-hero__note">Not sure where to start? No worries. We&rsquo;ll figure it out together.</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/hero-ebook-mockup.png" alt="A tablet showing a digital book floating above a printed edition" width="1370" height="1027" />
+            <img src="/assets/services/book-writing.jpg" alt="A writer typing a manuscript on a laptop" width="900" height="900" />
           </div>
         </div>
       </section>

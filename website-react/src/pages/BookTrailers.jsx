@@ -180,7 +180,7 @@ export default function BookTrailers() {
             <p className="bw-hero__note">Your ebook is the story. Let&rsquo;s create the preview that gets people hooked!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/hero-ebook-mockup.png" alt="A tablet showing a digital book floating above a printed edition" width="1370" height="1027" />
+            <img src="/assets/services/video-trailers.jpg" alt="A video editor cutting a book trailer" width="900" height="900" />
           </div>
         </div>
       </section>

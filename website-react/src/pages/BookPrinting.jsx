@@ -176,7 +176,7 @@ export default function BookPrinting() {
             <p className="bw-hero__note">Your story is written. Let&rsquo;s make it look the part!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/hero-ebook-mockup.png" alt="A tablet showing a digital book floating above a printed edition" width="1370" height="1027" />
+            <img src="/assets/services/book-printing.jpg" alt="Printed book pages ready for the press" width="900" height="900" />
           </div>
         </div>
       </section>

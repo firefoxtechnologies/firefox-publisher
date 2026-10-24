@@ -178,7 +178,7 @@ export default function BookMarketing() {
             <p className="bw-hero__note">Your ebook has a story to tell. Let&rsquo;s help the world discover it!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/hero-ebook-mockup.png" alt="A tablet showing a digital book floating above a printed edition" width="1370" height="1027" />
+            <img src="/assets/services/book-marketing.jpg" alt="Promoting a book to readers online" width="900" height="900" />
           </div>
         </div>
       </section>
