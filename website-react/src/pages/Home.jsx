@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero.jsx";
-import { ContactForm, Estimator } from "../components/Tools.jsx";
+import { ContactForm, DEFAULT_POS, Estimator } from "../components/Tools.jsx";
 import ToolsShowcase from "../components/ToolsShowcase.jsx";
 import { Reveal, Ticks, stagger } from "../components/ui.jsx";
 import CountUp from "../components/ui/count-up";
@@ -180,14 +180,14 @@ function Process() {
   );
 }
 
-function Timeline() {
+function Timeline({ pos, onPos, stage, onStage }) {
   return (
     <section className="section section--ice" id="estimator">
       <div className="wrap">
         <Head eyebrow="Timeline estimator" title="How long will your book take?">
           <p>Slide to your manuscript length for a rough, illustrative schedule. We confirm a real timeline in your written scope.</p>
         </Head>
-        <Estimator />
+        <Estimator pos={pos} onPos={onPos} stage={stage} onStage={onStage} />
       </div>
     </section>
   );
@@ -276,7 +276,7 @@ function StoryCta() {
   );
 }
 
-function ToolsSection() {
+function ToolsSection({ stage, onStage, pos }) {
   return (
     <section className="section section--ice" id="tools">
       <div className="wrap">
@@ -284,7 +284,7 @@ function ToolsSection() {
           <p className="eyebrow">Tools &amp; resources</p>
           <h2>Check where you are, then take the next step</h2>
         </Reveal>
-        <Reveal><ToolsShowcase /></Reveal>
+        <Reveal><ToolsShowcase active={stage} onActive={onStage} pos={pos} /></Reveal>
       </div>
     </section>
   );
@@ -379,6 +379,9 @@ export default function Home() {
     "Publishing and creative services that help authors present their work professionally and build their brands."
   );
   const [plan, setPlan] = useState(null);
+  // The estimator and the stage picker share these two values.
+  const [stage, setStage] = useState(0);
+  const [pos, setPos] = useState(DEFAULT_POS);
   return (
     <>
       <Hero />
@@ -387,11 +390,11 @@ export default function Home() {
       <Work />
       <Packages onPlan={setPlan} />
       <Process />
-      <Timeline />
+      <Timeline pos={pos} onPos={setPos} stage={stage} onStage={setStage} />
       <About />
       <Support />
       <StoryCta />
-      <ToolsSection />
+      <ToolsSection stage={stage} onStage={setStage} pos={pos} />
       <Testimonials />
       <Contact plan={plan} />
     </>

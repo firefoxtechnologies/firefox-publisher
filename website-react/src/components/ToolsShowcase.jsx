@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BOOK_STAGES } from "../data/site.js";
+import { kFromSlider, remainingFrom } from "./Tools.jsx";
 
 // Where is your book now? Left: the six stages. Right: what that stage means,
 // what usually comes next and how we can help.
@@ -21,8 +22,12 @@ const ART = [
   ["/assets/stages/launch.jpg", "A bookstore table with a display of new books"],
 ];
 
-export default function ToolsShowcase() {
-  const [active, setActive] = useState(0);
+export default function ToolsShowcase({ active: activeProp, onActive, pos = 0 }) {
+  const [own, setOwn] = useState(0);
+  const active = activeProp ?? own;
+  const setActive = onActive ?? setOwn;
+  const k = kFromSlider(pos);
+  const left = remainingFrom(k, active).total;
   const stage = BOOK_STAGES[active];
   const [src, alt] = ART[active];
 
@@ -68,6 +73,12 @@ export default function ToolsShowcase() {
           <ol className="tp__next">
             {stage.next.map((t) => <li key={t}>{t}</li>)}
           </ol>
+          <p className="tp__time">
+            <span>Estimated time from here</span>
+            <strong>{left} {left === 1 ? "week" : "weeks"}</strong>
+            <span>for a {(k * 1000).toLocaleString()}-word book.</span>
+            <a href="#estimator">Adjust the length</a>
+          </p>
           <div className="tp__actions">
             {stage.help.map(([name, to]) => <Link className="tp__chip2" key={name} to={to}>{name}</Link>)}
             <Link className="btn btn--primary tp__cta" to="/#contact">{stage.cta}</Link>

@@ -1,95 +1,207 @@
 {
   "specVersion": "1.0",
-  "name": "Firefox Publisher",
-  "description": "Creative ebook services for authors: writing and editing, formatting, design, publishing support, author branding, audiobooks, marketing and video trailers.",
-  "url": "https://firefoxpublisher.com/",
-  "publisher": {
-    "name": "Firefox Publisher",
-    "parent": "Firefox Technologies",
-    "parentUrl": "https://firefoxtechnologies.com/",
-    "email": "contactus@firefoxpublisher.com",
-    "telephone": "+1 201-464-5345"
-  },
-  "documentation": {
-    "llmsTxt": "https://firefoxpublisher.com/llms.txt",
-    "sitemap": "https://firefoxpublisher.com/sitemap.xml",
-    "robotsTxt": "https://firefoxpublisher.com/robots.txt"
-  },
-  "access": {
-    "authentication": "none",
-    "agentsWelcome": true,
-    "transactions": "Not available. Projects start through the contact form or by email; scope and pricing are confirmed individually."
+  "host": {
+    "displayName": "Firefox Publisher",
+    "identifier": "firefoxpublisher.com",
+    "documentationUrl": "https://firefoxpublisher.com/llms.txt"
   },
   "entries": [
     {
-      "id": "book-writing",
-      "type": "service",
-      "name": "Book Writing",
+      "identifier": "urn:air:firefoxpublisher.com:docs:llms-txt",
+      "type": "text/markdown",
+      "url": "https://firefoxpublisher.com/llms.txt",
+      "displayName": "Firefox Publisher llms.txt",
+      "description": "Plain-language summary of Firefox Publisher's ebook services, contact details and guidance for AI assistants.",
+      "tags": [
+        "llms-txt",
+        "documentation"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:service:book-writing",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/book-writing",
+      "displayName": "Book Writing",
       "description": "Fiction, nonfiction, ghostwriting, memoir and children's book writing.",
-      "url": "https://firefoxpublisher.com/book-writing"
+      "tags": [
+        "service",
+        "ebook",
+        "publishing"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     },
     {
-      "id": "book-editing",
-      "type": "service",
-      "name": "Book Editing",
+      "identifier": "urn:air:firefoxpublisher.com:service:book-editing",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/book-editing",
+      "displayName": "Book Editing",
       "description": "Developmental editing, line editing, copyediting and proofreading.",
-      "url": "https://firefoxpublisher.com/book-editing"
+      "tags": [
+        "service",
+        "ebook",
+        "publishing"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     },
     {
-      "id": "ebook-design",
-      "type": "service",
-      "name": "Ebook Cover & Interior Design",
+      "identifier": "urn:air:firefoxpublisher.com:service:ebook-design",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/ebook-design",
+      "displayName": "Ebook Cover & Interior Design",
       "description": "Ebook covers, interior layout, chapter and page styling, and illustrations.",
-      "url": "https://firefoxpublisher.com/ebook-design"
+      "tags": [
+        "service",
+        "ebook",
+        "publishing"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     },
     {
-      "id": "ebook-publishing",
-      "type": "service",
-      "name": "Ebook Publishing",
+      "identifier": "urn:air:firefoxpublisher.com:service:ebook-publishing",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/ebook-publishing",
+      "displayName": "Ebook Publishing",
       "description": "Formatting, cover and interior preparation, platform setup and upload support.",
-      "url": "https://firefoxpublisher.com/ebook-publishing"
+      "tags": [
+        "service",
+        "ebook",
+        "publishing"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     },
     {
-      "id": "ebook-publishing-services",
-      "type": "service",
-      "name": "Ebook Publishing Services & Support",
+      "identifier": "urn:air:firefoxpublisher.com:service:ebook-publishing-services",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/ebook-publishing-services",
+      "displayName": "Ebook Publishing Services & Support",
       "description": "Ebook formatting, cover design, book descriptions, metadata and file preparation.",
-      "url": "https://firefoxpublisher.com/ebook-publishing-services"
+      "tags": [
+        "service",
+        "ebook",
+        "publishing"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     },
     {
-      "id": "book-printing",
-      "type": "service",
-      "name": "Book Printing (print-ready files)",
+      "identifier": "urn:air:firefoxpublisher.com:service:book-printing",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/book-printing",
+      "displayName": "Book Printing (print-ready files)",
       "description": "Formatting, interior layout and print-ready PDF preparation. Not physical printing.",
-      "url": "https://firefoxpublisher.com/book-printing"
+      "tags": [
+        "service",
+        "ebook",
+        "publishing"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     },
     {
-      "id": "book-marketing",
-      "type": "service",
-      "name": "Book Marketing",
+      "identifier": "urn:air:firefoxpublisher.com:service:book-marketing",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/book-marketing",
+      "displayName": "Book Marketing",
       "description": "Launch marketing, social media content, author branding and strategy for ebooks.",
-      "url": "https://firefoxpublisher.com/book-marketing"
+      "tags": [
+        "service",
+        "ebook",
+        "publishing"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     },
     {
-      "id": "author-branding-illustration",
-      "type": "service",
-      "name": "Author Branding & Illustration",
+      "identifier": "urn:air:firefoxpublisher.com:service:author-branding-illustration",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/author-branding-illustration",
+      "displayName": "Author Branding & Illustration",
       "description": "Author logos, brand identity, branding kits, ebook and character illustrations.",
-      "url": "https://firefoxpublisher.com/author-branding-illustration"
+      "tags": [
+        "service",
+        "ebook",
+        "publishing"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     },
     {
-      "id": "audiobook-production",
-      "type": "service",
-      "name": "Audiobook Production",
+      "identifier": "urn:air:firefoxpublisher.com:service:audiobook-production",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/audiobook-production",
+      "displayName": "Audiobook Production",
       "description": "Narration, voice selection, recording, editing and final audiobook files.",
-      "url": "https://firefoxpublisher.com/audiobook-production"
+      "tags": [
+        "service",
+        "ebook",
+        "publishing"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     },
     {
-      "id": "book-trailers",
-      "type": "service",
-      "name": "Book Video Trailers",
+      "identifier": "urn:air:firefoxpublisher.com:service:book-trailers",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/book-trailers",
+      "displayName": "Book Video Trailers",
       "description": "Custom book trailers with motion graphics, music and social-ready formats.",
-      "url": "https://firefoxpublisher.com/book-trailers"
+      "tags": [
+        "service",
+        "ebook",
+        "publishing"
+      ],
+      "updatedAt": "2026-10-24T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     }
   ]
 }

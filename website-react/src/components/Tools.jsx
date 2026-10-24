@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { INTERESTS, SITE } from "../data/site.js";
+import { BOOK_STAGES, INTERESTS, SITE } from "../data/site.js";
 import { Reveal } from "./ui.jsx";
 
 const plural = (n) => n + (n === 1 ? " week" : " weeks");
@@ -23,37 +23,65 @@ export function estimateWeeks(k) {
 }
 
 // The slider runs 0 to 100 and maps onto 10k to 2M words on a curve, rounded to tidy steps.
-const kFromSlider = (pos) => {
+export const kFromSlider = (pos) => {
   const raw = MIN_K * Math.pow(MAX_K / MIN_K, pos / 100);
   const step = raw < 100 ? 5 : raw < 500 ? 25 : 100;
   return Math.min(MAX_K, Math.max(MIN_K, Math.round(raw / step) * step));
 };
-const sliderFromK = (k) => Math.round((Math.log(k / MIN_K) / Math.log(MAX_K / MIN_K)) * 100);
+export const sliderFromK = (k) => Math.round((Math.log(k / MIN_K) / Math.log(MAX_K / MIN_K)) * 100);
+export const DEFAULT_POS = sliderFromK(60);
 
-export function Estimator() {
-  const [pos, setPos] = useState(() => sliderFromK(60));
-  const k = kFromSlider(pos);
-  const { rows, total } = estimateWeeks(k);
-  const months = (total / 4.345).toFixed(1);
+// How many of the four phases (Discovery, Editorial, Design & production, Launch prep)
+// a book at each stage in BOOK_STAGES has already been through.
+const PHASES_DONE = [0, 0, 1, 2, 3, 3];
+
+// Weeks still ahead for a manuscript of k thousand words that is at stage index `stageIdx`.
+export function remainingFrom(k, stageIdx) {
+  const { rows } = estimateWeeks(k);
+  const done = PHASES_DONE[stageIdx] ?? 0;
+  const left = rows.slice(done);
+  return { rows, done, total: left.reduce((sum, r) => sum + r[1], 0) };
+}
+
+const inMonths = (weeks) => (weeks / 4.345).toFixed(1);
+
+// Shared with the "Where is your book now?" picker: both read and write the same stage
+// and manuscript length, so choosing a stage up there re-cuts the schedule down here.
+export function Estimator({ pos, onPos, stage, onStage }) {
+  const [ownPos, setOwnPos] = useState(DEFAULT_POS);
+  const [ownStage, setOwnStage] = useState(0);
+  const p = pos ?? ownPos, setP = onPos ?? setOwnPos;
+  const st = stage ?? ownStage, setSt = onStage ?? setOwnStage;
+  const k = kFromSlider(p);
+  const { rows, done, total } = remainingFrom(k, st);
   return (
     <Reveal className="estimator">
       <div className="est__field">
+        <span className="est__lab" id="est-stage-lab">Where is your book now?</span>
+        <div className="est__stages" role="group" aria-labelledby="est-stage-lab">
+          {BOOK_STAGES.map((b, i) => (
+            <button key={b.id} type="button" aria-pressed={i === st} className={"est__chip" + (i === st ? " is-on" : "")} onClick={() => setSt(i)}>{b.label}</button>
+          ))}
+        </div>
+      </div>
+
+      <div className="est__field">
         <label htmlFor="words">Manuscript length: <strong id="words-out">{(k * 1000).toLocaleString()} words</strong></label>
-        <input type="range" id="words" min="0" max="100" step="1" value={pos} onChange={(e) => setPos(Number(e.target.value))} aria-valuetext={`${(k * 1000).toLocaleString()} words`} />
+        <input type="range" id="words" min="0" max="100" step="1" value={p} onChange={(e) => setP(Number(e.target.value))} aria-valuetext={`${(k * 1000).toLocaleString()} words`} />
         <div className="est__ends" aria-hidden="true"><span>10,000</span><span>2,000,000</span></div>
       </div>
 
       <div className="est__result" aria-live="polite">
-        <p className="est__headline"><strong>{total} {total === 1 ? "week" : "weeks"}</strong> <span>(approx. {months} months)</span></p>
+        <p className="est__headline"><strong>{total} {total === 1 ? "week" : "weeks"}</strong> <span>to go from &ldquo;{BOOK_STAGES[st].label}&rdquo; (approx. {inMonths(total)} months)</span></p>
         <dl className="est" id="est-out">
-          {rows.map(([name, n]) => (
-            <div key={name}><dt>{name}</dt><dd>{plural(n)}</dd></div>
+          {rows.map(([name, n], i) => (
+            <div key={name} className={i < done ? "is-done" : undefined}><dt>{name}</dt><dd>{i < done ? "Done" : plural(n)}</dd></div>
           ))}
         </dl>
       </div>
 
       <p className="est__note">
-        Assumes standard editing rounds and one cover revision cycle. This is an illustration; we confirm a real timeline in your written scope.
+        Assumes standard editing rounds and one cover revision cycle, and a finished draft. This is an illustration; we confirm a real timeline in your written scope.
       </p>
     </Reveal>
   );
