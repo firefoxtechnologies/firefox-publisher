@@ -12,7 +12,7 @@ export const NAV = [
   { to: "/books", label: "Books" },
   { to: "/#process", label: "Process", id: "process" },
   { to: "/#tools", label: "Tools", id: "tools" },
-  { to: "/#about", label: "About", id: "about" },
+  { to: "/about", label: "About", id: "about" },
 ];
 
 const I = {

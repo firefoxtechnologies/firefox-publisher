@@ -246,7 +246,7 @@ function Header() {
 }
 
 const FOOTER_COLUMNS = [
-  { title: "Company", links: [{ label: "About", href: "/#about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
+  { title: "Company", links: [{ label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
   { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Book Editing", href: "/book-editing" }, { label: "Ebook Cover & Interior Design", href: "/ebook-design" }, { label: "Ebook Publishing", href: "/ebook-publishing" }, { label: "Book Printing", href: "/book-printing" }, { label: "Book Marketing", href: "/book-marketing" }, { label: "Author Branding & Illustration", href: "/author-branding-illustration" }, { label: "Audiobook Production", href: "/audiobook-production" }, { label: "Book Video Trailers", href: "/book-trailers" }, { label: "Ebook Publishing Services", href: "/ebook-publishing-services" }, { label: "Publishing", href: "/publishing" }, { label: "Author Branding & Marketing", href: "/author-branding-marketing" }, { label: "Audio & Video Production", href: "/audio-video-production" }] },
   { title: "Contact", links: [{ label: SITE.email, href: "mailto:" + SITE.email }, { label: SITE.phone, href: SITE.phoneHref }, { label: "333 Washington St #233, Hoboken NJ 07030" }] },
 ];

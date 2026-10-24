@@ -13,6 +13,7 @@ import BookMarketing from "./pages/BookMarketing.jsx";
 import AuthorBranding from "./pages/AuthorBranding.jsx";
 import AudiobookProduction from "./pages/AudiobookProduction.jsx";
 import BookTrailers from "./pages/BookTrailers.jsx";
+import About from "./pages/About.jsx";
 import EbookPublishingServices from "./pages/EbookPublishingServices.jsx";
 import NotFound from "./pages/NotFound.jsx";
 import { SERVICE_PAGES } from "./data/catalog.js";
@@ -33,6 +34,7 @@ export default function App() {
         <Route path="author-branding-illustration" element={<AuthorBranding />} />
         <Route path="audiobook-production" element={<AudiobookProduction />} />
         <Route path="book-trailers" element={<BookTrailers />} />
+        <Route path="about" element={<About />} />
         <Route path="ebook-publishing-services" element={<EbookPublishingServices />} />
         {SERVICE_PAGES.map((s) => (
           <Route key={s.path} path={s.path} element={<ServicePage service={s} />} />
