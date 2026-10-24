@@ -85,8 +85,8 @@ const C7_CSS = `
 .c7-root { position: relative; z-index: 0; isolation: isolate; width: 100%; padding: 8px 0 0; overflow: hidden; user-select: none; font-family: inherit; }
 /* full-bleed: the fan runs the width of the screen and the outer cards fade away instead of being cut off */
 .c7-root--bleed { width: 100vw; left: 50%; margin-left: -50vw; }
-.c7-root--bleed .c7-stage-wrap { padding: 80px 0; margin: -80px 0; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); }
-.c7-stage { position: relative; width: 100%; max-width: 80rem; height: 20rem; margin: 0 auto; display: flex; align-items: center; justify-content: center; outline: none; }
+.c7-root--bleed .c7-stage-wrap { padding: 80px 0; margin: -80px 0; pointer-events: none; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); }
+.c7-stage { pointer-events: auto; position: relative; width: 100%; max-width: 80rem; height: 20rem; margin: 0 auto; display: flex; align-items: center; justify-content: center; outline: none; }
 .c7-stage:focus-visible { outline: 2px solid var(--deep, #1d5fa8); outline-offset: 4px; border-radius: 7px; }
 .c7-drag { position: absolute; inset: 0; z-index: 50; cursor: grab; }
 .c7-drag:active { cursor: grabbing; }
@@ -100,7 +100,7 @@ const C7_CSS = `
   position: absolute; top: 12px; right: 12px; padding: 3px 10px; border-radius: 7px; font-size: .68rem; font-weight: 700;
   letter-spacing: .1em; text-transform: uppercase; color: var(--navy, #12294a); background: var(--grad-orange, #f28c28); box-shadow: 0 6px 14px -6px rgba(242,140,40,.8);
 }
-.c7-nav { display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
+.c7-nav { position: relative; z-index: 60; display: flex; justify-content: center; gap: 12px; margin-top: 18px; }
 .c7-nav button {
   width: 46px; height: 46px; border-radius: 7px; display: grid; place-items: center; cursor: pointer; color: var(--navy, #12294a);
   background: #fff; border: 1px solid var(--line, #d6e3f2); box-shadow: 0 10px 20px -12px rgba(18,41,74,.5); transition: transform .2s ease, background .2s ease;

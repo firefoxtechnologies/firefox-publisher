@@ -81,16 +81,6 @@ export const STAGES = [
   { label: "Growth", title: "Long-term growth", text: "Launch is day one. We help you plan for your backlist and your next title.", items: ["List-building and reader engagement ideas", "Seasonal promotion planning", "Author brand toolkit: type, colour, social assets", "Planning your next book"] },
 ];
 
-export const READINESS = [
-  "The manuscript is complete",
-  "I have revised it at least once",
-  "Someone other than me has read it",
-  "I know my genre and target readers",
-  "I have a working title and short description",
-  "I have a rough budget and timeline",
-];
-export const READINESS_MSGS = ["Let us help you get started.", "A good start.", "Making progress.", "Nearly there.", "Well prepared.", "Ready to publish."];
-
 export const INTERESTS = [
   "Book Writing", "Book Editing", "Cover & Interior Design", "Book Publishing",
   "Author Branding & Marketing", "Audio & Video Production", "Not sure yet",
@@ -134,4 +124,14 @@ export const TESTIMONIALS = [
   { quote: "Fast, careful and friendly. Every revision round made the book better.", name: "Joe Bloggs", role: "Poetry author", sample: true },
   { quote: "The audiobook and trailer extended my book far beyond the page.", name: "Erika Mustermann", role: "Children's author", sample: true },
   { quote: "A team that treats your book like it matters. I would work with them again.", name: "Juan Perez", role: "Self-help author", sample: true },
+];
+
+// "Where is your book now?" stages, from first idea to launch.
+export const BOOK_STAGES = [
+  { id: "idea", short: "You have a concept but nothing on the page yet.", label: "Just an idea", summary: "You have a concept, some notes or a story in your head, but nothing is on the page yet.", next: ["Shape the idea into a clear premise and audience", "Plan chapters and a realistic writing schedule", "Choose between writing it yourself or with a writer"], help: [["Book Writing", "/book-writing"]], cta: "Talk through my idea" },
+  { id: "writing", short: "You are part-way through a draft.", label: "Writing it", summary: "You are part-way through a draft and want to keep going, or you have got stuck.", next: ["Set a finish line and a weekly word count", "Get feedback on the opening chapters early", "Fill the gaps with help where you are stuck"], help: [["Book Writing", "/book-writing"], ["Book Editing", "/publishing"]], cta: "Get help finishing" },
+  { id: "draft", short: "The first draft is done and needs feedback.", label: "Draft finished", summary: "The first draft is done. It is time for honest feedback before anything else.", next: ["Developmental review of structure and pacing", "Line and copy edit once the story is settled", "Final proofread before design begins"], help: [["Book Editing", "/publishing"]], cta: "Plan my edit" },
+  { id: "edited", short: "Revised, read by others and ready to become a book.", label: "Edited & polished", summary: "The manuscript has been revised and read by others. It is ready to become a book.", next: ["Cover concepts that suit your genre and readers", "Interior layout for print and digital", "ISBNs, metadata and retailer set-up"], help: [["Cover & Interior Design", "/publishing"], ["Book Publishing", "/publishing"]], cta: "Start design" },
+  { id: "designed", short: "Cover and files are done. Time to print and publish.", label: "Designed & formatted", summary: "You have a cover and finished files. Time to print, publish and plan your launch.", next: ["Proof copies and final print checks", "Distribution to print and digital retailers", "Launch timeline, messaging and outreach"], help: [["Book Printing", "/publishing"], ["Book Marketing", "/author-branding-marketing"]], cta: "Plan my launch" },
+  { id: "launch", short: "Your book is out, or about to be.", label: "Ready to launch", summary: "Your book is out or about to be. Now it needs readers, reviews and momentum.", next: ["Review and outreach plan for the first weeks", "Author brand, website and social assets", "Audiobook or trailer to reach new readers"], help: [["Book Marketing", "/author-branding-marketing"], ["Audiobook Production", "/audio-video-production"]], cta: "Grow my readership" },
 ];

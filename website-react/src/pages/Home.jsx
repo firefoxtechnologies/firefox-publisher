@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import Hero from "../components/Hero.jsx";
-import { ContactForm, Estimator, Readiness } from "../components/Tools.jsx";
+import { ContactForm, Estimator } from "../components/Tools.jsx";
+import ToolsShowcase from "../components/ToolsShowcase.jsx";
 import { Reveal, Ticks, stagger } from "../components/ui.jsx";
 import CountUp from "../components/ui/count-up";
 import GradientCard from "../components/ui/gradient-card";
@@ -283,15 +284,7 @@ function ToolsSection() {
           <p className="eyebrow">Tools &amp; resources</p>
           <h2>Check where you are, then take the next step</h2>
         </Reveal>
-        <div className="split">
-          <Readiness />
-          <Reveal className="tiles">
-            <Link className="tile" to="/#contact"><strong>Submit your manuscript</strong><span>Tell us about your project and we will explain the next step.</span></Link>
-            <Link className="tile" to="/#contact"><strong>Author resources</strong><span>Templates and guides are coming soon. Ask us what is available now.</span></Link>
-            <Link className="tile" to="/#estimator"><strong>Timeline estimator</strong><span>See a rough schedule for your manuscript length.</span></Link>
-            <Link className="tile" to="/#services"><strong>Our services</strong><span>Editing, design, publishing, marketing and production.</span></Link>
-          </Reveal>
-        </div>
+        <Reveal><ToolsShowcase /></Reveal>
       </div>
     </section>
   );

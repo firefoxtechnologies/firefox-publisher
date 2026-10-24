@@ -20,3 +20,5 @@ Photos in `public/assets/services/` and `public/assets/journey/` are from [Pexel
 [Pexels licence](https://www.pexels.com/license/) (free for commercial use, attribution not required).
 Photo ids: 5905849, 1475290, 17890948, 844734, 76942, 2041891, 5428670, 5939401, 12044783, 8640098,
 7129624, 20456575 (services); 7550402, 7596910, 15309303, 3952079, 8581043 (journey). The services wheel is `src/components/ui/works-wheel.tsx` (CSS 3D).
+
+Stage photos in `public/assets/stages/` (Pexels): idea 7120923, writing 8036328, draft 8035295, edited 7968067, designed 335253, launch 27854754.

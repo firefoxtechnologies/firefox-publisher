@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { INTERESTS, READINESS, READINESS_MSGS, SITE } from "../data/site.js";
+import { INTERESTS, SITE } from "../data/site.js";
 import { Reveal } from "./ui.jsx";
 
 const plural = (n) => n + (n === 1 ? " week" : " weeks");
@@ -54,30 +54,6 @@ export function Estimator() {
 
       <p className="est__note">
         Assumes standard editing rounds and one cover revision cycle. This is an illustration; we confirm a real timeline in your written scope.
-      </p>
-    </Reveal>
-  );
-}
-
-export function Readiness() {
-  const [checked, setChecked] = useState(() => READINESS.map(() => false));
-  const n = checked.filter(Boolean).length;
-  return (
-    <Reveal className="form" id="readiness" role="group" aria-labelledby="rd-title">
-      <h3 id="rd-title">Publishing readiness checker</h3>
-      <p style={{ color: "var(--slate)", fontSize: ".95rem" }}>Tick what is true for your manuscript today.</p>
-      {READINESS.map((label, i) => (
-        <label className="chk" key={label}>
-          <input
-            type="checkbox"
-            checked={checked[i]}
-            onChange={(e) => setChecked((c) => c.map((v, j) => (j === i ? e.target.checked : v)))}
-          />{" "}
-          {label}
-        </label>
-      ))}
-      <p className="form__status" id="rd-out" role="status">
-        {n === 0 ? "Score: 0 of 6" : `Score: ${n} of 6. ${READINESS_MSGS[n]}`}
       </p>
     </Reveal>
   );
