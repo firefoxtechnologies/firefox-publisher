@@ -49,7 +49,7 @@ const clamp = (v: number, lo: number, hi: number) => Math.min(hi, Math.max(lo, v
 
 const ISS_CSS = `
 .iss { position: relative; width: 100%; }
-.iss__panel { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; padding-top: 84px; box-sizing: border-box;
+.iss__panel { position: sticky; top: 0; height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; padding-top: 104px; box-sizing: border-box;
   background-color: var(--iss-bg); color: var(--iss-fg); transition: background-color .7s ease, color .7s ease; }
 .iss__head { width: 100%; max-width: 760px; margin: 0 auto; padding: 8px 24px 20px; text-align: center; }
 .iss__grid { display: grid; grid-template-columns: 1fr; width: 100%; max-width: 1240px; flex: 1 1 auto; min-height: 0; margin: 0 auto; }

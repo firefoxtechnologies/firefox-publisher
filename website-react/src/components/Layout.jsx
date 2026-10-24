@@ -100,7 +100,6 @@ const SERVICE_PAGES = [
   { to: "/publishing", label: "Publishing" },
   { to: "/author-branding-marketing", label: "Author Branding & Marketing" },
   { to: "/audio-video-production", label: "Audio & Video Production" },
-  { to: "/digital-creative-services", label: "Digital & Creative Services" },
 ];
 
 function Header() {
@@ -137,8 +136,8 @@ function Header() {
     <header className="header">
       <div className="wrap header__in">
         <Link className="brand" to="/" aria-label="Firefox Publisher, home">
-          <img src="/assets/logo.svg" alt="" />
-          <span>Firefox<small>Publisher</small></span>
+          <img className="brand__fox" src="/assets/logo-fox-mark.webp" alt="" width="700" height="379" />
+          <span className="brand__name" aria-label="Firefox Publishers"><span aria-hidden="true">FIREFOX</span><span aria-hidden="true">PUBLISHERS</span></span>
         </Link>
         <button
           ref={btnRef}
@@ -238,7 +237,7 @@ function Header() {
 
 const FOOTER_COLUMNS = [
   { title: "Company", links: [{ label: "About", href: "/#about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
-  { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Publishing", href: "/publishing" }, { label: "Author Branding & Marketing", href: "/author-branding-marketing" }, { label: "Audio & Video Production", href: "/audio-video-production" }, { label: "Digital & Creative Services", href: "/digital-creative-services" }] },
+  { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Publishing", href: "/publishing" }, { label: "Author Branding & Marketing", href: "/author-branding-marketing" }, { label: "Audio & Video Production", href: "/audio-video-production" }] },
   { title: "Contact", links: [{ label: SITE.email, href: "mailto:" + SITE.email }, { label: SITE.phone, href: SITE.phoneHref }, { label: "333 Washington St #233, Hoboken NJ 07030" }] },
 ];
 
@@ -253,9 +252,9 @@ function Footer() {
     <HalftoneWordmarkFooter
       wordmark="firefox publisher"
       logo={(
-        <span className="logo-lockup">
-          <img src="/assets/logo.svg" alt="" width="64" height="64" />
-          <span>Firefox<small>Publisher</small></span>
+        <span className="footer-lockup">
+          <img className="footer-fox" src="/assets/logo-fox-mark.webp" alt="" width="700" height="379" />
+          <span className="footer-lockup__name" aria-label="Firefox Publishers"><span aria-hidden="true">FIREFOX</span><span aria-hidden="true">PUBLISHERS</span></span>
         </span>
       )}
       meta={`\u00a9${new Date().getFullYear()} \u00b7 Hoboken, New Jersey`}

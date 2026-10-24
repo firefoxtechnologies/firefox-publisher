@@ -5,11 +5,11 @@
 .header__in { height: 64px; padding-inline: 14px 12px; background: rgba(18,41,74,.94); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,.14); border-radius: 7px; box-shadow: 0 14px 40px -18px rgba(0,0,0,.6); }
 .nav { margin-right: 4px; }
 @media (max-width: 760px) {
-  .nav { left: 16px; right: 16px; top: 84px; border: 1px solid rgba(255,255,255,.14); border-radius: 7px; box-shadow: 0 20px 40px -20px rgba(0,0,0,.6); }
+  .nav { left: 16px; right: 16px; top: 104px; border: 1px solid rgba(255,255,255,.14); border-radius: 7px; box-shadow: 0 20px 40px -20px rgba(0,0,0,.6); }
 }
 
 /* hero */
-.cine { margin-top: -84px; min-height: 860px; padding: 0; display: flex; align-items: center; isolation: isolate; background: radial-gradient(1200px 700px at 50% 30%, #1a4378 0%, #0e2340 55%, #08162b 100%); }
+.cine { margin-top: -104px; min-height: 860px; padding: 0; display: flex; align-items: center; isolation: isolate; background: radial-gradient(1200px 700px at 50% 30%, #1a4378 0%, #0e2340 55%, #08162b 100%); }
 .cine::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, rgba(8,22,43,.72) 0%, rgba(8,22,43,.35) 38%, transparent 70%), linear-gradient(180deg, transparent 70%, rgba(8,22,43,.85)); }
 .cine__bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .hero--dark > .cine__content { position: relative; z-index: 3; text-align: center; padding-block: 170px 150px; display: flex; flex-direction: column; align-items: center; }

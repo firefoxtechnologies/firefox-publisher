@@ -28,14 +28,12 @@ export const PROJECT_CATS = [
   { id: "publishing", label: "Publishing" },
   { id: "author-branding-marketing", label: "Author Branding & Marketing" },
   { id: "audio-video-production", label: "Audio & Video Production" },
-  { id: "digital-creative-services", label: "Digital & Creative Services" },
 ];
 
 export const PROJECTS = [
   { cat: "publishing" },
   { cat: "author-branding-marketing" },
   { cat: "audio-video-production" },
-  { cat: "digital-creative-services" },
   { cat: "publishing" },
   { cat: "author-branding-marketing" },
 ].map((p, i) => ({ ...p, title: `Project title ${i + 1}` }));
@@ -63,14 +61,6 @@ export const SERVICE_PAGES = [
     intro: "Moving image and sound that introduce your work and give readers another way in.",
     items: [["Book trailers", "A short trailer to introduce your book."], ["Short-form video", "Vertical clips and covers for social platforms."], ["Audio production", "Recording and editing for audio versions and promos."], ["Author interviews", "Filmed or recorded conversations and highlights."], ["Audiobook production", "Narration, recording and mastering to retailer specifications."], ["Video editing", "Cut-downs and captions for each platform."]],
     who: "Authors who want video or audio to support a launch or ongoing promotion.",
-    heroSecondary: { to: "/portfolio", label: "View our work" },
-  },
-  {
-    path: "digital-creative-services", name: "Digital & Creative Services",
-    short: "Websites and design work that give your project a professional home online.",
-    intro: "A calm, content-first online home and the design pieces that support it.",
-    items: [["Author websites", "A fast, accessible site that presents you and your books."], ["Graphic design", "Layouts for documents, presentations and print."], ["Marketing materials", "Flyers, one-sheets and promotional graphics."], ["Business documents", "Proposals, quotations and invoices in a consistent style."], ["Web design & SEO", "Search-friendly structure so readers can find you."], ["Articles & web content", "Blog posts, articles and web copy for your platform."]],
-    who: "Authors and creators who need a professional online presence or design support.",
     heroSecondary: { to: "/portfolio", label: "View our work" },
   },
 ];

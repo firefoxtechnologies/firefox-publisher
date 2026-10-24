@@ -117,7 +117,7 @@ h1, h2 { font-weight: 800; }
 @media (max-width: 1100px) {
   .menu-btn { display: inline-block; }
   .nav {
-    display: none; position: absolute; left: 16px; right: 16px; top: 84px;
+    display: none; position: absolute; left: 16px; right: 16px; top: 104px;
     flex-direction: column; align-items: flex-start; gap: var(--s4); padding: var(--s5);
     background: var(--navy); border: 1px solid rgba(255,255,255,.14); border-radius: 7px;
     box-shadow: 0 20px 40px -20px rgba(0,0,0,.6);
@@ -391,8 +391,8 @@ h1, h2 { font-weight: 800; }
 }
 
 /* home hero: perspective tunnel of book covers */
-.tunnel-hero { margin-top: -84px; padding-top: 0; background: radial-gradient(1200px 700px at 50% 30%, #1a4378 0%, #0e2340 55%, #08162b 100%); }
-.tunnel-hero .ptr__copy { padding-top: 84px; }
+.tunnel-hero { margin-top: -104px; padding-top: 0; background: radial-gradient(1200px 700px at 50% 30%, #1a4378 0%, #0e2340 55%, #08162b 100%); }
+.tunnel-hero .ptr__copy { padding-top: 104px; }
 .tunnel-hero h1 { font-size: clamp(3rem, 8.5vw, 6.2rem); line-height: 1; font-weight: 800; letter-spacing: -.035em; margin: var(--s4) 0 0; }
 .tunnel-hero h1 span { background: linear-gradient(90deg, #f28c28, #ffc58a 60%, #fff); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .tunnel-hero .lead { font-size: 1.2rem; margin: var(--s5) auto 0; max-width: 540px; color: #d3e0f0; }
@@ -737,7 +737,7 @@ h1, h2 { font-weight: 800; }
 .bw-hero3__art img { mix-blend-mode: normal; border-radius: 7px; box-shadow: 0 40px 70px -40px rgba(18,41,74,.55); animation: none; }
 
 /* Hero runs up behind the sticky header, and the image fills the right half */
-.bw-hero3 { margin-top: -84px; padding-top: 212px; padding-bottom: 88px; }
+.bw-hero3 { margin-top: -104px; padding-top: 232px; padding-bottom: 88px; }
 .bw-hero3__inner { grid-template-columns: 1.1fr .9fr; }
 .bw-hero3__art { position: absolute; top: 0; right: 0; bottom: 0; width: 46%; z-index: 0; }
 .bw-hero3__art img { width: 100%; height: 100%; max-height: none; object-fit: cover; object-position: 50% 45%; border-radius: 0; box-shadow: none; }
@@ -749,7 +749,7 @@ h1, h2 { font-weight: 800; }
   .bw-hero3__scribble { display: none; }
 }
 .bw-hero3__inner { position: static; }
-.bw-hero3__art { top: 84px; } .bw-hero3__art img { object-position: 42% 50%; }
+.bw-hero3__art { top: 104px; } .bw-hero3__art img { object-position: 42% 50%; }
 
 /* Who it's for: animated feed */
 .bw-who { align-items: center; }
@@ -780,3 +780,44 @@ h1, h2 { font-weight: 800; }
 
 .bw-tw__word { display: inline-block; white-space: nowrap; }
 .bw-tw__accent { color: #f28c28; }
+
+/* Glowing fox logo (header and footer) */
+.brand img.brand__fox { height: 58px; width: auto; border-radius: 0; mix-blend-mode: normal; }
+.footer-fox { display: block; height: 92px; width: auto; }
+@media (max-width: 860px) { .brand img.brand__fox { height: 46px; } .footer-fox { height: 72px; } }
+
+/* Fox mark + one-line wordmark */
+.brand img.brand__fox { height: 68px; width: auto; }
+.brand .brand__name { font-size: 1.3rem; font-weight: 800; letter-spacing: .02em; white-space: nowrap; color: #fff; }
+.footer-lockup { display: inline-flex; align-items: center; gap: 14px; }
+.footer-fox { height: 112px; width: auto; }
+.footer-lockup__name { font-size: 1.5rem; font-weight: 800; letter-spacing: .02em; white-space: nowrap; color: #fff; }
+@media (max-width: 860px) { .brand img.brand__fox { height: 52px; } .brand .brand__name { font-size: 1.05rem; } .footer-fox { height: 84px; } .footer-lockup__name { font-size: 1.25rem; } }
+.hwf-logo { line-height: 1.15; }
+.hwf-logo img.footer-fox { height: 96px; width: auto; max-width: 100%; border-radius: 0; }
+.footer-lockup { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.footer-lockup__name { font-size: 1.45rem; }
+.brand img.brand__fox { height: 60px; }
+@media (max-width: 860px) { .hwf-logo img.footer-fox { height: 80px; } .brand img.brand__fox { height: 50px; } }
+.hwf-logo { position: relative; z-index: 3; margin-bottom: 24px; }
+.hwf-logo .footer-lockup, .hwf-logo .footer-lockup__name { opacity: 1 !important; }
+.hwf-logo { margin-bottom: 20px; }
+.footer-lockup { gap: 14px; }
+.footer-lockup__name { line-height: 1.4; }
+.hwf-meta { line-height: 1.9; margin-top: 8px; }
+.hwf-brand > span { display: block; line-height: 1.9; margin-top: 8px; }
+
+.header__in { height: 84px; }
+.brand img.brand__fox { height: 70px; }
+@media (max-width: 860px) { .brand img.brand__fox { height: 56px; } }
+
+/* Two-line caps wordmark: PUBLISHERS is stretched to sit exactly under FIREFOX */
+.brand .brand__name, .footer-lockup .footer-lockup__name { display: inline-grid; line-height: 1; text-transform: uppercase; }
+.brand__name > span:first-child, .footer-lockup__name > span:first-child { color: #fff; font-weight: 800; font-size: 1.55rem; letter-spacing: .06em; }
+.brand__name > span:last-child, .footer-lockup__name > span:last-child { display: block; width: 0; min-width: 100%; margin-top: 6px; white-space: nowrap; text-align: justify; text-align-last: justify; color: #e9b449; font-weight: 700; font-size: .78rem; letter-spacing: .1em; }
+.footer-lockup__name > span:first-child { font-size: 1.8rem; }
+.footer-lockup__name > span:last-child { font-size: .9rem; }
+@media (max-width: 860px) { .brand__name > span:first-child { font-size: 1.25rem; } .brand__name > span:last-child { font-size: .66rem; } }
+.brand__name > span:last-child { font-size: .9rem; letter-spacing: .03em; margin-top: 5px; }
+.footer-lockup__name > span:last-child { font-size: 1.05rem; letter-spacing: .03em; }
+@media (max-width: 860px) { .brand__name > span:last-child { font-size: .74rem; } }

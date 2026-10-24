@@ -25,9 +25,6 @@ const I = {
   brand: "M4 20c3 0 5-1 5-3a2 2 0 0 0-2-2c-2 0-3 2-3 5zM9 15 19 5l-1-1L8 14z",
   audio: "M5 11a7 7 0 0 0 14 0M12 18v3",
   video: "m15 11 6-3v8l-6-3",
-  web: "M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18",
-  article: "M5 4h11v16H5zM16 8h3v10a2 2 0 0 1-2 2M8 8h5M8 12h5M8 16h3",
-  code: "m8 8-5 4 5 4M16 8l5 4-5 4M14 5l-4 14",
 };
 
 // `extra` holds the shapes an icon needs besides its main path (rect, circle).
@@ -41,9 +38,6 @@ export const SERVICES = [
   { title: "Author Branding & Illustration", to: "/author-branding-marketing", text: "A consistent author identity, with custom illustration where your project needs it.", d: I.brand },
   { title: "Audiobook Production", to: "/audio-video-production", text: "Narration, recording and production to extend your book into audio.", d: I.audio, rect: { x: 9, y: 3, width: 6, height: 11, rx: 3 } },
   { title: "Book Video Trailers", to: "/audio-video-production", text: "Short trailers and promo clips that introduce your story.", d: I.video, rect: { x: 3, y: 6, width: 12, height: 12, rx: 2 } },
-  { title: "Web Design & SEO", to: "/digital-creative-services", text: "Fast, accessible author websites that search engines and readers can find.", d: I.web, circle: { cx: 12, cy: 12, r: 9 } },
-  { title: "Articles & Web Content", to: "/digital-creative-services", text: "Articles, blog posts and web copy written to support your platform.", d: I.article },
-  { title: "Graphic & Marketing Design", to: "/digital-creative-services", text: "Social graphics, one-sheets and promotional materials in a consistent style.", d: I.code },
 ];
 
 // Photo and caption for each service in the ring carousel. Photos are from
@@ -58,9 +52,6 @@ const SERVICE_MEDIA = [
   ["author-branding", "Branding"],
   ["audiobook-production", "Audio"],
   ["video-trailers", "Video"],
-  ["web-design-seo", "Digital"],
-  ["articles-web-content", "Content"],
-  ["graphic-marketing-design", "Design"],
 ];
 SERVICES.forEach((s, i) => {
   s.image = `/assets/services/${SERVICE_MEDIA[i][0]}.jpg`;
@@ -68,7 +59,7 @@ SERVICES.forEach((s, i) => {
 });
 
 export const STATS = [
-  { label: "Services", end: 12 },
+  { label: "Services", end: 9 },
   { label: "Publishing packages", end: 5 },
   { label: "Stages, idea to launch", end: 5 },
   { label: "Packages from", end: 399, prefix: "$" },
@@ -102,7 +93,7 @@ export const READINESS_MSGS = ["Let us help you get started.", "A good start.", 
 
 export const INTERESTS = [
   "Book Writing", "Book Editing", "Cover & Interior Design", "Book Publishing",
-  "Author Branding & Marketing", "Audio & Video Production", "Digital & Creative Services", "Not sure yet",
+  "Author Branding & Marketing", "Audio & Video Production", "Not sure yet",
 ];
 
 // Hero floating books; `vars` map onto the CSS custom properties .book uses.
