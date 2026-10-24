@@ -49,11 +49,14 @@ const IG_CSS = `
 .ig__desc { margin: 0; max-width: 36rem; font-size: 1.15rem; line-height: 1.6; color: rgba(255,255,255,.88); }
 @media (max-width: 767px) {
   .ig { flex-direction: column; height: auto; }
-  .ig__panel, .ig__panel[data-open="true"] { flex: none; min-height: 300px; }
+  .ig__panel, .ig__panel[data-open="true"] { flex: none; min-height: 320px; display: flex; flex-direction: column; justify-content: flex-end; }
   .ig__img { filter: none; transform: none; }
-  .ig__shade { opacity: 1; }
+  .ig__shade { opacity: 1; background: linear-gradient(180deg, rgba(11,28,53,.05) 0%, rgba(11,28,53,.6) 38%, rgba(11,28,53,.92) 100%); }
   .ig__label { display: none; }
-  .ig__body { opacity: 1; transform: none; }
+  /* in the flow (not pinned to the bottom) so long copy grows the card instead of spilling over the top */
+  .ig__body { position: relative; opacity: 1; transform: none; padding: 150px 20px 22px; }
+  .ig__title { font-size: 1.45rem; }
+  .ig__desc { font-size: 1rem; }
 }
 @media (prefers-reduced-motion: reduce) { .ig__panel, .ig__img, .ig__shade, .ig__body, .ig__label { transition: none; } }
 `;

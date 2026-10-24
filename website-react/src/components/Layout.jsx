@@ -114,6 +114,7 @@ const SERVICE_PAGES = [
 
 function Header() {
   const [open, setOpen] = useState(false);
+  const [svcOpen, setSvcOpen] = useState(false);
   const [preview, setPreview] = useState(0);
   const btnRef = useRef(null);
   const { pathname, hash, key } = useLocation();
@@ -227,8 +228,15 @@ function Header() {
           {/* Collapsed: a flat list inside the menu button's panel. */}
           <nav className="nm-mobile" aria-label="Main (mobile)">
             <ul>
-              <li><Link to="/#services" aria-current={active === "services" ? "true" : undefined}>Services</Link>
-                <ul>{SERVICE_PAGES.map((sp) => <li key={sp.to}><Link to={sp.to}>{sp.label}</Link></li>)}</ul>
+              <li className={"nm-mobile__svc" + (svcOpen ? " is-open" : "")}>
+                <button type="button" className="nm-mobile__toggle" aria-expanded={svcOpen} aria-controls="nm-mobile-services" onClick={() => setSvcOpen((v) => !v)}>
+                  <span>Services</span>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </button>
+                <ul id="nm-mobile-services" hidden={!svcOpen}>
+                  <li><Link to="/#services" aria-current={active === "services" ? "true" : undefined}>All services</Link></li>
+                  {SERVICE_PAGES.map((sp) => <li key={sp.to}><Link to={sp.to}>{sp.label}</Link></li>)}
+                </ul>
               </li>
               <li><Link to="/portfolio">Portfolio</Link></li>
               <li><Link to="/books">Books</Link></li>

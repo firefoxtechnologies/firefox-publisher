@@ -973,3 +973,57 @@ h1, h2 { font-weight: 800; }
 .tp__time span:first-child { font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: .72rem; color: var(--deep); }
 .tp__time strong { color: var(--navy); font-size: 1.15rem; }
 .tp__time a { margin-left: auto; font-weight: 700; color: var(--deep); text-decoration: underline; text-underline-offset: 3px; }
+
+/* What we do: sliding cards on phones, the wheel on larger screens */
+.svc__slider { display: none; }
+@media (max-width: 640px) {
+  .svc__stage, .svc__panel { display: none !important; }
+  .svc__slider { display: block; margin-top: var(--s5); }
+  .svc__track { list-style: none; margin: 0; padding: 6px 20px 18px; display: flex; gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain; }
+  .svc__track::-webkit-scrollbar { display: none; }
+  .svc__track:focus-visible { outline: 3px solid var(--orange); outline-offset: -3px; }
+  .svc__card { flex: 0 0 84%; scroll-snap-align: center; background: #fff; border: 1px solid var(--line); border-radius: 7px; overflow: hidden; box-shadow: 0 18px 34px -22px rgba(18,41,74,.45); display: flex; flex-direction: column; }
+  .svc__card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+  .svc__cardbody { padding: 18px 18px 22px; display: flex; flex-direction: column; flex: 1; }
+  .svc__cardbody .svc__count { margin: 0 0 8px; }
+  .svc__cardbody h3 { margin: 0 0 8px; font: 700 1.3rem/1.25 var(--font-sans); color: var(--navy); letter-spacing: -.01em; }
+  .svc__cardbody p:not(.svc__count) { margin: 0 0 16px; color: var(--slate); font-size: .95rem; line-height: 1.6; }
+  .svc__cardbody .btn { margin-top: auto; align-self: flex-start; }
+  .svc__ctrl { display: flex; align-items: center; justify-content: center; gap: 16px; }
+  .svc__ctrl button { width: 46px; height: 46px; border-radius: 7px; display: grid; place-items: center; cursor: pointer; color: var(--navy); background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 20px -12px rgba(18,41,74,.5); }
+  .svc__ctrl button:disabled { opacity: .4; cursor: default; }
+  .svc__ctrl button:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; }
+  .svc__pos { min-width: 56px; text-align: center; font-weight: 700; letter-spacing: .08em; color: var(--slate); font-size: .9rem; }
+}
+
+/* Service-page hero on phones: one column, text first, then the photo (the half-width rule above must not win) */
+@media (max-width: 860px) {
+  .bw-hero3__inner { grid-template-columns: 1fr; }
+  .bw-hero3__text { grid-column: auto; }
+  .bw-hero3__art { top: auto; }
+  .bw-hero3__art img { object-position: 50% 45%; }
+}
+
+/* open phone menu: taller than the screen now that Services lists every page, so let it scroll */
+@media (max-width: 1100px) {
+  .nav.open { max-height: calc(100vh - 124px); max-height: calc(100dvh - 124px); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+}
+
+/* phones: bigger tap targets in the top bar */
+@media (max-width: 640px) {
+  .topbar__links a { display: inline-flex; align-items: center; min-height: 36px; padding-block: 6px; }
+}
+
+/* phone menu: Services is a drop-down, closed until tapped */
+.nm-mobile__toggle { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 8px 0; background: none; border: 0; color: #e6eef9; font-family: inherit; font-size: .95rem; font-weight: 600; cursor: pointer; text-align: left; }
+.nm-mobile__toggle svg { transition: transform .2s ease; }
+.nm-mobile__svc.is-open .nm-mobile__toggle svg { transform: rotate(180deg); }
+.nm-mobile__toggle:focus-visible { outline: 3px solid var(--orange); outline-offset: 2px; border-radius: 4px; }
+.nm-mobile ul[hidden] { display: none; }
+@media (prefers-reduced-motion: reduce) { .nm-mobile__toggle svg { transition: none; } }
+
+/* phone menu: sit right under the header bar (was floating about 20px below it) */
+@media (max-width: 1100px) {
+  .header .nav { top: 91px; padding-block: 16px 20px; gap: var(--s3); }
+  .header .nav.open { max-height: calc(100vh - 110px); max-height: calc(100dvh - 110px); }
+}

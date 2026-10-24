@@ -23,7 +23,7 @@ const CSS = `
 .cp__main { padding: 38px 36px 32px; }
 .cp__main h2 { margin: 0 0 20px; font: 400 1.5rem/1.25 var(--font-sans); color: #12294a; }
 .cp__main h2 strong { font-weight: 800; }
-.cp__x { position: absolute; top: -12px; right: -12px; width: 34px; height: 34px; border-radius: 50%; border: 0; display: grid; place-items: center; cursor: pointer; background: #f28c28; color: #12294a; box-shadow: 0 8px 18px -6px rgba(0,0,0,.5); transition: transform .2s; }
+.cp__x { z-index: 5; position: absolute; top: -12px; right: -12px; width: 34px; height: 34px; border-radius: 50%; border: 0; display: grid; place-items: center; cursor: pointer; background: #f28c28; color: #12294a; box-shadow: 0 8px 18px -6px rgba(0,0,0,.5); transition: transform .2s; }
 .cp__x:hover { transform: rotate(90deg); }
 .cp__x:focus-visible, .cp__send:focus-visible { outline: 3px solid #fff; outline-offset: 2px; box-shadow: 0 0 0 5px #1d5fa8; }
 .cp__form { display: grid; gap: 12px; }

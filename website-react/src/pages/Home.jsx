@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import { prefersReducedMotion } from "../hooks.js";
 import Hero from "../components/Hero.jsx";
 import { ContactForm, DEFAULT_POS, Estimator } from "../components/Tools.jsx";
 import ToolsShowcase from "../components/ToolsShowcase.jsx";
@@ -41,6 +42,55 @@ function Stats() {
   );
 }
 
+// Phones: the services as swipeable cards (the wheel above is hidden at this width).
+function ServiceSlider() {
+  const track = useRef(null);
+  const [idx, setIdx] = useState(0);
+  const go = (to) => {
+    const t = track.current;
+    const cards = t?.children;
+    if (!cards?.length) return;
+    const i = Math.max(0, Math.min(cards.length - 1, to));
+    t.scrollTo({ left: cards[i].offsetLeft - (t.clientWidth - cards[i].clientWidth) / 2, behavior: prefersReducedMotion() ? "auto" : "smooth" });
+  };
+  const onScroll = () => {
+    const t = track.current;
+    const mid = t.scrollLeft + t.clientWidth / 2;
+    let best = 0, dist = Infinity;
+    [...t.children].forEach((c, i) => {
+      const d = Math.abs(c.offsetLeft + c.clientWidth / 2 - mid);
+      if (d < dist) { dist = d; best = i; }
+    });
+    setIdx(best);
+  };
+  return (
+    <div className="svc__slider" role="group" aria-roledescription="carousel" aria-label="What we do">
+      <ul className="svc__track" ref={track} onScroll={onScroll} tabIndex={0} aria-label="Services, swipe sideways">
+        {SERVICES.map((sv, i) => (
+          <li className="svc__card" key={sv.title} aria-label={`${i + 1} of ${SERVICES.length}`}>
+            <img src={sv.image} alt="" loading="lazy" width="900" height="900" />
+            <div className="svc__cardbody">
+              <p className="svc__count">{String(i + 1).padStart(2, "0")} / {SERVICES.length}</p>
+              <h3>{sv.title}</h3>
+              <p>{sv.text}</p>
+              <Link className="btn btn--primary" to={sv.to}>View more</Link>
+            </div>
+          </li>
+        ))}
+      </ul>
+      <div className="svc__ctrl">
+        <button type="button" aria-label="Previous service" onClick={() => go(idx - 1)} disabled={idx === 0}>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7" /></svg>
+        </button>
+        <span className="svc__pos" aria-live="polite">{idx + 1} / {SERVICES.length}</span>
+        <button type="button" aria-label="Next service" onClick={() => go(idx + 1)} disabled={idx === SERVICES.length - 1}>
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // "What we do": the twelve services on a turnable wheel. The canvas is decorative
 // and keyboard-operable; the panel and link list beneath it carry the text and
 // the links to each service page.
@@ -55,6 +105,7 @@ function Services() {
           <p>From first draft to finished, promoted book, one team can support every stage. Choose a single service or combine them.</p>
         </Head>
       </div>
+      <ServiceSlider />
       <div className="svc__stage">
         <WorksWheel
           items={items}
