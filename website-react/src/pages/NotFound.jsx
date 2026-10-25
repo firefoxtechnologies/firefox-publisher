@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { usePageMeta } from "../hooks.js";
 
 export default function NotFound() {
-  usePageMeta("Page not found | Firefox Publisher");
+  usePageMeta("Page not found | Firefox Publisher", undefined, { noindex: true });
   return (
     <section className="page-hero">
       <div className="wrap">
