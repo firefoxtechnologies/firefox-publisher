@@ -3,7 +3,6 @@ import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
 import Portfolio from "./pages/Portfolio.jsx";
 import Books from "./pages/Books.jsx";
-import ServicePage from "./pages/ServicePage.jsx";
 import BookWriting from "./pages/BookWriting.jsx";
 import BookEditing from "./pages/BookEditing.jsx";
 import EbookDesign from "./pages/EbookDesign.jsx";
@@ -16,7 +15,6 @@ import BookTrailers from "./pages/BookTrailers.jsx";
 import About from "./pages/About.jsx";
 import EbookPublishingServices from "./pages/EbookPublishingServices.jsx";
 import NotFound from "./pages/NotFound.jsx";
-import { SERVICE_PAGES } from "./data/catalog.js";
 
 export default function App() {
   return (
@@ -36,9 +34,6 @@ export default function App() {
         <Route path="book-trailers" element={<BookTrailers />} />
         <Route path="about" element={<About />} />
         <Route path="ebook-publishing-services" element={<EbookPublishingServices />} />
-        {SERVICE_PAGES.map((s) => (
-          <Route key={s.path} path={s.path} element={<ServicePage service={s} />} />
-        ))}
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

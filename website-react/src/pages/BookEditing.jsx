@@ -6,6 +6,7 @@ import { AppleCardCarousel } from "../components/ui/carousel-08";
 import { AnimatedList } from "../components/ui/animated-list";
 import { Reveal, stagger } from "../components/ui.jsx";
 import { useEffect, useState } from "react";
+import ServiceSchema from "../components/Schema.jsx";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
@@ -164,6 +165,7 @@ export default function BookEditing() {
   return (
     <div className="bw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServiceSchema name="Book Editing Services" path="book-editing" description="Developmental editing, line editing, copyediting and proofreading that polish your manuscript and keep your voice. Send us your book and we will plan the right edit." />
 
       {/* Hero */}
       <section className="bw-hero3" aria-labelledby="bw-hero-title">

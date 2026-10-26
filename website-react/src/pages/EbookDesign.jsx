@@ -6,6 +6,7 @@ import { AppleCardCarousel } from "../components/ui/carousel-08";
 import { AnimatedList } from "../components/ui/animated-list";
 import { Reveal, stagger } from "../components/ui.jsx";
 import { useEffect, useState } from "react";
+import ServiceSchema from "../components/Schema.jsx";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
@@ -166,6 +167,7 @@ export default function EbookDesign() {
   return (
     <div className="bw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServiceSchema name="Ebook Cover & Interior Design" path="ebook-design" description="Eye-catching ebook covers and clean, readable interiors that suit your genre. Cover design, interior layout, chapter styling and visual elements, prepared in the formats you need." />
 
       {/* Hero */}
       <section className="bw-hero3" aria-labelledby="bw-hero-title">

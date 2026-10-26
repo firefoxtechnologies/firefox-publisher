@@ -6,6 +6,7 @@ import { AppleCardCarousel } from "../components/ui/carousel-08";
 import { AnimatedList } from "../components/ui/animated-list";
 import { Reveal, stagger } from "../components/ui.jsx";
 import { useEffect, useState } from "react";
+import ServiceSchema from "../components/Schema.jsx";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
@@ -167,6 +168,7 @@ export default function BookWriting() {
   return (
     <div className="bw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServiceSchema name="Book Writing Services" path="book-writing" description="Turn your idea into a book. Fiction, nonfiction, ghostwriting, memoir, children's books and editing, with a simple process and help whenever you need it." />
 
       {/* Hero */}
       <section className="bw-hero3" aria-labelledby="bw-hero-title">

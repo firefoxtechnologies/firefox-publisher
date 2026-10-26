@@ -5,6 +5,7 @@ import { AppleCardCarousel } from "../components/ui/carousel-08";
 import { AnimatedList } from "../components/ui/animated-list";
 import { Reveal, stagger } from "../components/ui.jsx";
 import { useEffect, useState } from "react";
+import ServiceSchema from "../components/Schema.jsx";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
@@ -164,6 +165,7 @@ export default function AuthorBranding() {
   return (
     <div className="bw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServiceSchema name="Author Branding & Illustration Services" path="author-branding-illustration" description="Author logos, brand identity and branding kits, plus ebook illustrations, character art and custom artwork that give your stories a recognizable style." />
 
       {/* Hero */}
       <section className="bw-hero3" aria-labelledby="bw-hero-title">

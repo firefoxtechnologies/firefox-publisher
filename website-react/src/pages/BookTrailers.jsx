@@ -5,6 +5,7 @@ import { AppleCardCarousel } from "../components/ui/carousel-08";
 import { AnimatedList } from "../components/ui/animated-list";
 import { Reveal, stagger } from "../components/ui.jsx";
 import { useEffect, useState } from "react";
+import ServiceSchema from "../components/Schema.jsx";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
@@ -164,6 +165,7 @@ export default function BookTrailers() {
   return (
     <div className="bw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServiceSchema name="Book Video Trailer Services" path="book-trailers" description="Custom book trailers with eye-catching visuals, animated text, music and social-ready formats that spark curiosity and give readers a reason to look closer." />
 
       {/* Hero */}
       <section className="bw-hero3" aria-labelledby="bw-hero-title">

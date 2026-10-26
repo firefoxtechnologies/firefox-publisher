@@ -107,9 +107,6 @@ const SERVICE_PAGES = [
   { to: "/audiobook-production", label: "Audiobook Production" },
   { to: "/book-trailers", label: "Book Video Trailers" },
   { to: "/ebook-publishing-services", label: "Ebook Publishing Services" },
-  { to: "/publishing", label: "Publishing" },
-  { to: "/author-branding-marketing", label: "Author Branding & Marketing" },
-  { to: "/audio-video-production", label: "Audio & Video Production" },
 ];
 
 function Header() {

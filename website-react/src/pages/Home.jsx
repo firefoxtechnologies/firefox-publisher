@@ -68,7 +68,7 @@ function ServiceSlider() {
       <ul className="svc__track" ref={track} onScroll={onScroll} tabIndex={0} aria-label="Services, swipe sideways">
         {SERVICES.map((sv, i) => (
           <li className="svc__card" key={sv.title} aria-label={`${i + 1} of ${SERVICES.length}`}>
-            <img src={sv.image} alt="" loading="lazy" width="900" height="900" />
+            <img src={sv.image} alt={`${sv.title} service`} loading="lazy" width="900" height="900" />
             <div className="svc__cardbody">
               <p className="svc__count">{String(i + 1).padStart(2, "0")} / {SERVICES.length}</p>
               <h3>{sv.title}</h3>

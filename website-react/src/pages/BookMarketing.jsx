@@ -5,6 +5,7 @@ import { AppleCardCarousel } from "../components/ui/carousel-08";
 import { AnimatedList } from "../components/ui/animated-list";
 import { Reveal, stagger } from "../components/ui.jsx";
 import { useEffect, useState } from "react";
+import ServiceSchema from "../components/Schema.jsx";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
@@ -162,6 +163,7 @@ export default function BookMarketing() {
   return (
     <div className="bw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <ServiceSchema name="Book Marketing Services" path="book-marketing" description="Ebook launch marketing, social media content, author branding, promotional copy and strategy to help the right readers discover your ebook." />
 
       {/* Hero */}
       <section className="bw-hero3" aria-labelledby="bw-hero-title">
