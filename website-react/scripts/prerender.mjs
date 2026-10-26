@@ -12,7 +12,7 @@ const template = readFileSync(join(dist, "index.html"), "utf8");
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 
-function page(url, canonical, isNotFound) {
+function page(url, canonical, noindex) {
   const { html, meta } = render(url);
   let out = template.replace('<div id="root"></div>', `<div id="root">${html}</div>`);
   if (meta) {
@@ -30,7 +30,7 @@ function page(url, canonical, isNotFound) {
   } else {
     out = out.replace(/\s*<link rel="canonical"[^>]*>/, "").replace(/\s*<meta property="og:url"[^>]*>/, "");
   }
-  if (isNotFound) out = out.replace("</head>", '  <meta name="robots" content="noindex">\n</head>');
+  if (noindex) out = out.replace("</head>", '  <meta name="robots" content="noindex">\n</head>');
   return out;
 }
 
@@ -42,6 +42,8 @@ for (const p of paths) {
   // /foo is served from foo.html by Cloudflare; "/" from index.html
   writeFileSync(join(dist, p === "/" ? "index.html" : `${p.slice(1)}.html`), html);
 }
+// Pages that exist as files (so a refresh works) but stay out of the sitemap and search results.
+for (const p of ["/thank-you"]) writeFileSync(join(dist, `${p.slice(1)}.html`), page(p, null, true));
 writeFileSync(join(dist, "404.html"), page("/this-page-does-not-exist", null, true));
 rmSync(join(root, "dist-ssr"), { recursive: true, force: true });
 console.log(`Prerendered ${paths.length} routes + 404.html`);

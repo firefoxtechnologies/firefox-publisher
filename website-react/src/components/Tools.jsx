@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BOOK_STAGES, INTERESTS, SITE } from "../data/site.js";
 import { Reveal } from "./ui.jsx";
+import { sendContact } from "../lib/sendContact.js";
 
 const plural = (n) => n + (n === 1 ? " week" : " weeks");
 
@@ -107,6 +109,9 @@ export function ContactForm({ plan }) {
   const [status, setStatus] = useState("");
   const [lastPlan, setLastPlan] = useState(null);
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
+  const [sending, setSending] = useState(false);
+  const [trap, setTrap] = useState("");
 
   // A package button pre-fills the message, but never overwrites what the visitor typed.
   if (plan && plan !== lastPlan) {
@@ -116,8 +121,9 @@ export function ContactForm({ plan }) {
 
   const set = (k) => (e) => setValues((v) => ({ ...v, [k]: e.target.value }));
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
+    if (sending) return;
     const next = {};
     Object.keys(RULES).forEach((k) => {
       const msg = RULES[k](values[k]);
@@ -131,16 +137,22 @@ export function ContactForm({ plan }) {
       document.getElementById(first)?.focus();
       return;
     }
-    // No mail service is connected yet, so hand the message to the visitor's email app.
-    const body = [
-      "Name: " + values.name.trim(),
-      "Email: " + values.email.trim(),
-      "Phone: " + values.dial.split(" ")[0] + " " + values.phone.trim(),
-      "",
-      values.message.trim(),
-    ].join("\n");
-    window.location.href = "mailto:" + SITE.email + "?subject=" + encodeURIComponent(values.interest) + "&body=" + encodeURIComponent(body);
-    setStatus("Your email app should open with your message ready to send. If it doesn't, email us at " + SITE.email + ".");
+    setSending(true);
+    setStatus("Sending your message\u2026");
+    const r = await sendContact({ ...values, website: trap });
+    setSending(false);
+    if (!r.ok) {
+      setStatus(r.error);
+    } else if (r.via === "api") {
+      const name = values.name;
+      setValues({ name: "", email: "", dial: DIAL_CODES[0], phone: "", interest: INTERESTS[0], message: "" });
+      setErrors({});
+      setSubmitted(false);
+      setStatus("");
+      navigate("/thank-you", { state: { name } });
+    } else {
+      setStatus("We couldn't send it automatically, so your email app should open with the message ready. If it doesn't, email us at " + SITE.email + ".");
+    }
   };
 
   const field = (k, label, input) => (
@@ -181,8 +193,9 @@ export function ContactForm({ plan }) {
       </div>
       {field("message", "Your message", <textarea id="message" name="message" aria-required="true" required placeholder="Tell us about your book and what you need help with" value={values.message} onChange={set("message")} aria-invalid={invalid("message")} />)}
       <p className="form__req"><span className="req" aria-hidden="true">*</span> Required fields</p>
-      <button className="btn btn--primary" type="submit">
-        Send message
+      <div className="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabIndex={-1} autoComplete="off" value={trap} onChange={(e) => setTrap(e.target.value)} /></label></div>
+      <button className="btn btn--primary" type="submit" disabled={sending}>
+        {sending ? "Sending\u2026" : "Send message"}
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
       </button>
       <p className="form__status" id="form-status" role="status">{status}</p>

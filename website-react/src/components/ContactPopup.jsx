@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { INTERESTS, SITE } from "../data/site.js";
 import { DIAL_CODES, RULES } from "./Tools.jsx";
+import { sendContact } from "../lib/sendContact.js";
 
 // Every link or button that points at #contact opens this pop-up instead of jumping
 // down the page. A package button can pass its name in data-plan to pre-fill the message.
@@ -41,6 +43,7 @@ const CSS = `
 .cp__err { display: block; min-height: 0; font-size: .8rem; color: #c0392b; margin-top: 4px; }
 .cp__send { margin-top: 4px; border: 0; cursor: pointer; padding: 15px 22px; border-radius: 7px; background: #f28c28; color: #12294a; font: 800 .95rem var(--font-sans); letter-spacing: .06em; text-transform: uppercase; box-shadow: 0 14px 26px -12px rgba(242,140,40,.9); transition: transform .2s, box-shadow .2s; }
 .cp__send:hover { transform: translateY(-2px); }
+.cp__send:disabled { opacity: .7; cursor: progress; transform: none; }
 .cp__status { margin: 0; font-size: .85rem; color: #3e5272; min-height: 1.2em; }
 .cp__note { margin: 0; font-size: .75rem; color: #5b6d8a; }
 @media (max-width: 760px) {
@@ -73,6 +76,9 @@ export default function ContactPopup() {
   const [values, setValues] = useState(EMPTY);
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState("");
+  const navigate = useNavigate();
+  const [sending, setSending] = useState(false);
+  const [trap, setTrap] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const dialog = useRef(null);
   const opener = useRef(null);
@@ -121,8 +127,9 @@ export default function ContactPopup() {
   const set = (k) => (e) => setValues((v) => ({ ...v, [k]: e.target.value }));
   const invalid = (k) => (submitted && errors[k] ? "true" : undefined);
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
+    if (sending) return;
     const next = {};
     Object.keys(RULES).forEach((k) => { const m = RULES[k](values[k]); if (m) next[k] = m; });
     setErrors(next);
@@ -133,9 +140,23 @@ export default function ContactPopup() {
       dialog.current.querySelector("[name=" + first + "]")?.focus();
       return;
     }
-    const body = ["Name: " + values.name.trim(), "Email: " + values.email.trim(), "Phone: " + values.dial.split(" ")[0] + " " + values.phone.trim(), "", values.message.trim()].join("\n");
-    window.location.href = "mailto:" + SITE.email + "?subject=" + encodeURIComponent(values.interest) + "&body=" + encodeURIComponent(body);
-    setStatus("Your email app should open with your message ready to send. If it doesn't, email us at " + SITE.email + ".");
+    setSending(true);
+    setStatus("Sending your message\u2026");
+    const r = await sendContact({ ...values, website: trap });
+    setSending(false);
+    if (!r.ok) {
+      setStatus(r.error);
+    } else if (r.via === "api") {
+      const name = values.name;
+      setValues(EMPTY);
+      setErrors({});
+      setSubmitted(false);
+      setStatus("");
+      setOpen(false);
+      navigate("/thank-you", { state: { name } });
+    } else {
+      setStatus("We couldn't send it automatically, so your email app should open with the message ready. If it doesn't, email us at " + SITE.email + ".");
+    }
   };
 
   const err = (k) => <span className="cp__err" id={"cp-" + k + "-err"} role={errors[k] ? "alert" : undefined}>{submitted ? errors[k] : ""}</span>;
@@ -185,7 +206,8 @@ export default function ContactPopup() {
                 <label className="cp__f">{ICONS.msg}<textarea name="message" placeholder="Tell us about your book and what you need" aria-label="Your message" aria-invalid={invalid("message")} value={values.message} onChange={set("message")} /></label>
                 {err("message")}
               </div>
-              <button className="cp__send" type="submit">Start my book</button>
+              <div className="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabIndex={-1} autoComplete="off" value={trap} onChange={(e) => setTrap(e.target.value)} /></label></div>
+              <button className="cp__send" type="submit" disabled={sending}>{sending ? "Sending\u2026" : "Start my book"}</button>
               <p className="cp__status" role="status">{status}</p>
               <p className="cp__note">We will only use your details to reply about your project.</p>
             </form>
