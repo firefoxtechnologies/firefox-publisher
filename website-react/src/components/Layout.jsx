@@ -106,7 +106,6 @@ const SERVICE_PAGES = [
   { to: "/author-branding-illustration", label: "Author Branding & Illustration" },
   { to: "/audiobook-production", label: "Audiobook Production" },
   { to: "/book-trailers", label: "Book Video Trailers" },
-  { to: "/ebook-publishing-services", label: "Ebook Publishing Services" },
 ];
 
 function Header() {

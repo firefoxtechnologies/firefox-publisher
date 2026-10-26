@@ -96,24 +96,6 @@
       }
     },
     {
-      "identifier": "urn:air:firefoxpublisher.com:service:ebook-publishing-services",
-      "type": "text/html",
-      "url": "https://firefoxpublisher.com/ebook-publishing-services",
-      "displayName": "Ebook Publishing Services & Support",
-      "description": "Ebook formatting, cover design, book descriptions, metadata and file preparation.",
-      "tags": [
-        "service",
-        "ebook",
-        "publishing"
-      ],
-      "updatedAt": "2026-10-24T00:00:00Z",
-      "publisher": {
-        "identifier": "firefoxpublisher.com",
-        "displayName": "Firefox Publisher",
-        "identityType": "dns"
-      }
-    },
-    {
       "identifier": "urn:air:firefoxpublisher.com:service:book-printing",
       "type": "text/html",
       "url": "https://firefoxpublisher.com/book-printing",
