@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { CtaBand } from "../components/ui.jsx";
 import { PROJECTS, PROJECT_CATS } from "../data/catalog.js";
 import { usePageMeta } from "../hooks.js";
+import { PORTFOLIO_BOOKS } from "../data/portfolioBooks.js";
 
 export default function Portfolio() {
   usePageMeta("Portfolio | Firefox Publisher", "Selected projects showing the objective, the work completed and what was delivered.");
@@ -45,6 +46,19 @@ export default function Portfolio() {
             ))}
           </div>
           <p className="note">Placeholders. Publish only real projects, permissioned visuals and substantiated results, and keep each client's identity distinct from ours.</p>
+        </div>
+      </section>
+      <section className="section">
+        <div className="wrap">
+          <h2>Book covers</h2>
+          <div className="grid grid--3" id="book-covers">
+            {PORTFOLIO_BOOKS.map((b) => (
+              <figure className="work" key={b.src}>
+                <img src={b.src} alt={`${b.title} book cover, ${b.genre}`} width="600" height="900" loading="lazy" decoding="async" style={{ width: "100%", height: "auto", display: "block" }} />
+                <figcaption className="work__body"><p className="tag">{b.genre}</p><h3>{b.title}</h3></figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
       <CtaBand />
