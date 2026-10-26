@@ -172,7 +172,7 @@ export default function BookEditing() {
         <div className="bw-hero3__inner">
           <div className="bw-hero3__text">
             <p className="crumbs"><Link to="/">Home</Link> / <Link to="/#services">Services</Link> / Book Editing</p>
-            <p className="bw-hero3__pill">Your story, polished</p>
+            <p className="bw-hero3__pill">Book Editing Services for Authors</p>
             <TypedTitle />
             <p className="lead">Your story is written. Now let&rsquo;s give it that extra sparkle! &#10024;</p>
             <div className="hero__cta">

@@ -172,7 +172,7 @@ export default function AuthorBranding() {
         <div className="bw-hero3__inner">
           <div className="bw-hero3__text">
             <p className="crumbs"><Link to="/">Home</Link> / <Link to="/#services">Services</Link> / Author Branding &amp; Illustration</p>
-            <p className="bw-hero3__pill">Author branding &amp; illustration</p>
+            <p className="bw-hero3__pill">Author Branding &amp; Book Illustration</p>
             <TypedTitle />
             <p className="lead">You&rsquo;re more than the words you write. You&rsquo;re the imagination behind the story, the voice behind the pages, and the name readers can come to love.</p>
             <div className="hero__cta">

@@ -176,7 +176,7 @@ export default function EbookPublishing() {
         <div className="bw-hero3__inner">
           <div className="bw-hero3__text">
             <p className="crumbs"><Link to="/">Home</Link> / <Link to="/#services">Services</Link> / Ebook Publishing</p>
-            <p className="bw-hero3__pill">From manuscript to published</p>
+            <p className="bw-hero3__pill">Ebook Publishing Services</p>
             <TypedTitle />
             <p className="lead">From &ldquo;I&rsquo;ve written a book!&rdquo; to &ldquo;It&rsquo;s published!&rdquo; Let&rsquo;s make it happen. &#128218;</p>
             <div className="hero__cta">

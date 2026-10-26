@@ -174,7 +174,7 @@ export default function EbookDesign() {
         <div className="bw-hero3__inner">
           <div className="bw-hero3__text">
             <p className="crumbs"><Link to="/">Home</Link> / <Link to="/#services">Services</Link> / Ebook Cover &amp; Interior Design</p>
-            <p className="bw-hero3__pill">Dress your ebook for success</p>
+            <p className="bw-hero3__pill">Ebook Cover &amp; Interior Design</p>
             <TypedTitle />
             <p className="lead">Don&rsquo;t judge a book by its cover? Well, readers often do! &#128521;</p>
             <div className="hero__cta">

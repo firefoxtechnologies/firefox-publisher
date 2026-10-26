@@ -172,7 +172,7 @@ export default function BookTrailers() {
         <div className="bw-hero3__inner">
           <div className="bw-hero3__text">
             <p className="crumbs"><Link to="/">Home</Link> / <Link to="/#services">Services</Link> / Book Video Trailers</p>
-            <p className="bw-hero3__pill">Book video trailer services</p>
+            <p className="bw-hero3__pill">Book Trailer Video Services</p>
             <TypedTitle />
             <p className="lead">Your ebook has a story. Now it needs a little screen time!</p>
             <div className="hero__cta">

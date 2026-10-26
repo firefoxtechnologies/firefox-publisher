@@ -170,7 +170,7 @@ export default function BookMarketing() {
         <div className="bw-hero3__inner">
           <div className="bw-hero3__text">
             <p className="crumbs"><Link to="/">Home</Link> / <Link to="/#services">Services</Link> / Book Marketing</p>
-            <p className="bw-hero3__pill">Book marketing services</p>
+            <p className="bw-hero3__pill">Book Marketing Services for Authors</p>
             <TypedTitle />
             <p className="lead">You&rsquo;ve written the story. You&rsquo;ve poured your heart into every page. Now comes the exciting part: getting it in front of the right readers!</p>
             <div className="hero__cta">

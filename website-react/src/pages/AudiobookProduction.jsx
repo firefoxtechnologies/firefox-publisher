@@ -173,7 +173,7 @@ export default function AudiobookProduction() {
         <div className="bw-hero3__inner">
           <div className="bw-hero3__text">
             <p className="crumbs"><Link to="/">Home</Link> / <Link to="/#services">Services</Link> / Audiobook Production</p>
-            <p className="bw-hero3__pill">Audiobook production services</p>
+            <p className="bw-hero3__pill">Audiobook Production Services</p>
             <TypedTitle />
             <p className="lead">Some people love reading with their eyes. Others would rather press play, put on their headphones, and let a story take them somewhere new.</p>
             <div className="hero__cta">

@@ -175,7 +175,7 @@ export default function BookWriting() {
         <div className="bw-hero3__inner">
           <div className="bw-hero3__text">
             <p className="crumbs"><Link to="/">Home</Link> / <Link to="/#services">Services</Link> / Book Writing</p>
-            <p className="bw-hero3__pill">Books with your name on them</p>
+            <p className="bw-hero3__pill">Ebook Writing &amp; Ghostwriting Services</p>
             <TypedTitle />
             <p className="lead">Big ideas. Brilliant stories. We turn them into a finished book, step by step, without the homework.</p>
             <div className="hero__cta">

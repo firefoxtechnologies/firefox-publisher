@@ -168,7 +168,7 @@ export default function BookPrinting() {
         <div className="bw-hero3__inner">
           <div className="bw-hero3__text">
             <p className="crumbs"><Link to="/">Home</Link> / <Link to="/#services">Services</Link> / Book Printing</p>
-            <p className="bw-hero3__pill">Book printing services</p>
+            <p className="bw-hero3__pill">Print-Ready Book Formatting</p>
             <TypedTitle />
             <p className="lead">You&rsquo;ve dreamed it. You&rsquo;ve written it. Now, let&rsquo;s get it ready for the printing press!</p>
             <div className="hero__cta">
