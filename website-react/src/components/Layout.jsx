@@ -252,13 +252,40 @@ function Header() {
 const FOOTER_COLUMNS = [
   { title: "Company", links: [{ label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
   { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Book Editing", href: "/book-editing" }, { label: "Ebook Cover & Interior Design", href: "/ebook-design" }, { label: "Ebook Publishing", href: "/ebook-publishing" }, { label: "Book Marketing", href: "/book-marketing" }, { label: "Audiobook Production", href: "/audiobook-production" }, { label: "All services: what we do", href: "/#services" }] },
-  { title: "Contact", links: [{ label: SITE.email, href: "mailto:" + SITE.email }, { label: SITE.phone, href: SITE.phoneHref }, { label: "333 Washington St #233, Hoboken NJ 07030" }] },
+  { title: "Contact", links: [{ label: SITE.email, href: "mailto:" + SITE.email }, { label: SITE.phone, href: SITE.phoneHref }, { label: "333 Washington St #233, Hoboken NJ 07030" }, { label: "Social media", social: true }] },
 ];
+
+const SOCIAL_ICONS = {
+  instagram: <path fillRule="evenodd" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5.6a4.4 4.4 0 1 0 0 8.8 4.4 4.4 0 0 0 0-8.8zm0 2.2a2.2 2.2 0 1 1 0 4.4 2.2 2.2 0 0 1 0-4.4zm5.5-4.6a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6z" />,
+  facebook: <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />,
+  linkedin: <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect x="2" y="9" width="4" height="12" /><circle cx="4" cy="4" r="2" /></>,
+};
+
+function SocialIcon({ name }) {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+      {SOCIAL_ICONS[name]}
+    </svg>
+  );
+}
 
 // Internal URLs go through the router; mailto:, tel: and external URLs stay plain anchors.
 function renderFooterLink(l) {
+  if (l.social) {
+    return (
+      <span style={{ display: "flex", gap: 10, marginTop: 6 }}>
+        {SITE.social.map((o) => (
+          <a key={o.label} href={o.href} target="_blank" rel="noopener noreferrer" aria-label={o.label} title={o.label}
+            style={{ display: "grid", placeItems: "center", width: 40, height: 40, borderRadius: 7, color: "#fff", border: "1px solid rgba(255,255,255,.4)", background: "rgba(234,243,253,.06)" }}>
+            <SocialIcon name={o.icon} />
+          </a>
+        ))}
+      </span>
+    );
+  }
   if (!l.href) return <span style={{ opacity: 0.78 }}>{l.label}</span>;
-  return l.href.startsWith("/") ? <Link to={l.href}>{l.label}</Link> : <a href={l.href}>{l.label}</a>;
+  if (l.href.startsWith("/")) return <Link to={l.href}>{l.label}</Link>;
+  return <a href={l.href} {...(l.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{l.label}</a>;
 }
 
 function Footer() {

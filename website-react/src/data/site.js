@@ -2,6 +2,11 @@ export const SITE = {
   email: "contactus@firefoxpublisher.com",
   phone: "+1 201-464-5345",
   phoneHref: "tel:+12014645345",
+  social: [
+    { label: "Instagram", icon: "instagram", href: "https://www.instagram.com/firefoxpublisher" },
+    { label: "Facebook", icon: "facebook", href: "https://www.facebook.com/firefoxpublisher" },
+    { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/company/firefox-publisher/" },
+  ],
   parentUrl: "https://firefoxtechnologies.com/",
 };
 
