@@ -10,6 +10,7 @@ import GradientCard from "../components/ui/gradient-card";
 import { Compare2 } from "../components/ui/compare-2";
 import { ParentLink } from "../components/Layout.jsx";
 import WorksWheel from "../components/ui/works-wheel";
+import CoverMakerPromo from "../components/CoverMakerPromo.jsx";
 import CarouselStacked from "../components/ui/carousel-07";
 import Pricing from "../components/ui/pricing-7";
 import CallToAction from "../components/ui/cta-3";
@@ -426,8 +427,8 @@ function Contact({ plan }) {
 
 export default function Home() {
   usePageMeta(
-    "Firefox Publisher | Your Story. Our Craft.",
-    "Publishing and creative services that help authors present their work professionally and build their brands."
+    "Firefox Publisher | Ebook Publishing & Design Services",
+    "Ebook publishing services for authors: book writing, editing, cover and interior design, audiobooks, marketing and trailers. Your story, our craft."
   );
   const [plan, setPlan] = useState(null);
   // The estimator and the stage picker share these two values.
@@ -436,6 +437,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <CoverMakerPromo />
       <Stats />
       <Services />
       <Work />

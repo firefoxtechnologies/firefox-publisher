@@ -1,0 +1,62 @@
+/* Motion and polish layer. Everything that moves sits inside no-preference. */
+
+:root { --ease-out: cubic-bezier(.2, .8, .2, 1); }
+
+/* clearer keyboard focus everywhere */
+:where(a, button, input, select, textarea, summary):focus-visible { outline: 3px solid #f28c28; outline-offset: 3px; border-radius: 6px; }
+
+/* press feedback and smooth selection colour */
+.btn:active { transform: translateY(0) scale(.97); }
+::selection { background: rgba(242, 140, 40, .35); }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* page-to-page fade (opacity only, so sticky and fixed layers are never disturbed) */
+  @keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
+  main { animation: page-in .45s ease both; }
+
+  /* eyebrow dot pulses */
+  @keyframes dot-pulse { 0% { box-shadow: 0 0 0 0 rgba(242,140,40,.55); } 100% { box-shadow: 0 0 0 9px rgba(242,140,40,0); } }
+  .eyebrow::before { animation: dot-pulse 2s ease-out infinite; }
+
+  /* animated underline on plain footer and text links */
+  .footer a:not(.btn) { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .3s var(--ease-out), color .2s; }
+  .footer a:not(.btn):hover { background-size: 100% 1px; }
+
+  /* FAQ answers slide open */
+  @keyframes faq-open { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+  details[open] > :not(summary) { animation: faq-open .3s var(--ease-out); }
+  details > summary { transition: color .2s; }
+  details > summary:hover { color: #f28c28; }
+
+  /* ---- free cover maker ---- */
+  @keyframes cm-rise { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: none; } }
+  @keyframes cm-pop { 0% { transform: scale(.965) rotate(-.6deg); opacity: .6; } 60% { transform: scale(1.012); } 100% { transform: none; opacity: 1; } }
+  @keyframes cm-modal-in { from { opacity: 0; transform: translateY(16px) scale(.96); } to { opacity: 1; transform: none; } }
+  @keyframes cm-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes cm-float { 0%, 100% { transform: translateY(0) rotate(-.4deg); } 50% { transform: translateY(-8px) rotate(.4deg); } }
+  @keyframes cm-shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+
+  .cm-card { animation: cm-rise .5s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 28ms); }
+  .cm-card canvas { transition: transform .35s var(--ease-out), box-shadow .35s; }
+  .cm-card:hover canvas, .cm-card:focus-visible canvas { transform: scale(1.04) rotate(-.6deg); box-shadow: 0 18px 30px -10px rgba(0,0,0,.75); }
+  .cm-card__go { transition: opacity .2s, transform .25s var(--ease-out); }
+  .cm-card:hover .cm-card__go { transform: translateY(-50%) scale(1.05); }
+
+  .cm-canvas.is-new { animation: cm-pop .5s var(--ease-out); }
+  .cm-preview__stage { transition: box-shadow .4s; }
+  .cm-preview__stage:hover { box-shadow: 0 30px 60px -30px rgba(242,140,40,.45); }
+  .cm-modal { animation: cm-fade .2s ease; }
+  .cm-modal__box { animation: cm-modal-in .3s var(--ease-out); }
+  .cm-chip, .cm-seg button { transition: background .2s, border-color .2s, color .2s, transform .15s; }
+  .cm-chip:active, .cm-seg button:active { transform: scale(.94); }
+  .cm-steps li { transition: transform .3s var(--ease-out), box-shadow .3s; }
+  .cm-steps li:hover { transform: translateY(-5px); box-shadow: 0 18px 30px -18px rgba(18,41,74,.35); }
+  .cm-hero .cm-accent { background: linear-gradient(90deg, #f28c28, #ffd2a1, #f28c28); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: cm-shimmer 5s linear infinite; }
+
+  /* floating covers behind the cover maker hero */
+  .cm-float { position: absolute; width: 120px; aspect-ratio: 2 / 3; border-radius: 4px; opacity: .3; pointer-events: none; z-index: -1; box-shadow: 0 24px 40px -14px rgba(0,0,0,.6); animation: cm-float 7s ease-in-out infinite; }
+  .cm-float--a { right: 16%; top: 24%; background: linear-gradient(160deg, #f28c28, #7a2bff); }
+  .cm-float--b { right: 6%; top: 44%; width: 96px; background: linear-gradient(160deg, #1d5fa8, #4de1ff); animation-delay: -3s; }
+}
+
+@media (max-width: 760px) { .cm-float { display: none; } }

@@ -149,7 +149,7 @@ function TypedTitle() {
 export default function BookPrinting() {
   usePageMeta(
     "Book Printing Services | Firefox Publisher",
-    "Professional book formatting, interior layout and print-ready PDF preparation, set up to your printer's specifications and ready to send to your chosen printing company."
+    "Book formatting, interior layout and print-ready PDF preparation to your printer's specifications, ready to send to your chosen printer."
   );
 
   const faqSchema = {

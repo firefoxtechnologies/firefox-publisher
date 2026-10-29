@@ -36,11 +36,11 @@ export function usePageMeta(title, description, { noindex = false } = {}) {
       upsertHead('meta[property="og:description"]', metaTag("property", "og:description"), description, "content");
     }
     upsertHead('meta[property="og:title"]', metaTag("property", "og:title"), title, "content");
+    upsertHead('meta[name="twitter:title"]', metaTag("name", "twitter:title"), title, "content");
+    if (description) upsertHead('meta[name="twitter:description"]', metaTag("name", "twitter:description"), description, "content");
     upsertHead('meta[property="og:url"]', metaTag("property", "og:url"), url, "content");
     upsertHead('link[rel="canonical"]', () => Object.assign(document.createElement("link"), { rel: "canonical" }), url, "href");
-    const robots = document.head.querySelector('meta[name="robots"]');
-    if (noindex) upsertHead('meta[name="robots"]', metaTag("name", "robots"), "noindex", "content");
-    else if (robots) robots.remove();
+    upsertHead('meta[name="robots"]', metaTag("name", "robots"), noindex ? "noindex" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1", "content");
   }, [title, description, noindex]);
 }
 

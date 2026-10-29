@@ -14,6 +14,7 @@ export const NAV = [
   { to: "/#services", label: "Services", id: "services" },
   { to: "/#packages", label: "Packages", id: "packages" },
   { to: "/portfolio", label: "Portfolio" },
+  { to: "/free-book-cover-maker", label: "Free Cover Maker" },
   { to: "/books", label: "Books" },
   { to: "/#process", label: "Process", id: "process" },
   { to: "/#tools", label: "Tools", id: "tools" },

@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { CtaBand, Reveal } from "../components/ui.jsx";
 import { BOOKS, CLASSICS, GENRES } from "../data/catalog.js";
 import { usePageMeta } from "../hooks.js";
+import { PageSchema } from "../components/Schema.jsx";
 
 export default function Books() {
-  usePageMeta("Books | Firefox Publisher", "Sample books showing the covers and formats Firefox Publisher produces.");
+  usePageMeta("Book Cover Samples & Classics | Firefox Publisher", "Browse sample book covers and public-domain classics Firefox Publisher can design, format and publish across fantasy, thriller, romance and more.");
   const [genre, setGenre] = useState("all");
   const chips = ["all", ...GENRES];
   return (
     <>
+      <PageSchema type="CollectionPage" name="Book Cover Samples & Classics" path="books" description="Sample book covers and public-domain classics Firefox Publisher can design, format and publish." />
       <section className="page-hero">
         <div className="wrap">
           <p className="crumbs"><Link to="/">Home</Link> / Books</p>

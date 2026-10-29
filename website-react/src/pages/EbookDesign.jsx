@@ -155,7 +155,7 @@ function TypedTitle() {
 export default function EbookDesign() {
   usePageMeta(
     "Ebook Cover & Interior Design | Firefox Publisher",
-    "Eye-catching ebook covers and clean, readable interiors that suit your genre. Cover design, interior layout, chapter styling and visual elements, prepared in the formats you need."
+    "Eye-catching ebook covers and clean, readable interiors that suit your genre: cover design, interior layout, chapter styling and visuals."
   );
 
   const faqSchema = {
@@ -181,7 +181,7 @@ export default function EbookDesign() {
               <Link className="btn btn--primary" to="/#contact">Let&rsquo;s design my ebook!</Link>
               <Link className="btn btn--secondary" to="#bw-process">See how it works</Link>
             </div>
-            <p className="bw-hero__note">Great stories deserve great designs. Let&rsquo;s make yours stand out!</p>
+            <p className="bw-hero__note">Great stories deserve great designs. Let&rsquo;s make yours stand out! Want to try first? <Link to="/free-book-cover-maker">Design a cover free with our book cover maker</Link>.</p>
           </div>
           <div className="bw-hero3__art">
             <img src="/assets/services/cover-interior-design.jpg" alt="Colourful book covers and interior layouts" width="900" height="900" />

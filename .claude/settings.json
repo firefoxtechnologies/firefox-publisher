@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./website-react/dist/**)",
+      "Read(./website-react/dist-ssr/**)",
+      "Read(./website-react/node_modules/**)",
+      "Read(./node_modules/**)",
+      "Read(./website/**)",
+      "Read(./pak-services-post/**)",
+      "Read(./logo/**)",
+      "Read(./.wrangler/**)"
+    ]
+  }
+}

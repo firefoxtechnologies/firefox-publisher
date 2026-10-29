@@ -153,7 +153,7 @@ function TypedTitle() {
 export default function BookEditing() {
   usePageMeta(
     "Book Editing Services | Firefox Publisher",
-    "Developmental editing, line editing, copyediting and proofreading that polish your manuscript and keep your voice. Send us your book and we will plan the right edit."
+    "Developmental editing, line editing, copyediting and proofreading that polish your manuscript and keep your voice. Tell us about your book."
   );
 
   const faqSchema = {

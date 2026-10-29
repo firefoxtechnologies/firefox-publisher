@@ -5,6 +5,7 @@ import { AnimatedList } from "../components/ui/animated-list";
 import { Reveal, stagger } from "../components/ui.jsx";
 import { useEffect, useState } from "react";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
+import { PageSchema } from "../components/Schema.jsx";
 
 const SERVICES = [
   { badge: "Writing", title: "Writing & Editing", description: "Have a brilliant idea but need help turning it into a polished manuscript? We support authors with writing, ghostwriting, and editing services to help refine their work.", image: "/assets/services/book-writing.jpg", alt: "A writer typing a manuscript on a laptop" },
@@ -125,7 +126,7 @@ function TypedTitle() {
 export default function About() {
   usePageMeta(
     "About Firefox Publisher | Firefox Publisher",
-    "Firefox Publisher is a creative partner for ebook authors: manuscript support, formatting, author branding, audiobooks and marketing, brought together under one roof."
+    "Firefox Publisher is a creative partner for ebook authors: manuscript support, formatting, branding, audiobooks and marketing under one roof."
   );
 
   return (

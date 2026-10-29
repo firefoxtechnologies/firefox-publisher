@@ -33,6 +33,12 @@ function ScrollManager() {
   return null;
 }
 
+// Keyed on the path so every page change replays the soft fade-in defined in motion.css.
+function RoutedMain() {
+  const { pathname } = useLocation();
+  return <main id="main" key={pathname}><Outlet /></main>;
+}
+
 function ScrollProgress() {
   const ref = useRef(null);
   useEffect(() => {
@@ -93,6 +99,7 @@ function ServiceIcon({ s }) {
 
 const WORK_LINKS = [
   { to: "/portfolio", title: "Portfolio", text: "Selected projects, with the objective and what was delivered." },
+  { to: "/free-book-cover-maker", title: "Free Cover Maker", text: "Design your own book cover from genre templates and download it free." },
   { to: "/books", title: "Books", text: "Sample covers and public-domain classics we can publish." },
 ];
 const FLAT_LINKS = NAV.filter((n) => n.id && n.id !== "services");
@@ -251,7 +258,7 @@ function Header() {
 
 const FOOTER_COLUMNS = [
   { title: "Company", links: [{ label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
-  { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Book Editing", href: "/book-editing" }, { label: "Ebook Cover & Interior Design", href: "/ebook-design" }, { label: "Ebook Publishing", href: "/ebook-publishing" }, { label: "Book Marketing", href: "/book-marketing" }, { label: "Audiobook Production", href: "/audiobook-production" }, { label: "All services: what we do", href: "/#services" }] },
+  { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Book Editing", href: "/book-editing" }, { label: "Ebook Cover & Interior Design", href: "/ebook-design" }, { label: "Free Book Cover Maker", href: "/free-book-cover-maker" }, { label: "Ebook Publishing", href: "/ebook-publishing" }, { label: "Book Marketing", href: "/book-marketing" }, { label: "Audiobook Production", href: "/audiobook-production" }, { label: "All services: what we do", href: "/#services" }] },
   { title: "Contact", links: [{ label: SITE.email, href: "mailto:" + SITE.email }, { label: SITE.phone, href: SITE.phoneHref }, { label: "333 Washington St #233, Hoboken NJ 07030" }, { label: "Social media", social: true }] },
 ];
 
@@ -330,7 +337,7 @@ export default function Layout() {
         </div>
       </div>
       <Header />
-      <main id="main"><Outlet /></main>
+      <RoutedMain />
       <Footer />
       <ScrollProgress />
       <BackToTop />

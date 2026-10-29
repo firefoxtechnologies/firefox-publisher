@@ -23,6 +23,8 @@ function page(url, canonical, noindex) {
       set(/(<meta property="og:description" content=")[^"]*(")/, `$1${esc(meta.description)}$2`);
     }
     set(/(<meta property="og:title" content=")[^"]*(")/, `$1${esc(meta.title)}$2`);
+    set(/(<meta name="twitter:title" content=")[^"]*(")/, `$1${esc(meta.title)}$2`);
+    if (meta.description) set(/(<meta name="twitter:description" content=")[^"]*(")/, `$1${esc(meta.description)}$2`);
   }
   if (canonical) {
     out = out.replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${canonical}$2`);
@@ -30,7 +32,7 @@ function page(url, canonical, noindex) {
   } else {
     out = out.replace(/\s*<link rel="canonical"[^>]*>/, "").replace(/\s*<meta property="og:url"[^>]*>/, "");
   }
-  if (noindex) out = out.replace("</head>", '  <meta name="robots" content="noindex">\n</head>');
+  if (noindex) out = out.replace(/<meta name="robots" content="[^"]*">/, '<meta name="robots" content="noindex">');
   return out;
 }
 

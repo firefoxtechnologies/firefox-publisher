@@ -152,7 +152,7 @@ function TypedTitle() {
 
 export default function AuthorBranding() {
   usePageMeta(
-    "Author Branding & Illustration Services | Firefox Publisher",
+    "Author Branding & Illustration | Firefox Publisher",
     "Author logos, brand identity and branding kits, plus ebook illustrations, character art and custom artwork that give your stories a recognizable style."
   );
 

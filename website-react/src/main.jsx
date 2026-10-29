@@ -6,6 +6,7 @@ import "./styles/styles.css";
 import "./styles/cinematic.css";
 import "./styles/polish.css";
 import "./styles/theme.css";
+import "./styles/motion.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

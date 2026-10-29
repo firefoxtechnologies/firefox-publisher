@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { CtaBand } from "../components/ui.jsx";
 import { usePageMeta } from "../hooks.js";
+import { PageSchema } from "../components/Schema.jsx";
 import { PORTFOLIO_BOOKS, PORTFOLIO_PROJECTS } from "../data/portfolioBooks.js";
 import BookCarousel from "../components/ui/feature-carousel";
 
@@ -8,7 +9,7 @@ import BookCarousel from "../components/ui/feature-carousel";
 const HERO_IMAGES = [...PORTFOLIO_PROJECTS, ...PORTFOLIO_BOOKS].map((b) => ({ src: b.src, alt: b.title }));
 
 export default function Portfolio() {
-  usePageMeta("Portfolio | Firefox Publisher", "Selected projects showing the objective, the work completed and what was delivered.");
+  usePageMeta("Book Design Portfolio | Firefox Publisher", "See Firefox Publisher's recent book cover, interior design and branding projects: the objective, the work completed and what was delivered.");
   return (
     <>
       <section className="page-hero portfolio-hero">

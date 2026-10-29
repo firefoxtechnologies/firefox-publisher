@@ -184,6 +184,24 @@
         "displayName": "Firefox Publisher",
         "identityType": "dns"
       }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:tool:free-book-cover-maker",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/free-book-cover-maker",
+      "displayName": "Free Book Cover Maker",
+      "description": "Free online book cover maker with genre templates, editable text and colours, and PNG/JPG downloads. Premium designs and SVG vector files are paid.",
+      "tags": [
+        "tool",
+        "book-cover",
+        "design"
+      ],
+      "updatedAt": "2026-10-30T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     }
   ]
 }
