@@ -28,6 +28,7 @@ export default function Portfolio() {
                 <img src={p.src} alt={`${p.title} book mockup`} width="1254" height="1254" loading="lazy" decoding="async" style={{ width: "100%", height: "auto", display: "block" }} />
                 <div className="work__body">
                   <h3>{p.title}</h3>
+                  <p className="work__desc">{p.description}</p>
                   <dl>
                     <dt>Objective</dt><dd>{p.objective}</dd>
                     <dt>Work completed</dt><dd>{p.work}</dd>
@@ -41,6 +42,7 @@ export default function Portfolio() {
                 <img src={b.src} alt={`${b.title} book cover, ${b.genre}`} width="1254" height="1254" loading="lazy" decoding="async" style={{ width: "100%", height: "auto", display: "block" }} />
                 <div className="work__body">
                   <h3>{b.title}</h3>
+                  <p className="work__desc">{b.description}</p>
                   <dl>
                     <dt>Objective</dt><dd>Give a {b.genre.toLowerCase()} title a cover that signals its genre and stands out on the shelf.</dd>
                     <dt>Work completed</dt><dd>Cover concept and design, title typography and spine layout.</dd>

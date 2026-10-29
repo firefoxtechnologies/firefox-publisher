@@ -1056,7 +1056,7 @@ h1, h2 { font-weight: 800; }
 .portfolio-sec h2 { margin-bottom: 24px; }
 
 /* Portfolio hero: centre-stage book carousel */
-.portfolio-hero { text-align: center; padding-bottom: clamp(32px, 5vw, 64px); }
+.portfolio-hero { margin-top: -104px; text-align: center; padding-bottom: clamp(32px, 5vw, 64px); }
 .portfolio-hero .lead { margin-inline: auto; }
 .fc { position: relative; width: 100%; max-width: 1100px; margin: clamp(24px, 4vw, 48px) auto 0; height: 300px; }
 .fc__stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; perspective: 1000px; }
@@ -1069,4 +1069,6 @@ h1, h2 { font-weight: 800; }
 @media (min-width: 768px) { .fc { height: 440px; } .fc__item { width: 380px; height: 380px; } .fc__btn--prev { left: 32px; } .fc__btn--next { right: 32px; } }
 
 
-@media (max-width: 640px) { .portfolio-hero .wrap { padding-top: 96px; } .fc { margin-top: 20px; } .fc__btn { width: 40px; height: 40px; } .fc__btn--prev { left: 4px; } .fc__btn--next { right: 4px; } }
+@media (max-width: 640px) { .fc { margin-top: 20px; } .fc__btn { width: 40px; height: 40px; } .fc__btn--prev { left: 4px; } .fc__btn--next { right: 4px; } }
+
+.work__desc { margin: 6px 0 14px; color: var(--slate); font-size: .95rem; line-height: 1.55; }
