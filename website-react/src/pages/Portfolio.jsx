@@ -1,54 +1,52 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { CtaBand } from "../components/ui.jsx";
-import { PROJECTS, PROJECT_CATS } from "../data/catalog.js";
 import { usePageMeta } from "../hooks.js";
-import { PORTFOLIO_BOOKS } from "../data/portfolioBooks.js";
+import { PORTFOLIO_BOOKS, PORTFOLIO_PROJECTS } from "../data/portfolioBooks.js";
+import { HERO_BOOKS } from "../data/site.js";
+import BookCarousel from "../components/ui/feature-carousel";
+
+// Every cover and book mockup on the site, interleaved so neighbours differ in style.
+const SETS = [
+  HERO_BOOKS.map((b) => ({ src: `/assets/covers/${b.file}.svg`, alt: b.label })),
+  PORTFOLIO_BOOKS.map((b) => ({ src: b.src, alt: b.title })),
+  PORTFOLIO_PROJECTS.map((b) => ({ src: b.src, alt: b.title })),
+];
+const HERO_IMAGES = [];
+for (let i = 0; HERO_IMAGES.length < SETS.reduce((n, a) => n + a.length, 0); i++) SETS.forEach((a) => a[i] && HERO_IMAGES.push(a[i]));
 
 export default function Portfolio() {
   usePageMeta("Portfolio | Firefox Publisher", "Selected projects showing the objective, the work completed and what was delivered.");
-  const [filter, setFilter] = useState("all");
-  const chips = [{ id: "all", label: "All" }, ...PROJECT_CATS];
-  const label = (id) => PROJECT_CATS.find((c) => c.id === id).label;
   return (
     <>
-      <section className="page-hero">
+      <section className="page-hero portfolio-hero">
         <div className="wrap">
           <p className="crumbs"><Link to="/">Home</Link> / Portfolio</p>
           <h1>Portfolio</h1>
           <p className="lead">Each project shows the objective, the work we completed and what was delivered. The work leads; our branding stays secondary.</p>
         </div>
+        <BookCarousel images={HERO_IMAGES} aria-label="Books we have designed" />
       </section>
-      <section className="section">
+      <section className="section portfolio-sec portfolio-sec--first">
         <div className="wrap">
           <h2 className="sr-only">Projects</h2>
-          <div className="filters" role="group" aria-label="Filter projects">
-            {chips.map((c) => (
-              <button key={c.id} type="button" className={"chip" + (filter === c.id ? " active" : "")} aria-pressed={filter === c.id} onClick={() => setFilter(c.id)}>
-                {c.label}
-              </button>
-            ))}
-          </div>
           <div className="grid grid--3" id="projects">
-            {PROJECTS.map((p) => (
-              <article className="work" key={p.title} hidden={filter !== "all" && p.cat !== filter}>
-                <div className="work__img" role="img" aria-label="Placeholder for project image">Project image</div>
+            {PORTFOLIO_PROJECTS.map((p) => (
+              <article className="work" key={p.title}>
+                <img src={p.src} alt={`${p.title} book mockup`} width="1254" height="1254" loading="lazy" decoding="async" style={{ width: "100%", height: "auto", display: "block" }} />
                 <div className="work__body">
-                  <p className="tag">{label(p.cat)}</p>
                   <h3>{p.title}</h3>
                   <dl>
-                    <dt>Objective</dt><dd>What the client wanted to achieve.</dd>
-                    <dt>Work completed</dt><dd>What Firefox Publisher did.</dd>
-                    <dt>Deliverables</dt><dd>What was handed over.</dd>
+                    <dt>Objective</dt><dd>{p.objective}</dd>
+                    <dt>Work completed</dt><dd>{p.work}</dd>
+                    <dt>Deliverables</dt><dd>{p.deliverables}</dd>
                   </dl>
                 </div>
               </article>
             ))}
           </div>
-          <p className="note">Placeholders. Publish only real projects, permissioned visuals and substantiated results, and keep each client's identity distinct from ours.</p>
         </div>
       </section>
-      <section className="section">
+      <section className="section portfolio-sec">
         <div className="wrap">
           <h2>Book covers</h2>
           <div className="grid grid--3" id="book-covers">

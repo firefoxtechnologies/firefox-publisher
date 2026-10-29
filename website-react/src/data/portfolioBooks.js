@@ -21,3 +21,55 @@ export const PORTFOLIO_BOOKS = [
   { src: "/assets/portfolio/20-myth-gods-of-bronze.jpg", title: "Gods Of Bronze", genre: "Mythology" },
   { src: "/assets/portfolio/21-mystery-the-silent-guest.jpg", title: "The Silent Guest", genre: "Mystery" },
 ];
+
+export const PORTFOLIO_PROJECTS = [
+  {
+    src: "/assets/portfolio/mockup-always-with-you.webp",
+    title: "Always With You",
+    objective: "Give a debut romance a cover that feels warm, cinematic and instantly recognisable on a crowded shelf.",
+    work: "Concept and cover design, title and tagline typography, spine design and a lifestyle mockup for launch use.",
+    deliverables: "Print-ready cover with spine, ebook cover and a hardcover mockup image.",
+  },
+  {
+    src: "/assets/portfolio/mockup-the-ai-revolution.webp",
+    title: "The AI Revolution",
+    objective: "Position a non-fiction technology guide as modern and credible while keeping a human, hopeful tone.",
+    work: "Cover concept, futuristic title treatment, illustration direction, spine design and a styled book mockup.",
+    deliverables: "Print and ebook cover files, spine artwork and a promotional mockup image.",
+  },
+  {
+    src: "/assets/portfolio/mockup-the-jade-island-mystery.webp",
+    title: "The Jade Island Mystery",
+    objective: "Capture the adventure and secrecy of the story so readers of the genre spot it straight away.",
+    work: "Illustrated cover scene, dimensional gold-and-jade title lettering, back-to-spine layout and a mockup.",
+    deliverables: "Full-wrap print cover, ebook cover and a hardcover mockup image.",
+  },
+  {
+    src: "/assets/portfolio/mockup-modern-success-blueprint.webp",
+    title: "The Modern Success Blueprint",
+    objective: "Present a self-help title with authority and aspiration for readers who want practical results.",
+    work: "Cover design with a bold navy-and-gold title hierarchy, seal badge, spine design and a desk-scene mockup.",
+    deliverables: "Print-ready cover with spine, ebook cover and a marketing mockup image.",
+  },
+  {
+    src: "/assets/portfolio/mockup-a-promise-in-paris.webp",
+    title: "A Promise in Paris",
+    objective: "Give a historical romance an elegant, romantic cover that signals the setting and era at a glance.",
+    work: "Cover concept and illustration direction, gold-and-crimson title lettering, spine design and a styled desk-scene mockup.",
+    deliverables: "Print-ready cover with spine, ebook cover and a hardcover mockup image.",
+  },
+  {
+    src: "/assets/portfolio/mockup-hearts-in-white-coats.webp",
+    title: "Hearts in White Coats",
+    objective: "Position a medical romance as emotional and modern, appealing to readers of hospital love stories.",
+    work: "Cover design with a heartbeat-line title treatment, tagline layout, spine design and a styled book mockup.",
+    deliverables: "Print and ebook cover files, spine artwork and a promotional mockup image.",
+  },
+  {
+    src: "/assets/portfolio/mockup-the-silent-witness.webp",
+    title: "The Silent Witness",
+    objective: "Build tension and intrigue for a crime thriller so it stands out among genre bestsellers.",
+    work: "Atmospheric cover scene, distressed white-and-red title typography, spine design and an evidence-desk mockup.",
+    deliverables: "Print-ready cover with spine, ebook cover and a marketing mockup image.",
+  },
+];
