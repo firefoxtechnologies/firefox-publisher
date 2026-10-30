@@ -9,16 +9,16 @@ import BookCarousel from "../components/ui/feature-carousel";
 const HERO_IMAGES = [...PORTFOLIO_PROJECTS, ...PORTFOLIO_BOOKS].map((b) => ({ src: b.src, alt: b.title }));
 
 export default function Portfolio() {
-  usePageMeta("Book Design Portfolio | Firefox Publisher", "See Firefox Publisher's recent book cover, interior design and branding projects: the objective, the work completed and what was delivered.");
+  usePageMeta("Book Design Portfolio | Firefox Publisher", "Sample book cover, interior and branding projects from Firefox Publisher: the objective, the work completed and what was delivered.");
   return (
     <>
       <section className="page-hero portfolio-hero">
         <div className="wrap">
           <p className="crumbs"><Link to="/">Home</Link> / Portfolio</p>
           <h1>Portfolio</h1>
-          <p className="lead">Each project shows the objective, the work we completed and what was delivered. The work leads; our branding stays secondary.</p>
+          <p className="lead">Sample projects that show how we work: the objective, what we designed and what was delivered. These are concept designs; ask us about client work we can share with permission.</p>
         </div>
-        <BookCarousel images={HERO_IMAGES} aria-label="Books we have designed" />
+        <BookCarousel images={HERO_IMAGES} aria-label="Sample book designs" />
       </section>
       <section className="section portfolio-sec portfolio-sec--first">
         <div className="wrap">

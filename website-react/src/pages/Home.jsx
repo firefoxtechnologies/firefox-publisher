@@ -11,12 +11,13 @@ import { Compare2 } from "../components/ui/compare-2";
 import { ParentLink } from "../components/Layout.jsx";
 import WorksWheel from "../components/ui/works-wheel";
 import CoverMakerPromo from "../components/CoverMakerPromo.jsx";
+import TrustPromise from "../components/TrustPromise.jsx";
 import CarouselStacked from "../components/ui/carousel-07";
 import Pricing from "../components/ui/pricing-7";
 import CallToAction from "../components/ui/cta-3";
 import ScrollRevealContent from "../components/ui/scroll-reveal-content-a";
 import { BOOKS } from "../data/catalog.js";
-import { PACKAGES, SERVICES, SITE, STAGES, STATS, TESTIMONIALS } from "../data/site.js";
+import { PACKAGES, SERVICES, SITE, STAGES, STATS } from "../data/site.js";
 import { usePageMeta } from "../hooks.js";
 
 function Head({ eyebrow, title, children }) {
@@ -151,8 +152,8 @@ function Work() {
   return (
     <section className="section section--ice" id="work">
       <div className="wrap">
-        <Head eyebrow="Featured work" title="A collection of stories, beautifully presented">
-          <p>A selection of projects showing the objective, the work completed and what was delivered.</p>
+        <Head eyebrow="Sample work" title="A collection of stories, beautifully presented">
+          <p>Sample designs showing the objective, the work completed and what was delivered. Ask us about client projects we can share with permission.</p>
         </Head>
         <CarouselStacked slides={FEATURED} label="Featured books" bleed />
         <p className="center work__cta">
@@ -348,55 +349,6 @@ const CONTACT_CARDS = [
   { label: "Our headquarters", value: "333 Washington St #233, Hoboken, NJ 07030", href: "https://www.google.com/maps/search/?api=1&query=333+Washington+St+%23233+Hoboken+NJ+07030", icon: "M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12zM12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z", external: true },
 ];
 
-const STAR = "M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z";
-
-function TestimonialCard({ t }) {
-  return (
-    <figure className="tm__card">
-      <div className="tm__stars" aria-hidden="true">
-        {[0, 1, 2, 3, 4].map((i) => <svg key={i} viewBox="0 0 24 24"><path d={STAR} /></svg>)}
-      </div>
-      <blockquote className="tm__quote">&ldquo;{t.quote}&rdquo;</blockquote>
-      <figcaption className="tm__who">
-        <span className="tm__avatar" aria-hidden="true">{t.name.charAt(0)}</span>
-        <span className="tm__id"><strong>{t.name}</strong></span>
-      </figcaption>
-    </figure>
-  );
-}
-
-// One scrolling row. The set is rendered twice and the track slides by half its width,
-// so the loop is seamless. The copy is hidden from assistive tech.
-function TestimonialRow({ items, reverse }) {
-  return (
-    <div className={"tm__row" + (reverse ? " tm__row--rev" : "")}>
-      <div className="tm__track">
-        {items.map((t) => <TestimonialCard key={t.quote} t={t} />)}
-        <div className="tm__dup" aria-hidden="true">
-          {items.map((t) => <TestimonialCard key={t.quote} t={t} />)}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Testimonials() {
-  const half = Math.ceil(TESTIMONIALS.length / 2);
-  return (
-    <section className="section tm" id="testimonials">
-      <div className="wrap">
-        <Head eyebrow="Testimonials" title="What authors say about working with us">
-          <p>Feedback from authors on the editing, design and support they received.</p>
-        </Head>
-      </div>
-      <div className="tm__rows">
-        <TestimonialRow items={TESTIMONIALS.slice(0, half)} />
-        <TestimonialRow items={TESTIMONIALS.slice(half)} reverse />
-      </div>
-    </section>
-  );
-}
-
 function Contact({ plan }) {
   return (
     <section className="section cx" id="contact">
@@ -448,7 +400,7 @@ export default function Home() {
       <Support />
       <StoryCta />
       <ToolsSection stage={stage} onStage={setStage} pos={pos} />
-      <Testimonials />
+      <TrustPromise />
       <Contact plan={plan} />
     </>
   );

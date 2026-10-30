@@ -45,7 +45,6 @@ export default function Books() {
                   <h3>{b.title}</h3>
                   <p className="by">by {b.by}</p>
                   <p className="fmt">{b.fmt}</p>
-                  <span className="sample-tag">Sample title</span>
                 </div>
               </Reveal>
             ))}
