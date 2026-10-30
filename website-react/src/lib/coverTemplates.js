@@ -721,3 +721,45 @@ export function drawWrap(canvas, d, tpl, s, img, imgDim = 0.45) {
     ctx.restore();
   }
 }
+
+// The watermark is the same logo lockup as the site header: the fox mark with the two-line
+// FIREFOX / PUBLISHER wordmark. The fox image is loaded once; logoReady resolves when it can be
+// drawn (or has failed, in which case only the wordmark is drawn).
+const logo = typeof Image === "undefined" ? null : new Image();
+export const logoReady = logo
+  ? new Promise((res) => { logo.onload = res; logo.onerror = res; logo.src = "/assets/logo-fox-mark.webp"; })
+  : Promise.resolve();
+
+// Tiled across the whole cover on a soft dark badge, so it reads on light and dark art and
+// cropping or covering one corner does not remove it.
+export function watermark(canvas) {
+  const ctx = canvas.getContext("2d");
+  const { width: w, height: h } = canvas;
+  const hasLogo = logo && logo.complete && logo.naturalWidth > 0;
+  const H0 = w * 0.1;
+  const foxW = hasLogo ? H0 * (logo.naturalWidth / logo.naturalHeight) : 0;
+  const s1 = H0 * 0.46, s2 = H0 * 0.31, family = '"Plus Jakarta Sans", Montserrat, sans-serif';
+  ctx.letterSpacing = "0px";
+  ctx.font = `800 ${s1}px ${family}`; const w1 = ctx.measureText("FIREFOX").width;
+  ctx.font = `700 ${s2}px ${family}`; const w2 = ctx.measureText("PUBLISHER").width;
+  const track = Math.max(0, (w1 - w2) / 8), gap = hasLogo ? H0 * 0.2 : 0;
+  const lockW = foxW + gap + w1, padX = lockW * 0.1, padY = H0 * 0.24, bw = lockW + padX * 2, bh = H0 + padY * 2;
+  ctx.save();
+  ctx.translate(w / 2, h / 2); ctx.rotate(-0.45);
+  ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+  const stepY = bh * 3.4, stepX = bw * 1.8;
+  for (let r = -6; r <= 6; r++) {
+    for (let c = -4; c <= 4; c++) {
+      const x = c * stepX + (r % 2 ? stepX / 2 : 0), y = r * stepY, left = x - lockW / 2;
+      ctx.fillStyle = "rgba(10,20,40,.4)"; ctx.fillRect(x - bw / 2, y - bh / 2, bw, bh);
+      ctx.globalAlpha = 0.92;
+      if (hasLogo) ctx.drawImage(logo, left, y - H0 / 2, foxW, H0);
+      ctx.fillStyle = "#ffffff";
+      ctx.font = `800 ${s1}px ${family}`; ctx.letterSpacing = "0px"; ctx.fillText("FIREFOX", left + foxW + gap, y - H0 * 0.04);
+      ctx.font = `700 ${s2}px ${family}`; ctx.letterSpacing = `${track}px`; ctx.fillText("PUBLISHER", left + foxW + gap, y + H0 * 0.36);
+      ctx.globalAlpha = 1;
+    }
+  }
+  ctx.restore();
+  ctx.letterSpacing = "0px";
+}

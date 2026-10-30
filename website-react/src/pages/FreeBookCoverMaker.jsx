@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { usePageMeta, useRafScroll } from "../hooks.js";
-import { COVERS, GENRES, SIZES, FONTS, FRAMES, TEXTURES, LIGHTING, FIELD_DEFAULTS, drawCover, coverToSVG, drawBack, backToSVG, drawWrap, wrapDims } from "../lib/coverTemplates.js";
+import { COVERS, GENRES, SIZES, FONTS, FRAMES, TEXTURES, LIGHTING, FIELD_DEFAULTS, drawCover, coverToSVG, drawBack, backToSVG, drawWrap, wrapDims, watermark, logoReady } from "../lib/coverTemplates.js";
 import { jpegToPdf } from "../lib/pdf.js";
 import { PAYMENT_LINK, PRICES, isUnlocked } from "../data/premium.js";
 import { CoverMakerSchema } from "../components/Schema.jsx";
@@ -43,19 +43,6 @@ function loadFonts() {
   return sheet.then(() => Promise.all(Object.entries(FONTS).map(([f, { weight }]) => document.fonts.load(`${weight} 40px "${f}"`).catch(() => null))));
 }
 
-// Diagonal "PREVIEW" mark over the on-screen preview of a locked premium design.
-function watermark(canvas) {
-  const ctx = canvas.getContext("2d");
-  const { width: w, height: h } = canvas;
-  ctx.save();
-  ctx.translate(w / 2, h / 2); ctx.rotate(-0.5);
-  ctx.font = `800 ${w * 0.16}px Montserrat, sans-serif`;
-  ctx.textAlign = "center"; ctx.textBaseline = "middle";
-  ctx.fillStyle = "rgba(255,255,255,.22)"; ctx.fillText("PREVIEW", 0, 0);
-  ctx.font = `600 ${w * 0.045}px Montserrat, sans-serif`;
-  ctx.fillText("PREMIUM DESIGN", 0, w * 0.13);
-  ctx.restore();
-}
 
 function UnlockDialog({ onClose, what }) {
   useEffect(() => {
@@ -102,7 +89,10 @@ function Card({ cover, active, onPick, ready, sample, index }) {
     return () => io.disconnect();
   }, []);
   useEffect(() => {
-    if (seen && cv.current) drawCover(cv.current, 200, 300, cover.tpl, { ...cover.palette, ...sample, font: cover.font, ...cover.deco });
+    if (seen && cv.current) {
+      drawCover(cv.current, 200, 300, cover.tpl, { ...cover.palette, ...sample, font: cover.font, ...cover.deco });
+      if (cover.premium && !isUnlocked()) watermark(cv.current);
+    }
   }, [seen, ready, cover, sample]);
   return (
     <button ref={wrap} type="button" style={{ "--i": index }} className={"cm-card" + (active ? " is-active" : "")} onClick={onPick} aria-label={`${cover.name}, ${cover.genre}, ${cover.premium ? "premium" : "free"}. Customise this cover`}>
@@ -179,7 +169,7 @@ export default function FreeBookCoverMaker() {
   const canWrap = !!size.print;
   const activeView = view === "wrap" && !canWrap ? "front" : view;
 
-  useEffect(() => { loadFonts().then(() => setReady(true)); }, []);
+  useEffect(() => { Promise.all([loadFonts(), logoReady]).then(() => setReady(true)); }, []);
 
   // Keep the customer's work if they refresh or come back later.
   useEffect(() => {
@@ -242,6 +232,7 @@ export default function FreeBookCoverMaker() {
         if (activeView === "wrap") drawWrap(m, wrapMini, tpl, state, img, dim);
         else if (activeView === "back") drawBack(m, mw, mh, tpl, state, img, dim);
         else drawCover(m, mw, mh, tpl, state, img, dim);
+        if (locked) watermark(m);
       }
     });
     return () => cancelAnimationFrame(id);
