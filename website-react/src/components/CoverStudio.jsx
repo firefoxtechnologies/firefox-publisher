@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { COVERS, GENRES, FRAMES, TEXTURES, LIGHTING, drawCover, drawBack, watermark } from "../lib/coverTemplates.js";
 import { jpegToPdf } from "../lib/pdf.js";
 import {
-  BACK_TEXT, FONT_LIST, FRONT_TEXT, HANDLES, aabb, centerOf, composeWrap, drawLayers, hitTest, loadStudioFonts,
+  BACK_TEXT, FONT_CATS, FONT_LIST, FRONT_TEXT, HANDLES, aabb, centerOf, composeWrap, drawLayers, hitTest, loadFamily,
   makeImage, makeShape, makeText, resizeLayer, seedLayers, snapMove, uid,
 } from "../lib/studio.js";
 import "../styles/cover-studio.css";
@@ -129,6 +129,8 @@ export default function CoverStudio({ cover, size, pages = 200, fields, colors, 
   const [status, setStatus] = useState("");
   const [sheet, setSheet] = useState(true);
   const [side, setSide] = useState("front");
+  const [fontCat, setFontCat] = useState("Serif");
+  const [fontQ, setFontQ] = useState("");
 
   const root = useRef(null), stage = useRef(null), canvas = useRef(null), baseCv = useRef(null), baseKey = useRef(""), wm = useRef({ key: "", cv: null });
   const drag = useRef(null);
@@ -165,8 +167,11 @@ export default function CoverStudio({ cover, size, pages = 200, fields, colors, 
   const dirty = hist.current.i > 0 || JSON.stringify(design) !== hist.current.stack[0];
 
   /* ----- fonts ----- */
-  useEffect(() => { loadStudioFonts().then(() => setTick((t) => t + 1)); }, []);
-  const ensureFont = (name, weight) => document.fonts?.load(`${weight || 400} 40px "${name}"`).then(() => setTick((t) => t + 1)).catch(() => {});
+  const ensureFont = (name, weight) => loadFamily(name, weight).then(() => setTick((t) => t + 1));
+  // Fonts already on the cover (including the other side) are made ready as soon as the studio opens.
+  useEffect(() => {
+    [...new Set([...initial.layers, ...initial.backLayers].filter((l) => l.type === "text").map((l) => l.font))].forEach((n) => ensureFont(n));
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   /* ----- layer helpers ----- */
   const upd = (id, p) => setDesign((d) => ({ ...d, [LK]: d[LK].map((l) => (l.id === id ? { ...l, ...(typeof p === "function" ? p(l) : p) } : l)) }));
@@ -515,6 +520,9 @@ export default function CoverStudio({ cover, size, pages = 200, fields, colors, 
   const toolPanel = tools.find((t) => t[0] === tool)[3];
 
   const L = selLayer;
+  const fontList = fontQ.trim() ? FONT_LIST.filter((f) => f.name.toLowerCase().includes(fontQ.trim().toLowerCase())).slice(0, 40) : FONT_LIST.filter((f) => f.cat === fontCat);
+  // Only the fonts being shown are fetched, so browsing a category loads about a dozen small files.
+  useEffect(() => { if (L?.type === "text") fontList.forEach((f) => loadFamily(f.name, f.weight)); }, [L?.type, fontCat, fontQ]); // eslint-disable-line react-hooks/exhaustive-deps
   const shadowOn = !!L?.shadow, strokeOn = !!L?.stroke;
   const props = L && (
     <>
@@ -527,11 +535,20 @@ export default function CoverStudio({ cover, size, pages = 200, fields, colors, 
       </div>
       <h3>{L.type === "text" ? "Text" : L.type === "image" ? "Image" : L.name}</h3>
       {L.type === "text" && (<>
-        <div className="stfonts" role="listbox" aria-label="Font">
-          {FONT_LIST.map((f) => (
-            <button key={f.name} type="button" role="option" aria-selected={f.name === L.font} className={f.name === L.font ? "is-on" : ""} style={{ fontFamily: `"${f.name}", serif` }}
-              onClick={() => { upd(L.id, { font: f.name, weight: f.weight }); ensureFont(f.name, f.weight); }}>{f.name}</button>
-          ))}
+        <div className="stfontbox">
+          <input type="search" className="stfontq" placeholder={`Search ${FONT_LIST.length} fonts`} value={fontQ} onChange={(e) => setFontQ(e.target.value)} aria-label="Search fonts" />
+          {!fontQ.trim() && (
+            <div className="stchips stchips--tight" role="group" aria-label="Font style">
+              {FONT_CATS.map((c) => <button key={c} type="button" className={fontCat === c ? "is-on" : ""} onClick={() => setFontCat(c)}>{c}</button>)}
+            </div>
+          )}
+          <div className="stfonts" role="listbox" aria-label="Font">
+            {fontList.map((f) => (
+              <button key={f.name} type="button" role="option" aria-selected={f.name === L.font} className={f.name === L.font ? "is-on" : ""} style={{ fontFamily: `"${f.name}", serif` }}
+                onClick={() => { upd(L.id, { font: f.name, weight: f.weight }); ensureFont(f.name, f.weight); }}>{f.name}</button>
+            ))}
+            {!fontList.length && <p className="stnote">No fonts match &ldquo;{fontQ}&rdquo;.</p>}
+          </div>
         </div>
         <label className="stf"><span>Size<b>{Math.round(L.size / f2)}</b></span>
           <div className="stsize">

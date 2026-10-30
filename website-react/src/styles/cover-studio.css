@@ -160,3 +160,11 @@
 .st__sides button.is-on { background: #fff; color: #12294a; }
 .st__menu h4 { margin: 8px 12px 2px; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: #5b6d8a; }
 @media (max-width: 760px) { .st__sides { margin-left: 4px; } .st__sides button { padding: 0 8px; font-size: .74rem; } .st__name { display: none; } }
+
+/* font picker: search box, style chips and a taller list */
+.stfontbox { margin-bottom: 10px; }
+.stfontq { width: 100%; height: 38px; margin-bottom: 8px; padding: 0 12px; border: 1.5px solid #c9d8ec; border-radius: 8px; background: #fff; color: #12294a; font: 600 .85rem inherit; }
+.stchips--tight { margin-bottom: 8px; gap: 4px; }
+.stchips--tight button { padding: 4px 8px; font-size: .7rem; }
+.stfontbox .stfonts { max-height: 240px; margin-bottom: 0; }
+.stfontbox .stfonts .stnote { padding: 8px; margin: 0; }

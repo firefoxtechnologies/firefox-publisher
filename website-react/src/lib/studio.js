@@ -4,40 +4,70 @@ import { FONTS, drawCover, drawBack, wrapDims } from "./coverTemplates.js";
 // the geometry for moving, resizing and rotating. Everything is in "design units" = pixels of
 // the final cover (for example 1800 x 2700), so the same design renders at any zoom or export size.
 
-export const EXTRA_FONTS = [
-  { name: "Lora", weight: 700, css: "Lora:wght@400;700" },
-  { name: "Libre Baskerville", weight: 700, css: "Libre+Baskerville:wght@400;700" },
-  { name: "Merriweather", weight: 700, css: "Merriweather:wght@400;700" },
-  { name: "Abril Fatface", weight: 400, css: "Abril+Fatface" },
-  { name: "Cinzel Decorative", weight: 700, css: "Cinzel+Decorative:wght@400;700" },
-  { name: "Anton", weight: 400, css: "Anton" },
-  { name: "Archivo Black", weight: 400, css: "Archivo+Black" },
-  { name: "Alfa Slab One", weight: 400, css: "Alfa+Slab+One" },
-  { name: "Raleway", weight: 800, css: "Raleway:wght@400;800" },
-  { name: "Poppins", weight: 700, css: "Poppins:wght@400;700" },
-  { name: "Dancing Script", weight: 700, css: "Dancing+Script:wght@400;700" },
-  { name: "Pacifico", weight: 400, css: "Pacifico" },
-  { name: "Lobster", weight: 400, css: "Lobster" },
-  { name: "Caveat", weight: 700, css: "Caveat:wght@400;700" },
-  { name: "Permanent Marker", weight: 400, css: "Permanent+Marker" },
-  { name: "Special Elite", weight: 400, css: "Special+Elite" },
-];
+// Fonts the studio offers, grouped so customers can browse by mood. All are free Google Fonts.
+// `css` is the Google Fonts family string. Each family is requested on demand, the first time it
+// is shown or used, so the studio never downloads the whole catalogue up front. The first eight
+// are the template fonts, which the cover maker page already loads.
+export const FONT_CATS = ["Serif", "Sans", "Bold display", "Script", "Handwriting", "Fantasy & horror", "Sci-fi & tech"];
+const F = (cat, name, weight = 400, css) => ({ cat, name, weight, css: css === undefined ? name.replace(/ /g, "+") : css });
+const W = (name, spec) => name.replace(/ /g, "+") + ":wght@" + spec;
 
 export const FONT_LIST = [
-  ...Object.entries(FONTS).map(([name, { weight }]) => ({ name, weight })),
-  ...EXTRA_FONTS,
+  // template fonts (already loaded by the page)
+  F("Serif", "Playfair Display", 800, ""), F("Serif", "Cinzel", 700, ""), F("Bold display", "Bebas Neue", 400, ""), F("Script", "Great Vibes", 400, ""),
+  F("Serif", "Cormorant Garamond", 700, ""), F("Sans", "Oswald", 600, ""), F("Sans", "Montserrat", 800, ""), F("Bold display", "Fredoka", 600, ""),
+  // serif
+  F("Serif", "Lora", 700, W("Lora", "400;700")), F("Serif", "Libre Baskerville", 700, W("Libre Baskerville", "400;700")),
+  F("Serif", "Merriweather", 700, W("Merriweather", "400;700")), F("Serif", "Crimson Text", 700, W("Crimson Text", "400;700")),
+  F("Serif", "EB Garamond", 700, W("EB Garamond", "400;700")), F("Serif", "DM Serif Display"), F("Serif", "Bodoni Moda", 700, W("Bodoni Moda", "400;700")),
+  F("Serif", "Spectral", 700, W("Spectral", "400;700")), F("Serif", "Rozha One"), F("Serif", "Old Standard TT", 700, W("Old Standard TT", "400;700")),
+  F("Serif", "Cardo", 700, W("Cardo", "400;700")), F("Serif", "Fraunces", 700, W("Fraunces", "400;700")), F("Serif", "Yeseva One"), F("Serif", "Gloock"),
+  F("Serif", "Abril Fatface"), F("Serif", "Cinzel Decorative", 700, W("Cinzel Decorative", "400;700")),
+  // sans
+  F("Sans", "Poppins", 700, W("Poppins", "400;700")), F("Sans", "Raleway", 800, W("Raleway", "400;800")), F("Sans", "Inter", 700, W("Inter", "400;700")),
+  F("Sans", "Work Sans", 700, W("Work Sans", "400;700")), F("Sans", "Nunito", 800, W("Nunito", "400;800")), F("Sans", "Josefin Sans", 700, W("Josefin Sans", "400;700")),
+  F("Sans", "Quicksand", 700, W("Quicksand", "400;700")), F("Sans", "Lato", 700, W("Lato", "400;700")), F("Sans", "Open Sans", 700, W("Open Sans", "400;700")),
+  F("Sans", "Barlow", 700, W("Barlow", "400;700")), F("Sans", "Rubik", 700, W("Rubik", "400;700")), F("Sans", "DM Sans", 700, W("DM Sans", "400;700")),
+  // bold display
+  F("Bold display", "Anton"), F("Bold display", "Archivo Black"), F("Bold display", "Alfa Slab One"), F("Bold display", "Bangers"),
+  F("Bold display", "Black Ops One"), F("Bold display", "Russo One"), F("Bold display", "Staatliches"), F("Bold display", "Fjalla One"),
+  F("Bold display", "Righteous"), F("Bold display", "Monoton"), F("Bold display", "Lilita One"), F("Bold display", "Titan One"),
+  F("Bold display", "Bungee"), F("Bold display", "Teko", 600, W("Teko", "400;600")), F("Bold display", "Big Shoulders Display", 800, W("Big Shoulders Display", "400;800")),
+  // script
+  F("Script", "Dancing Script", 700, W("Dancing Script", "400;700")), F("Script", "Pacifico"), F("Script", "Lobster"), F("Script", "Satisfy"),
+  F("Script", "Sacramento"), F("Script", "Allura"), F("Script", "Alex Brush"), F("Script", "Parisienne"), F("Script", "Tangerine", 700, W("Tangerine", "400;700")),
+  F("Script", "Yellowtail"), F("Script", "Kaushan Script"), F("Script", "Cookie"), F("Script", "Playball"), F("Script", "Italianno"), F("Script", "Marck Script"),
+  // handwriting and typewriter
+  F("Handwriting", "Caveat", 700, W("Caveat", "400;700")), F("Handwriting", "Permanent Marker"), F("Handwriting", "Special Elite"),
+  F("Handwriting", "Amatic SC", 700, W("Amatic SC", "400;700")), F("Handwriting", "Shadows Into Light"), F("Handwriting", "Indie Flower"),
+  F("Handwriting", "Gloria Hallelujah"), F("Handwriting", "Rock Salt"), F("Handwriting", "Patrick Hand"), F("Handwriting", "Architects Daughter"),
+  F("Handwriting", "Covered By Your Grace"), F("Handwriting", "Courier Prime", 700, W("Courier Prime", "400;700")),
+  // fantasy and horror
+  F("Fantasy & horror", "Creepster"), F("Fantasy & horror", "Nosifer"), F("Fantasy & horror", "Eater"), F("Fantasy & horror", "Metal Mania"),
+  F("Fantasy & horror", "MedievalSharp"), F("Fantasy & horror", "Uncial Antiqua"), F("Fantasy & horror", "Almendra", 700, W("Almendra", "400;700")),
+  F("Fantasy & horror", "Pirata One"), F("Fantasy & horror", "UnifrakturCook", 700, W("UnifrakturCook", "700")), F("Fantasy & horror", "New Rocker"),
+  F("Fantasy & horror", "Grenze Gotisch", 700, W("Grenze Gotisch", "400;700")),
+  // sci-fi and tech
+  F("Sci-fi & tech", "Orbitron", 700, W("Orbitron", "400;700")), F("Sci-fi & tech", "Audiowide"), F("Sci-fi & tech", "Michroma"),
+  F("Sci-fi & tech", "Exo 2", 700, W("Exo 2", "400;700")), F("Sci-fi & tech", "Rajdhani", 700, W("Rajdhani", "400;700")), F("Sci-fi & tech", "Aldrich"),
+  F("Sci-fi & tech", "Syncopate", 700, W("Syncopate", "400;700")), F("Sci-fi & tech", "Press Start 2P"), F("Sci-fi & tech", "VT323"),
+  F("Sci-fi & tech", "Space Mono", 700, W("Space Mono", "400;700")),
 ];
 
-// One stylesheet per font, so a single unavailable family can never break the rest.
-export function loadStudioFonts() {
+// Adds the Google Fonts stylesheet for one family, once, and resolves when the font is ready to draw.
+// One stylesheet per family means a single unavailable font can never break the others.
+const requested = new Set();
+export function loadFamily(name, weight) {
   if (typeof document === "undefined" || !document.fonts) return Promise.resolve();
-  EXTRA_FONTS.forEach(({ name, css }) => {
+  const f = FONT_LIST.find((x) => x.name === name);
+  if (f?.css && !requested.has(name)) {
+    requested.add(name);
     const id = "studio-font-" + name.replace(/\s+/g, "-");
     if (!document.getElementById(id)) {
-      document.head.appendChild(Object.assign(document.createElement("link"), { id, rel: "stylesheet", href: `https://fonts.googleapis.com/css2?family=${css}&display=swap` }));
+      document.head.appendChild(Object.assign(document.createElement("link"), { id, rel: "stylesheet", href: `https://fonts.googleapis.com/css2?family=${f.css}&display=swap` }));
     }
-  });
-  return Promise.all(FONT_LIST.map(({ name, weight }) => document.fonts.load(`${weight} 40px "${name}"`).catch(() => null)));
+  }
+  return document.fonts.load(`${weight || f?.weight || 400} 40px "${name}"`).catch(() => null);
 }
 
 let counter = 0;
