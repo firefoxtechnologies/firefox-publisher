@@ -1,4 +1,7 @@
 import { createSVGContext } from "./svgContext.js";
+import { EXTRA } from "./extraTemplates.js";
+import { KEEP } from "../data/coverKeep.js";
+import { DARK, LIGHT } from "../data/palettes.js";
 
 // Original, code-drawn book cover templates. Everything is drawn on a canvas in
 // relative units (u = 1% of cover width) so one design renders at any size.
@@ -15,9 +18,9 @@ export const FONTS = {
 };
 
 export const SIZES = [
-  { id: "kdp", label: "Paperback 6 x 9 in", w: 1800, h: 2700, pt: [432, 648] },
+  { id: "kdp", label: "Paperback 6 x 9 in", w: 1800, h: 2700, pt: [432, 648], print: true },
   { id: "ebook", label: "Ebook 1600 x 2560 px", w: 1600, h: 2560, pt: [400, 640] },
-  { id: "small", label: "Paperback 5.5 x 8.5 in", w: 1650, h: 2550, pt: [396, 612] },
+  { id: "small", label: "Paperback 5.5 x 8.5 in", w: 1650, h: 2550, pt: [396, 612], print: true },
 ];
 
 export const GENRES = ["All", "Premium","Thriller", "Fantasy", "Romance", "Sci-Fi", "Literary", "Horror", "Non-fiction", "Kids"];
@@ -36,7 +39,7 @@ function wrap(ctx, text, maxW) {
 }
 
 // Draws wrapped text, shrinking until it fits maxLines. Returns the bottom y.
-function block(ctx, text, o) {
+export function block(ctx, text, o) {
   if (!text) return o.y;
   const { x, y, maxW, font, weight = 700, color, align = "center", maxLines = 4, lh = 1.08, track = 0, upper = false, maxH = Infinity } = o;
   let size = o.size;
@@ -63,12 +66,12 @@ function block(ctx, text, o) {
   return cy - size * lh + size * 0.2;
 }
 
-function linear(ctx, x0, y0, x1, y1, stops) {
+export function linear(ctx, x0, y0, x1, y1, stops) {
   const g = ctx.createLinearGradient(x0, y0, x1, y1);
   stops.forEach(([p, c]) => g.addColorStop(p, c));
   return g;
 }
-function alpha(hex, a) {
+export function alpha(hex, a) {
   const n = parseInt(hex.slice(1), 16);
   return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`;
 }
@@ -92,7 +95,7 @@ function mountains(ctx, W, H, baseY, color, peaks, seed) {
 /* ---------- templates ----------
    bg: shapes + colours, fg: frames + text. `s` is the editable state
    (title, subtitle, author, tagline, c1, c2, accent, text, font). */
-export const TEMPLATES = [
+const BASE = [
   {
     id: "noir", name: "Noir Beam", genre: "Thriller", font: "Bebas Neue",
     palette: { c1: "#0b0d12", c2: "#262c3a", accent: "#e63946", text: "#f4f4f6" },
@@ -479,11 +482,16 @@ export const TEMPLATES = [
   },
 ];
 
+export const TEMPLATES = [...BASE, ...EXTRA];
+
 export const FIELD_DEFAULTS = {
   title: "Firefox Publisher",
   subtitle: "Your Story. Our Craft.",
   author: "Your Name",
   tagline: "The story you can't put down",
+  blurb: "Write a short, gripping description of your book here. Tell readers who it is for, what happens and why they will love it. Keep it to a few short paragraphs so it stays easy to read on the back of your cover.",
+  bio: "About the author: add one or two lines about yourself, your other books and where readers can find you.",
+  website: "www.yourwebsite.com",
 };
 
 const FONTS_CSS = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Cinzel:wght@600;700&family=Bebas+Neue&family=Great+Vibes&family=Cormorant+Garamond:wght@700&family=Oswald:wght@500;600&family=Fredoka:wght@500;600&family=Montserrat:wght@500;800&display=swap";
@@ -513,59 +521,203 @@ function paintCover(ctx, w, h, tpl, s, img, imgDim) {
     ctx.fillStyle = linear(ctx, 0, 0, 0, h, [[0, `rgba(0,0,0,${imgDim})`], [0.5, `rgba(0,0,0,${imgDim * 0.5})`], [1, `rgba(0,0,0,${imgDim})`]]);
     ctx.fillRect(0, 0, w, h);
   }
-  tpl.fg(ctx, w, h, img ? { ...s, text: s.text } : s);
+  if (s.vig) drawVignette(ctx, w, h, s.vig);
+  if (s.tex) drawTexture(ctx, w, h, s);
+  tpl.fg(ctx, w, h, s);
+  if (s.frame) drawFrame(ctx, w, h, s);
+}
+
+/* ---------- per-entry decoration: frames, textures and lighting ----------
+   Applied on top of a template so entries differ in more than colour. */
+export const FRAMES = ["None", "Thin line", "Double line", "Corner brackets", "Top & bottom bars", "Rounded inset"];
+export const TEXTURES = ["None", "Diagonal lines", "Dots", "Grid", "Speckle"];
+export const LIGHTING = ["None", "Dark edges", "Soft glow"];
+
+function drawVignette(ctx, W, H, kind) {
+  if (kind === 1) {
+    const g = ctx.createRadialGradient(W / 2, H / 2, W * 0.35, W / 2, H / 2, H * 0.78);
+    g.addColorStop(0, "rgba(0,0,0,0)"); g.addColorStop(1, "rgba(0,0,0,0.5)");
+    ctx.fillStyle = g;
+  } else {
+    const g = ctx.createRadialGradient(W / 2, 0, 0, W / 2, 0, H * 0.7);
+    g.addColorStop(0, "rgba(255,255,255,0.22)"); g.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = g;
+  }
+  ctx.fillRect(0, 0, W, H);
+}
+
+function drawTexture(ctx, W, H, s) {
+  const u = W / 100;
+  ctx.strokeStyle = alpha(s.text, 0.09);
+  ctx.beginPath();
+  if (s.tex === 1) {
+    ctx.lineWidth = 0.35 * u;
+    for (let x = -H; x < W; x += 3.4 * u) { ctx.moveTo(x, H); ctx.lineTo(x + H, 0); }
+  } else if (s.tex === 2) {
+    ctx.lineWidth = 0.7 * u;
+    for (let y = 2 * u; y < H; y += 4 * u) for (let x = 2 * u; x < W; x += 4 * u) { ctx.moveTo(x, y); ctx.lineTo(x + 0.7 * u, y); }
+  } else if (s.tex === 3) {
+    ctx.lineWidth = 0.25 * u;
+    for (let x = 0; x <= W; x += 5 * u) { ctx.moveTo(x, 0); ctx.lineTo(x, H); }
+    for (let y = 0; y <= H; y += 5 * u) { ctx.moveTo(0, y); ctx.lineTo(W, y); }
+  } else {
+    ctx.lineWidth = 0.4 * u;
+    for (let i = 0; i < 520; i++) {
+      const a = Math.sin(i * 12.9898) * 43758.5453, b = Math.sin(i * 78.233) * 43758.5453;
+      const x = (a - Math.floor(a)) * W, y = (b - Math.floor(b)) * H;
+      ctx.moveTo(x, y); ctx.lineTo(x + 0.5 * u, y + 0.3 * u);
+    }
+  }
+  ctx.stroke();
+}
+
+function drawFrame(ctx, W, H, s) {
+  const u = W / 100;
+  ctx.strokeStyle = alpha(s.accent, 0.9); ctx.fillStyle = alpha(s.accent, 0.9);
+  if (s.frame === 1) { ctx.lineWidth = 0.6 * u; ctx.strokeRect(3.5 * u, 3.5 * u, W - 7 * u, H - 7 * u); }
+  else if (s.frame === 2) {
+    ctx.lineWidth = 0.7 * u; ctx.strokeRect(3 * u, 3 * u, W - 6 * u, H - 6 * u);
+    ctx.lineWidth = 0.25 * u; ctx.strokeRect(4.8 * u, 4.8 * u, W - 9.6 * u, H - 9.6 * u);
+  } else if (s.frame === 3) {
+    const m = 4 * u, L = 11 * u; ctx.lineWidth = 0.9 * u; ctx.beginPath();
+    [[m, m, 1, 1], [W - m, m, -1, 1], [m, H - m, 1, -1], [W - m, H - m, -1, -1]].forEach(([x, y, dx, dy]) => { ctx.moveTo(x + dx * L, y); ctx.lineTo(x, y); ctx.lineTo(x, y + dy * L); });
+    ctx.stroke();
+  } else if (s.frame === 4) { ctx.fillRect(0, 0, W, 1.8 * u); ctx.fillRect(0, H - 1.8 * u, W, 1.8 * u); }
+  else if (s.frame === 5) {
+    const x = 3.5 * u, y = 3.5 * u, w = W - 7 * u, h = H - 7 * u, r = 6 * u, P = Math.PI;
+    ctx.lineWidth = 0.6 * u; ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y); ctx.arc(x + w - r, y + r, r, -P / 2, 0);
+    ctx.lineTo(x + w, y + h - r); ctx.arc(x + w - r, y + h - r, r, 0, P / 2);
+    ctx.lineTo(x + r, y + h); ctx.arc(x + r, y + h - r, r, P / 2, P);
+    ctx.lineTo(x, y + r); ctx.arc(x + r, y + r, r, P, P * 1.5);
+    ctx.closePath(); ctx.stroke();
+  }
 }
 
 /* ---------- design catalogue ----------
-   Every base template is re-coloured into 48 originals (16 hues x 3 moods), so the
-   gallery holds TEMPLATES.length * 48 distinct, ready-to-edit covers. */
-const hexToHsl = (hex) => {
-  const n = parseInt(hex.slice(1), 16);
-  const r = (n >> 16) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
-  const max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2, d = max - min;
-  let h = 0, s = 0;
-  if (d) {
-    s = d / (1 - Math.abs(2 * l - 1));
-    h = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
-    h = (h * 60 + 360) % 360;
-  }
-  return [h, s, l];
-};
-const hslToHex = (h, s, l) => {
-  const c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs(((h / 60) % 2) - 1)), m = l - c / 2;
-  const [r, g, b] = h < 60 ? [c, x, 0] : h < 120 ? [x, c, 0] : h < 180 ? [0, c, x] : h < 240 ? [0, x, c] : h < 300 ? [x, 0, c] : [c, 0, x];
-  return "#" + [r, g, b].map((v) => Math.round((v + m) * 255).toString(16).padStart(2, "0")).join("");
-};
+   Every template is paired with the hand-picked palettes of its genre (dark or light, depending
+   on the template), then repeated in 3 "rounds": clean, and two decorated looks (frame, texture,
+   lighting and an alternate title font). data/coverKeep.js lists the variants that look clearly
+   different from each other. */
+const lum = (hex) => { const n = parseInt(hex.slice(1), 16); return (0.299 * (n >> 16) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255)) / 255; };
+const isLight = (tpl) => lum(tpl.palette.c1) > 0.6;
+const palettesFor = (tpl) => (isLight(tpl) ? LIGHT : DARK)[tpl.genre] || DARK.Literary;
+const ROUNDS = 3;
 
-export const HUES = 16;
-export const MOODS = ["", "Muted", "Vivid"];
-export const VARIANTS = HUES * MOODS.length;
-const HUE_NAMES = [[15, "Red"], [40, "Orange"], [65, "Gold"], [90, "Lime"], [150, "Green"], [185, "Teal"], [215, "Sky"], [250, "Blue"], [275, "Indigo"], [310, "Violet"], [340, "Rose"], [361, "Red"]];
-const hueName = (h) => HUE_NAMES.find(([max]) => h < max)[1];
-
-export function paletteFor(tpl, i) {
-  const rot = (i % HUES) * (360 / HUES), mood = Math.floor(i / HUES);
-  const out = { ...tpl.palette };
-  // Dark and neutral base colours barely change when rotated, so give every variant a saturation floor.
-  const floor = { c1: 0.3, c2: 0.38, accent: 0.55 };
-  ["c1", "c2", "accent"].forEach((k) => {
-    const [h, s, l] = hexToHsl(tpl.palette[k]);
-    let ns = mood === 1 ? s * 0.55 : mood === 2 ? Math.min(1, s * 1.25) : s;
-    if (i > 0) ns = Math.max(ns, floor[k] * (mood === 1 ? 0.6 : mood === 2 ? 1.25 : 1));
-    out[k] = hslToHex((h + rot) % 360, Math.min(1, ns), l);
-  });
-  return out;
-}
+const FONT_SETS = {
+  Thriller: ["Bebas Neue", "Oswald", "Montserrat", "Playfair Display"],
+  Fantasy: ["Cinzel", "Cormorant Garamond", "Playfair Display", "Oswald"],
+  Romance: ["Great Vibes", "Playfair Display", "Cormorant Garamond", "Cinzel"],
+  "Sci-Fi": ["Oswald", "Bebas Neue", "Montserrat", "Cinzel"],
+  Literary: ["Playfair Display", "Cormorant Garamond", "Cinzel", "Montserrat"],
+  Horror: ["Cinzel", "Bebas Neue", "Playfair Display", "Oswald"],
+  "Non-fiction": ["Montserrat", "Oswald", "Playfair Display", "Bebas Neue"],
+  Kids: ["Fredoka", "Montserrat", "Oswald", "Playfair Display"],
+};
+// Decoration combinations that look good on most covers, picked by round and palette position.
+const DECOS = [
+  { frame: 1, tex: 0, vig: 0 }, { frame: 0, tex: 0, vig: 1 }, { frame: 2, tex: 4, vig: 0 },
+  { frame: 3, tex: 0, vig: 2 }, { frame: 5, tex: 1, vig: 0 }, { frame: 4, tex: 2, vig: 1 },
+  { frame: 0, tex: 3, vig: 0 }, { frame: 1, tex: 4, vig: 1 },
+];
+const decoFor = (tpl, round, pi) => {
+  if (!round) return { font: tpl.font, deco: { frame: 0, tex: 0, vig: 0 } };
+  const fonts = [tpl.font, ...(FONT_SETS[tpl.genre] || []).filter((f) => f !== tpl.font)];
+  return { font: fonts[(round + pi) % fonts.length], deco: DECOS[(pi * 3 + round * 5) % DECOS.length] };
+};
 
 // Variant-major order so the unfiltered gallery mixes every template instead of repeating one.
-export const COVERS = Array.from({ length: VARIANTS }, (_, i) => TEMPLATES.map((tpl) => [tpl, i])).flat().map(
-  ([tpl, i]) => {
-    const palette = paletteFor(tpl, i), mood = MOODS[Math.floor(i / HUES)];
-    const color = hueName(hexToHsl(palette.accent)[0]);
-    return {
-      id: `${tpl.id}-${i}`, tpl, palette, genre: tpl.genre, premium: !!tpl.premium,
-      name: `${tpl.name} \u00b7 ${mood ? mood + " " : ""}${color} ${String(i + 1).padStart(2, "0")}`,
-      search: `${tpl.name} ${tpl.genre} ${color} ${mood} ${tpl.premium ? "premium" : "free"}`.toLowerCase(),
-    };
+// Old and new art styles alternate, so the first screen of the gallery already shows the variety.
+const MIXED = Array.from({ length: Math.max(BASE.length, EXTRA.length) }, (_, k) => [BASE[k], EXTRA[k]]).flat().filter(Boolean);
+const CANDIDATES = [];
+for (let i = 0; i < ROUNDS * 12; i++) MIXED.forEach((tpl) => {
+  const pals = palettesFor(tpl), round = Math.floor(i / pals.length), pi = i % pals.length;
+  if (round >= ROUNDS) return;
+  const [pname, c1, c2, accent, text] = pals[pi];
+  CANDIDATES.push({ tpl, i, pname, round, pi, palette: { c1, c2, accent, text } });
+});
+
+const styleTag = (d) => (d.frame ? FRAMES[d.frame] : d.tex ? TEXTURES[d.tex] : d.vig ? LIGHTING[d.vig] : "");
+
+export const COVERS = CANDIDATES.filter(({ tpl, i }) => !KEEP || KEEP[tpl.id]?.includes(i)).map(({ tpl, i, pname, round, pi, palette }) => {
+  const look = decoFor(tpl, round, pi), tag = styleTag(look.deco);
+  return {
+    id: `${tpl.id}-${i}`, tpl, palette, ...look, genre: tpl.genre, premium: !!tpl.premium,
+    name: `${tpl.name} \u00b7 ${pname}${tag ? " \u00b7 " + tag : ""}`,
+    search: `${tpl.name} ${tpl.genre} ${pname} ${tag} ${tpl.premium ? "premium" : "free"}`.toLowerCase(),
+  };
+});
+
+/* ---------- back cover, spine and full print wrap ---------- */
+const bseed = (n) => { const x = Math.sin(n * 91.3 + 7.1) * 43758.5453; return x - Math.floor(x); };
+
+// Back cover: the same art, calmed down behind a text panel with blurb, bio and an ISBN barcode box.
+function paintBack(ctx, w, h, tpl, s, img, imgDim) {
+  ctx.clearRect(0, 0, w, h);
+  tpl.bg(ctx, w, h, s);
+  if (img) {
+    const r = Math.max(w / img.width, h / img.height), iw = img.width * r, ih = img.height * r;
+    ctx.drawImage(img, (w - iw) / 2, (h - ih) / 2, iw, ih);
   }
-);
+  ctx.fillStyle = alpha(s.c1, img ? 0.55 + imgDim * 0.35 : 0.62); ctx.fillRect(0, 0, w, h);
+  if (s.vig) drawVignette(ctx, w, h, s.vig);
+  if (s.tex) drawTexture(ctx, w, h, s);
+  const u = w / 100;
+  const px = 8 * u, py = 7 * u, pw = w - 16 * u, ph = h - 14 * u;
+  ctx.fillStyle = alpha(s.c1, 0.84); ctx.fillRect(px, py, pw, ph);
+  ctx.strokeStyle = alpha(s.accent, 0.9); ctx.lineWidth = 0.5 * u; ctx.strokeRect(px + 1.6 * u, py + 1.6 * u, pw - 3.2 * u, ph - 3.2 * u);
+  const inner = pw - 11 * u, cx = w / 2;
+  let y = py + 6 * u;
+  if (s.tagline) y = block(ctx, s.tagline, { x: cx, y, maxW: inner, size: 4 * u, font: s.font, weight: 700, color: s.accent, align: "center", lh: 1.2, maxLines: 2, upper: false, maxH: 14 * u }) + 3 * u;
+  rule(ctx, cx, y, 14 * u, s.accent, 0.5 * u);
+  y += 4 * u;
+  // barcode box (bottom right) and the author bio / website beside it
+  const bw = 34 * u, bh = 21 * u, bx = px + pw - bw - 5.5 * u, by = py + ph - bh - 5.5 * u;
+  if (s.blurb) block(ctx, s.blurb, { x: cx, y, maxW: inner, size: 3.6 * u, font: "Montserrat", weight: 500, color: s.text, align: "left", lh: 1.5, maxLines: 16, upper: false, maxH: by - y - 4 * u, min: 2.2 * u });
+  const left = px + 5.5 * u, leftW = bx - left - 4 * u;
+  if (s.bio) block(ctx, s.bio, { x: left + leftW / 2, y: by, maxW: leftW, size: 2.7 * u, font: "Montserrat", weight: 500, color: alpha(s.text, 0.9), align: "left", lh: 1.4, maxLines: 5, upper: false, maxH: bh - 6 * u, min: 1.8 * u });
+  if (s.website) block(ctx, s.website, { x: left + leftW / 2, y: by + bh - 4 * u, maxW: leftW, size: 2.4 * u, font: "Montserrat", weight: 800, color: s.accent, align: "left", track: 0.08, maxLines: 1, upper: false });
+  ctx.fillStyle = "#ffffff"; ctx.fillRect(bx, by, bw, bh);
+  ctx.fillStyle = "#111111";
+  for (let k = 0, x = bx + 3 * u; x < bx + bw - 3 * u; k++) { const bwid = (0.35 + bseed(k) * 0.9) * u; ctx.fillRect(x, by + 2.5 * u, bwid, bh - 8 * u); x += bwid + (0.3 + bseed(k + 50) * 0.7) * u; }
+  block(ctx, "ISBN 978-0-00-000000-0", { x: bx + bw / 2, y: by + bh - 4.6 * u, maxW: bw - 4 * u, size: 1.7 * u, font: "Montserrat", weight: 500, color: "#111111", align: "center", maxLines: 1, upper: false });
+}
+
+export function backToSVG(w, h, tpl, s, img, imgDim = 0.45) {
+  const ctx = createSVGContext(w, h, document.createElement("canvas").getContext("2d"));
+  paintBack(ctx, w, h, tpl, s, img, imgDim);
+  return ctx.toSVG(FONTS_CSS);
+}
+
+export function drawBack(canvas, w, h, tpl, s, img, imgDim = 0.45) {
+  canvas.width = w; canvas.height = h;
+  paintBack(canvas.getContext("2d"), w, h, tpl, s, img, imgDim);
+}
+
+// Amazon KDP style wrap: back + spine + front with 0.125 in bleed. Spine = pages x 0.002252 in (white paper).
+export function wrapDims(size, pages) {
+  const inch = size.w / (size.pt[0] / 72), bleed = Math.round(0.125 * inch);
+  const spine = Math.round(Math.max(pages, 24) * 0.002252 * inch);
+  const pw = size.w + bleed, ph = size.h + 2 * bleed;
+  return { w: pw * 2 + spine, h: ph, pw, ph, spine, bleed, inch, spineIn: spine / inch };
+}
+
+export function drawWrap(canvas, d, tpl, s, img, imgDim = 0.45) {
+  canvas.width = d.w; canvas.height = d.h;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = s.c1; ctx.fillRect(0, 0, d.w, d.h);
+  ctx.save(); ctx.beginPath(); ctx.rect(0, 0, d.pw, d.ph); ctx.clip(); paintBack(ctx, d.pw, d.ph, tpl, s, img, imgDim); ctx.restore();
+  ctx.save(); ctx.translate(d.pw + d.spine, 0); ctx.beginPath(); ctx.rect(0, 0, d.pw, d.ph); ctx.clip(); paintCover(ctx, d.pw, d.ph, tpl, s, img, imgDim); ctx.restore();
+  // spine
+  const x0 = d.pw;
+  ctx.fillStyle = s.c2; ctx.fillRect(x0, 0, d.spine, d.h);
+  ctx.fillStyle = s.accent; ctx.fillRect(x0, 0, d.spine, d.h * 0.012); ctx.fillRect(x0, d.h * 0.988, d.spine, d.h * 0.012);
+  if (d.spineIn >= 0.18) {
+    ctx.save(); ctx.translate(x0 + d.spine / 2, d.h / 2); ctx.rotate(Math.PI / 2);
+    ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.letterSpacing = "0px";
+    const ts = Math.min(d.spine * 0.5, d.h * 0.05);
+    ctx.fillStyle = s.text; ctx.font = `700 ${ts}px "${s.font}", serif`; ctx.fillText(String(s.title || "").slice(0, 40), -d.h * 0.1, 0);
+    ctx.fillStyle = s.accent; ctx.font = `700 ${ts * 0.7}px "Montserrat", sans-serif`; ctx.fillText(String(s.author || "").toUpperCase().slice(0, 30), d.h * 0.32, 0);
+    ctx.restore();
+  }
+}

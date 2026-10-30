@@ -118,7 +118,7 @@ export function createSVGContext(w, h, measureCtx) {
   ctx.toSVG = (fontsHref) => [
     `<?xml version="1.0" encoding="UTF-8"?>`,
     `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`,
-    fontsHref ? `<style>@import url('${fontsHref}');</style>` : "",
+    fontsHref ? `<style>@import url('${fontsHref.replace(/&/g, "&amp;")}');</style>` : "",
     `<defs><clipPath id="cover"><rect width="${w}" height="${h}"/></clipPath>${defs.join("")}</defs>`,
     `<g clip-path="url(#cover)">`,
     ...body,

@@ -12,7 +12,7 @@ function Mini({ cover, i }) {
   useEffect(() => {
     // Draw once the fonts are available so the titles render in their real typefaces.
     let off = false;
-    const paint = () => !off && ref.current && drawCover(ref.current, 260, 390, cover.tpl, { ...cover.palette, ...FIELD_DEFAULTS, font: cover.tpl.font });
+    const paint = () => !off && ref.current && drawCover(ref.current, 260, 390, cover.tpl, { ...cover.palette, ...FIELD_DEFAULTS, font: cover.font, ...cover.deco });
     paint();
     document.fonts?.ready.then(paint);
     return () => { off = true; };
@@ -27,10 +27,10 @@ export default function CoverMakerPromo() {
         <Reveal className="cmp__text">
           <p className="eyebrow">Free tool</p>
           <h2 id="cmp-title">Design your own book cover, <span>free</span></h2>
-          <p>Pick from 860+ original designs, change the title, colours and fonts, add your own artwork, and download PNG, JPG, WebP or a print PDF. No sign-up, no watermark.</p>
+          <p>Pick from 700+ original designs, change the title, colours and fonts, add your own artwork, and download PNG, JPG, WebP or a print PDF. No sign-up, no watermark.</p>
           <ul className="cmp__list">
             <li>8 genres: thriller, fantasy, romance, sci-fi and more</li>
-            <li>Editable text, colours, fonts and sizes</li>
+            <li>Front, back cover and spine for paperbacks</li>
             <li>Premium designs and vector SVG files available</li>
           </ul>
           <div className="hero__cta">
