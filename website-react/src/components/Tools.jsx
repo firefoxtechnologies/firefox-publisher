@@ -6,19 +6,19 @@ import { sendContact } from "../lib/sendContact.js";
 
 const plural = (n) => n + (n === 1 ? " week" : " weeks");
 
-// Illustrative schedule from manuscript length (k = thousands of words, 10 to 2,000).
-// Every length fits within 3 months: the longest manuscript (2,000,000 words) is the
-// ceiling at 13 weeks, and shorter ones scale down from there (7 weeks at 10k words).
+// Illustrative schedule from manuscript length (k = thousands of words, 10 to 200).
+// The longest manuscript (200,000 words) is the ceiling at 17 weeks (about 120 days),
+// and shorter ones scale down from there (8 weeks at 10k words).
 // Length is scaled logarithmically, so ordinary book lengths still show a clear difference.
 const MIN_K = 10;
-const MAX_K = 2000;
+const MAX_K = 200;
 export function estimateWeeks(k) {
   const t = Math.min(1, Math.max(0, Math.log(k / MIN_K) / Math.log(MAX_K / MIN_K)));
   const rows = [
     ["Discovery", 1],
-    ["Editorial", Math.min(6, Math.ceil(2 + 4 * t))],
-    ["Design & production", Math.min(4, Math.ceil(2 + 2 * t))],
-    ["Launch prep", 2],
+    ["Editorial", Math.min(8, Math.ceil(2 + 6 * t))],
+    ["Design & production", Math.min(5, Math.ceil(2 + 3 * t))],
+    ["Launch prep", 3],
   ];
   const total = rows.reduce((sum, r) => sum + r[1], 0);
   return { rows, total };
@@ -45,8 +45,6 @@ export function remainingFrom(k, stageIdx) {
   return { rows, done, total: left.reduce((sum, r) => sum + r[1], 0) };
 }
 
-const inMonths = (weeks) => (weeks / 4.345).toFixed(1);
-
 // Shared with the "Where is your book now?" picker: both read and write the same stage
 // and manuscript length, so choosing a stage up there re-cuts the schedule down here.
 export function Estimator({ pos, onPos, stage, onStage }) {
@@ -70,11 +68,11 @@ export function Estimator({ pos, onPos, stage, onStage }) {
       <div className="est__field">
         <label htmlFor="words">Manuscript length: <strong id="words-out">{(k * 1000).toLocaleString()} words</strong></label>
         <input type="range" id="words" min="0" max="100" step="1" value={p} onChange={(e) => setP(Number(e.target.value))} aria-valuetext={`${(k * 1000).toLocaleString()} words`} />
-        <div className="est__ends" aria-hidden="true"><span>10,000</span><span>2,000,000</span></div>
+        <div className="est__ends" aria-hidden="true"><span>10,000</span><span>200,000</span></div>
       </div>
 
       <div className="est__result" aria-live="polite">
-        <p className="est__headline"><strong>{total} {total === 1 ? "week" : "weeks"}</strong> <span>to go from &ldquo;{BOOK_STAGES[st].label}&rdquo; (approx. {inMonths(total)} months)</span></p>
+        <p className="est__headline"><strong>{total} {total === 1 ? "week" : "weeks"}</strong> <span>to go from &ldquo;{BOOK_STAGES[st].label}&rdquo;</span></p>
         <dl className="est" id="est-out">
           {rows.map(([name, n], i) => (
             <div key={name} className={i < done ? "is-done" : undefined}><dt>{name}</dt><dd>{i < done ? "Done" : plural(n)}</dd></div>
