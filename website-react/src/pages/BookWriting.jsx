@@ -20,7 +20,7 @@ const TYPES = [
 
 const STEPS = [
   { title: "Spill the Ideas", description: "Tell us everything! The story in your head, the message you want to share, or the book you've been dreaming about. Messy notes are welcome.", image: { url: "/assets/journey/discovery.jpg", alt: "Two people sketching out a book idea together" } },
-  { title: "Make a Game Plan", description: "We'll help organize your ideas, plan your chapters, and figure out the best way to bring your book together.", image: { url: "/assets/services/web-design-seo.jpg", alt: "Hands planning chapters with notes beside a laptop" } },
+  { title: "Make a Game Plan", description: "We'll help organize your ideas, plan your chapters, and figure out the best way to bring your book together.", image: { url: "/assets/stages/draft.jpg", alt: "A manuscript and notes on a desk beside a laptop" } },
   { title: "Let's Get Writing", description: "Time to turn those ideas into actual pages! We'll work on your manuscript while keeping your vision and voice at the heart of the project.", image: { url: "/assets/services/book-writing.jpg", alt: "A writer typing a manuscript on a laptop" } },
   { title: "Polish, Perfect, Repeat", description: "Review your draft, share your thoughts, and help us fine-tune the details until the manuscript feels right for you.", image: { url: "/assets/journey/editorial.jpg", alt: "A hand marking up a manuscript with a red pen" } },
   { title: "Hello, Future Author!", description: "Your manuscript is taking shape, and you're one step closer to your author dreams. Ready to explore the next stage? Let's talk about what comes after writing.", image: { url: "/assets/journey/growth.jpg", alt: "A small plant growing on a pile of books" } },

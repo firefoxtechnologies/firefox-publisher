@@ -12,6 +12,7 @@ import { ParentLink } from "../components/Layout.jsx";
 import WorksWheel from "../components/ui/works-wheel";
 import CoverMakerPromo from "../components/CoverMakerPromo.jsx";
 import TrustPromise from "../components/TrustPromise.jsx";
+import AudiobookPromo from "../components/AudiobookPromo.jsx";
 import CarouselStacked from "../components/ui/carousel-07";
 import Pricing from "../components/ui/pricing-7";
 import CallToAction from "../components/ui/cta-3";
@@ -380,7 +381,7 @@ function Contact({ plan }) {
 export default function Home() {
   usePageMeta(
     "Firefox Publisher | Ebook Publishing & Design, USA",
-    "Ebook publishing services for authors: writing, editing, cover and interior design, audiobooks, marketing and trailers. Self-publish with KDP. Hoboken, NJ based, serving all 50 states."
+    "Ebook publishing for authors: writing, editing, cover design, audiobooks, marketing and trailers. Self-publish with KDP. Hoboken, NJ, serving all 50 states."
   );
   const [plan, setPlan] = useState(null);
   // The estimator and the stage picker share these two values.
@@ -393,6 +394,7 @@ export default function Home() {
       <Stats />
       <Services />
       <Work />
+      <AudiobookPromo />
       <Packages onPlan={setPlan} />
       <Process />
       <Timeline pos={pos} onPos={setPos} stage={stage} onStage={setStage} />

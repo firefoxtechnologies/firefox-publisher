@@ -22,3 +22,15 @@
 .as__jump a:hover { border-color: #1d5fa8; }
 .as { scroll-margin-top: 110px; }
 @media (max-width: 640px) { .as__tools { justify-content: center; } }
+
+.as-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(12px, 2vw, 22px); margin: 0 auto clamp(20px, 3vw, 32px); }
+.as-strip a { display: block; width: clamp(110px, 17vw, 150px); border-radius: 5px; box-shadow: 0 18px 30px -16px rgba(11,28,53,.55); transition: transform .2s; }
+.as-strip a:hover, .as-strip a:focus-visible { transform: translateY(-4px); }
+.as-strip img { display: block; width: 100%; height: auto; border-radius: 5px; }
+.ap .wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(24px, 5vw, 56px); align-items: center; }
+.ap__covers { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(10px, 1.6vw, 18px); }
+.ap__covers a { display: block; width: clamp(92px, 12vw, 128px); border-radius: 5px; box-shadow: 0 18px 30px -16px rgba(11,28,53,.55); transition: transform .2s; }
+.ap__covers a:hover, .ap__covers a:focus-visible { transform: translateY(-5px); }
+.ap__covers img { display: block; width: 100%; height: auto; border-radius: 5px; }
+@media (max-width: 860px) { .ap .wrap { grid-template-columns: 1fr; text-align: center; } .ap .hero__cta { justify-content: center; } }
+@media (prefers-reduced-motion: reduce) { .as-strip a, .ap__covers a { transition: none; } }

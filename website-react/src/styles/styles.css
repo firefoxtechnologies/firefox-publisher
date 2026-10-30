@@ -72,7 +72,7 @@ p { margin: 0; }
 /* header */
 .header {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(255,255,255,.92); backdrop-filter: blur(10px);
+  background: rgba(255,255,255,.97);
   border-bottom: 1px solid var(--line);
 }
 .header__in { display: flex; align-items: center; justify-content: space-between; height: 72px; }

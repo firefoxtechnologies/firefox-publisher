@@ -134,7 +134,7 @@ const WW_CSS = `
 .ww-action {
   position: absolute; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 4px; pointer-events: none;
   padding: 5px 11px; border-radius: 7px; font-size: .72rem; font-weight: 600; color: var(--ww-bg, #12294a);
-  background: rgba(255,255,255,.88); backdrop-filter: blur(6px); opacity: 0; transform: translateY(4px);
+  background: rgba(255,255,255,.94); opacity: 0; transform: translateY(4px);
   transition: opacity .2s ease, transform .2s ease;
 }
 .ww-card:hover .ww-action, .ww-card:focus-visible .ww-action { opacity: 1; transform: none; }

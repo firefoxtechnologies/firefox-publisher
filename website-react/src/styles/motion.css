@@ -60,3 +60,7 @@
 }
 
 @media (max-width: 760px) { .cm-float { display: none; } }
+
+/* Animations on things scrolled out of view are paused (see useOffscreenPause in Layout.jsx):
+   endless repaints of far-away buttons and dots were the main cause of scroll lag. */
+.is-off, .is-off::before, .is-off::after { animation-play-state: paused !important; }

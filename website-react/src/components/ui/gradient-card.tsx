@@ -38,7 +38,7 @@ const GCARD_CSS = `
 .gcard__img { position: absolute; right: -14%; bottom: -16%; width: 62%; max-width: 300px; opacity: .95; mix-blend-mode: multiply; pointer-events: none; }
 .gcard__body { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
 .gcard__badge { display: inline-flex; align-items: center; gap: 8px; width: fit-content; margin-bottom: 16px; padding: 5px 12px; border-radius: 7px;
-  font-size: .85rem; font-weight: 600; color: var(--gcard-fg, #12294a); background: rgba(255,255,255,.6); backdrop-filter: blur(6px); }
+  font-size: .85rem; font-weight: 600; color: var(--gcard-fg, #12294a); background: rgba(255,255,255,.88); }
 .gcard__dot { width: 8px; height: 8px; border-radius: 50%; }
 .gcard__text { flex: 1; }
 .gcard__title { margin: 0 0 8px; font-size: 1.6rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; color: var(--gcard-fg, #12294a); }

@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { NAV, SERVICES, SITE } from "../data/site.js";
 import { prefersReducedMotion, useRafScroll } from "../hooks.js";
 import ContactPopup from "./ContactPopup.jsx";
+import SiteSearch from "./SiteSearch.jsx";
 import HalftoneWordmarkFooter from "./ui/halftone-wordmark-footer";
 import {
   NavigationMenu,
@@ -39,18 +40,54 @@ function RoutedMain() {
   return <main id="main" key={pathname}><Outlet /></main>;
 }
 
+// The page height is measured only when the layout changes, not on every scroll event
+// (reading scrollHeight while scrolling forces the browser to re-layout the page).
 function ScrollProgress() {
   const ref = useRef(null);
   useEffect(() => {
-    const onScroll = () => {
-      const max = document.documentElement.scrollHeight - innerHeight;
-      ref.current.style.transform = "scaleX(" + (max > 0 ? scrollY / max : 0) + ")";
+    let max = 0, raf = 0;
+    const measure = () => { max = document.documentElement.scrollHeight - innerHeight; };
+    const paint = () => {
+      raf = 0;
+      if (ref.current) ref.current.style.transform = "scaleX(" + (max > 0 ? Math.min(1, scrollY / max) : 0) + ")";
     };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(paint); };
+    const onResize = () => { measure(); onScroll(); };
+    measure();
+    paint();
     addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => removeEventListener("scroll", onScroll);
+    addEventListener("resize", onResize);
+    const ro = typeof ResizeObserver === "undefined" ? null : new ResizeObserver(onResize);
+    ro?.observe(document.body);
+    return () => {
+      removeEventListener("scroll", onScroll);
+      removeEventListener("resize", onResize);
+      ro?.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
   return <div id="sp" ref={ref} aria-hidden="true" />;
+}
+
+// Endless animations (shiny buttons, pulsing dots, floating glass cards) keep repainting even
+// when scrolled far out of view. Mark them .is-off while off screen; motion.css pauses them.
+function useOffscreenPause() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return;
+    const SEL = ".btn--primary, .eyebrow, .glass, [class*='cmp-book']";
+    const seen = new WeakSet();
+    const io = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.target.classList.toggle("is-off", !e.isIntersecting)),
+      { rootMargin: "120px" }
+    );
+    const scan = () => document.querySelectorAll(SEL).forEach((el) => { if (!seen.has(el)) { seen.add(el); io.observe(el); } });
+    let raf = 0;
+    const mo = new MutationObserver(() => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; scan(); }); });
+    scan();
+    mo.observe(document.getElementById("main") || document.body, { childList: true, subtree: true });
+    return () => { io.disconnect(); mo.disconnect(); if (raf) cancelAnimationFrame(raf); };
+  }, [pathname]);
 }
 
 function BackToTop() {
@@ -101,6 +138,7 @@ const WORK_LINKS = [
   { to: "/portfolio", title: "Portfolio", text: "Selected projects, with the objective and what was delivered." },
   { to: "/free-book-cover-maker", title: "Free Cover Maker", text: "Design your own book cover from genre templates and download it free." },
   { to: "/books", title: "Books", text: "Sample covers and public-domain classics we can publish." },
+  { to: "/audiobooks", title: "Audiobooks", text: "Listen to our audiobook samples." },
 ];
 const FLAT_LINKS = NAV.filter((n) => n.id && n.id !== "services");
 const SERVICE_PAGES = [
@@ -153,6 +191,7 @@ function Header() {
           <img className="brand__fox" src="/assets/logo-fox-mark.webp" alt="" width="700" height="379" />
           <span className="brand__name" role="img" aria-label="Firefox Publisher"><span aria-hidden="true">FIREFOX</span><span className="spread" aria-hidden="true">{[..."PUBLISHER"].map((c, i) => <span key={i}>{c}</span>)}</span></span>
         </Link>
+        <SiteSearch />
         <button
           ref={btnRef}
           type="button"
@@ -243,6 +282,7 @@ function Header() {
               </li>
               <li><Link to="/portfolio">Portfolio</Link></li>
               <li><Link to="/books">Books</Link></li>
+              <li><Link to="/audiobooks">Audiobooks</Link></li>
               {FLAT_LINKS.map((n) => (
                 <li key={n.to}><Link to={n.to} aria-current={active === n.id ? "true" : undefined}>{n.label}</Link></li>
               ))}
@@ -257,7 +297,7 @@ function Header() {
 }
 
 const FOOTER_COLUMNS = [
-  { title: "Company", links: [{ label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Publishing Services USA", href: "/book-publishing-services-usa" }, { label: "Publishing in NJ & NY", href: "/book-publishing-new-jersey-new-york" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
+  { title: "Company", links: [{ label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Audiobooks", href: "/audiobooks" }, { label: "Publishing Services USA", href: "/book-publishing-services-usa" }, { label: "Publishing in NJ & NY", href: "/book-publishing-new-jersey-new-york" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }, { label: "Privacy Policy", href: "/privacy-policy" }, { label: "Terms of Service", href: "/terms-of-service" }] },
   { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Book Editing", href: "/book-editing" }, { label: "Ebook Cover & Interior Design", href: "/ebook-design" }, { label: "Free Book Cover Maker", href: "/free-book-cover-maker" }, { label: "Ebook Publishing", href: "/ebook-publishing" }, { label: "Book Marketing", href: "/book-marketing" }, { label: "Audiobook Production", href: "/audiobook-production" }, { label: "All services: what we do", href: "/#services" }] },
   { title: "Contact", links: [{ label: SITE.email, href: "mailto:" + SITE.email }, { label: SITE.phone, href: SITE.phoneHref }, { label: "333 Washington St #233, Hoboken NJ 07030" }, { label: "Social media", social: true }] },
 ];
@@ -323,6 +363,7 @@ function Footer() {
 }
 
 export default function Layout() {
+  useOffscreenPause();
   return (
     <>
       <a className="skip" href="#main">Skip to content</a>

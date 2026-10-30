@@ -42,7 +42,7 @@ const C8_CSS = `
 .c8__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .c8__shade { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to top, rgba(8,22,43,.92) 0%, rgba(8,22,43,.6) 38%, rgba(8,22,43,.05) 70%); }
 .c8__top { position: absolute; top: 24px; left: 28px; right: 28px; }
-.c8__cat { display: inline-block; padding: 4px 12px; border-radius: 7px; font-size: .85rem; font-weight: 700; color: #fff; background: rgba(255,255,255,.16); backdrop-filter: blur(6px); }
+.c8__cat { display: inline-block; padding: 4px 12px; border-radius: 7px; font-size: .85rem; font-weight: 700; color: #fff; background: rgba(40,48,66,.55); }
 .c8__body { position: relative; display: flex; flex-direction: column; gap: 10px; }
 .c8__title { margin: 0; font-size: clamp(1.4rem, 2.2vw, 1.75rem); font-weight: 800; letter-spacing: -.02em; line-height: 1.15; color: #fff; }
 .c8__desc { margin: 0; font-size: 1rem; line-height: 1.55; color: rgba(255,255,255,.88); }

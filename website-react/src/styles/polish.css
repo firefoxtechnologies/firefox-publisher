@@ -75,7 +75,7 @@ h2 { letter-spacing: -0.03em; font-size: clamp(2rem, 3.6vw, 2.75rem); }
 .badge { background: var(--grad); box-shadow: 0 6px 14px -6px rgba(18,41,74,.6); }
 
 /* journey + estimator */
-.panel { border-radius: var(--radius-lg); backdrop-filter: blur(10px); background: rgba(255,255,255,.06); }
+.panel { border-radius: var(--radius-lg); background: rgba(255,255,255,.1); }
 .tabs button { transition: background .25s, color .25s, border-color .25s, transform .2s; }
 .tabs button:hover { transform: translateY(-2px); }
 .estimator { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }

@@ -240,6 +240,56 @@
         "displayName": "Firefox Publisher",
         "identityType": "dns"
       }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:page:audiobooks",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/audiobooks",
+      "displayName": "Audiobook Samples",
+      "description": "Playable audiobook samples from Firefox Publisher: Frankenstein, The Time Machine, The Gods of Mars, The Idiot and the Bhagavad Gita.",
+      "tags": [
+        "audiobook",
+        "samples",
+        "audio"
+      ],
+      "updatedAt": "2026-10-30T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:page:privacy-policy",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/privacy-policy",
+      "displayName": "Privacy Policy",
+      "description": "What information the Firefox Publisher site collects and how it is used.",
+      "tags": [
+        "legal"
+      ],
+      "updatedAt": "2026-10-30T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:page:terms-of-service",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/terms-of-service",
+      "displayName": "Terms of Service",
+      "description": "Terms for using the Firefox Publisher site and how its services, prices and timelines work.",
+      "tags": [
+        "legal"
+      ],
+      "updatedAt": "2026-10-30T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     }
   ]
 }

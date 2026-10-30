@@ -24,7 +24,7 @@ const FAQ = [
 export default function BookPublishingUSA() {
   usePageMeta(
     "Book Publishing Services USA | Firefox Publisher",
-    "Self-publishing and book publishing services for authors in all 50 states: ghostwriting, editing, cover design, ebook formatting and Amazon KDP. Based in Hoboken, NJ."
+    "Self-publishing and book publishing for authors in all 50 states: ghostwriting, editing, cover design, ebook formatting and Amazon KDP. Based in Hoboken, NJ."
   );
   const faqSchema = {
     "@context": "https://schema.org",

@@ -523,7 +523,7 @@ h1, h2 { font-weight: 800; }
 @keyframes tm-left { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 10px)); } }
 @keyframes tm-right { from { transform: translateX(calc(-50% - 10px)); } to { transform: translateX(0); } }
 .tm__card { flex: none; width: min(420px, 82vw); display: flex; flex-direction: column; gap: var(--s4); margin: 0; padding: 28px;
-  background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09); border-radius: 7px; backdrop-filter: blur(6px); }
+  background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09); border-radius: 7px; }
 .tm__stars { display: flex; gap: 6px; }
 .tm__stars svg { width: 22px; height: 22px; fill: #f28c28; }
 .tm__quote { margin: 0; flex: 1; font-size: 1.05rem; line-height: 1.6; font-weight: 500; color: #fff; min-height: 5.2em; }
@@ -1062,7 +1062,7 @@ h1, h2 { font-weight: 800; }
 .fc__stage { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; perspective: 1000px; }
 .fc__item { position: absolute; width: 240px; height: 240px; display: flex; transition: all .5s ease-in-out; }
 .fc__item img { width: 100%; height: 100%; object-fit: cover; border-radius: 7px; border: 2px solid rgba(255,255,255,.14); box-shadow: 0 24px 60px rgba(0,0,0,.45); }
-.fc__btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 20; width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; background: rgba(11,28,53,.6); color: #fff; border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(4px); cursor: pointer; }
+.fc__btn { position: absolute; top: 50%; transform: translateY(-50%); z-index: 20; width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; background: rgba(11,28,53,.6); color: #fff; border: 1px solid rgba(255,255,255,.3); cursor: pointer; }
 .fc__btn:hover { background: var(--orange, #f28c28); border-color: var(--orange, #f28c28); }
 .fc__btn:focus-visible { outline: 3px solid #ffc58a; outline-offset: 2px; }
 .fc__btn--prev { left: 8px; } .fc__btn--next { right: 8px; }

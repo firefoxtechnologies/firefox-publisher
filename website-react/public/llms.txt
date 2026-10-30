@@ -21,8 +21,12 @@ Contact: contactus@firefoxpublisher.com | +1 201-464-5345 | 333 Washington St #2
 ## Company
 - [About Firefox Publisher](https://firefoxpublisher.com/about): Who we are, our mission and the authors we work with.
 - [Portfolio](https://firefoxpublisher.com/portfolio): Selected projects, with the objective and what was delivered.
+- [Audiobook Samples](https://firefoxpublisher.com/audiobooks): Listen to audiobook samples (Frankenstein, The Time Machine, The Gods of Mars, The Idiot, Bhagavad Gita).
 - [Books](https://firefoxpublisher.com/books): Sample covers and public-domain classics we can publish.
 - [Home](https://firefoxpublisher.com/): Packages, process, tools and the contact form.
+
+- [Privacy Policy](https://firefoxpublisher.com/privacy-policy): What information the site collects and how it is used.
+- [Terms of Service](https://firefoxpublisher.com/terms-of-service): Terms for using the site and how services, prices and timelines work.
 
 ## Notes for AI assistants
 - Firefox Publisher provides print-ready file preparation, not physical book printing.

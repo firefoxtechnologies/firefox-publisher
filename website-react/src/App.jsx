@@ -15,6 +15,9 @@ import BookTrailers from "./pages/BookTrailers.jsx";
 import FreeBookCoverMaker from "./pages/FreeBookCoverMaker.jsx";
 import BookPublishingUSA from "./pages/BookPublishingUSA.jsx";
 import BookPublishingNJNY from "./pages/BookPublishingNJNY.jsx";
+import Audiobooks from "./pages/Audiobooks.jsx";
+import Privacy from "./pages/Privacy.jsx";
+import Terms from "./pages/Terms.jsx";
 import About from "./pages/About.jsx";
 import ThankYou from "./pages/ThankYou.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -38,6 +41,9 @@ export default function App() {
         <Route path="free-book-cover-maker" element={<FreeBookCoverMaker />} />
         <Route path="book-publishing-services-usa" element={<BookPublishingUSA />} />
         <Route path="book-publishing-new-jersey-new-york" element={<BookPublishingNJNY />} />
+        <Route path="audiobooks" element={<Audiobooks />} />
+        <Route path="privacy-policy" element={<Privacy />} />
+        <Route path="terms-of-service" element={<Terms />} />
         <Route path="about" element={<About />} />
         <Route path="thank-you" element={<ThankYou />} />
         <Route path="*" element={<NotFound />} />
