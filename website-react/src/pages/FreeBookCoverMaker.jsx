@@ -1,4 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router-dom";
 import { usePageMeta, useRafScroll } from "../hooks.js";
 import { COVERS, GENRES, SIZES, FONTS, FRAMES, TEXTURES, LIGHTING, FIELD_DEFAULTS, drawCover, coverToSVG, drawBack, backToSVG, drawWrap, wrapDims, watermark, logoReady } from "../lib/coverTemplates.js";
@@ -6,6 +7,9 @@ import { jpegToPdf } from "../lib/pdf.js";
 import { PAYMENT_LINK, PRICES, isUnlocked } from "../data/premium.js";
 import { CoverMakerSchema } from "../components/Schema.jsx";
 import "../styles/cover-maker.css";
+
+// The studio editor is large and only needed once someone opens it, so it loads on demand.
+const CoverStudio = lazy(() => import("../components/CoverStudio.jsx"));
 
 const TOTAL = COVERS.length;
 const PAGE = 48;
@@ -158,6 +162,7 @@ export default function FreeBookCoverMaker() {
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
   const [mini, setMini] = useState(false);
+  const [studio, setStudio] = useState(false);
   const canvasRef = useRef(null);
   const miniRef = useRef(null);
   const stageRef = useRef(null);
@@ -362,7 +367,7 @@ export default function FreeBookCoverMaker() {
 
           {shown.length ? (
             <div className="cm-cards">
-              {shown.map((c, i) => <Card key={c.id} index={i % PAGE} cover={c} sample={sample} ready={ready} active={c.id === coverId} onPick={() => pick(c, true)} />)}
+              {shown.map((c, i) => <Card key={c.id} index={i % PAGE} cover={c} sample={sample} ready={ready} active={c.id === coverId} onPick={() => { pick(c); if (ready) setStudio(true); else pick(c, true); }} />)}
             </div>
           ) : (
             <p className="cm-empty">No designs match. Try a different word or <button type="button" className="cm-link" onClick={() => { setQuery(""); setGenre("All"); setTier("all"); }}>clear the filters</button>.</p>
@@ -391,6 +396,7 @@ export default function FreeBookCoverMaker() {
               <button type="button" className="cm-chip" onClick={shuffle}>Shuffle</button>
               <button type="button" className="cm-chip" onClick={() => step(1)} aria-label="Next design">Next &rarr;</button>
             </div>
+            <button type="button" className="btn btn--primary cm-studio-btn" onClick={() => setStudio(true)} disabled={!ready}>Open the studio editor<small>Move, resize and style every word and image</small></button>
             <p className="cm-now"><strong>{cover.name}</strong> <span className={"cm-tag cm-tag--inline " + (cover.premium ? "cm-tag--pro" : "cm-tag--free")}>{cover.premium ? "Premium" : "Free"}</span></p>
             <h3 className="cm-dl-h">Download {sideName}</h3>
             <Downloads {...dlProps} />
@@ -507,6 +513,17 @@ export default function FreeBookCoverMaker() {
       )}
 
       {unlock && <UnlockDialog what={unlock} onClose={() => setUnlock(null)} />}
+      {studio && createPortal(
+        <Suspense fallback={<div className="cm-studio-loading" role="status">Opening the studio...</div>}>
+          <CoverStudio
+            cover={cover} size={size} fields={fields} colors={colors} font={font} deco={deco} img={img} dim={dim} unlocked={unlocked}
+            onClose={() => setStudio(false)}
+            onLocked={(name) => setUnlock(name)}
+            onQuick={() => { setStudio(false); editorRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }); }}
+          />
+        </Suspense>,
+        document.body
+      )}
 
       <section className="section cm-info">
         <div className="wrap">

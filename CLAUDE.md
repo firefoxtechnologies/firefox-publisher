@@ -18,6 +18,9 @@ Marketing site for firefoxpublisher.com. Read this instead of re-exploring the r
 - `src/lib/svgContext.js` records the same canvas drawing as SVG. `src/lib/pdf.js` writes a one-page PDF.
 - Paywall config: `src/data/premium.js` (`PAYMENT_LINK` is empty until the payment link exists). The lock is front-end only; real sales need a server-side check in the Worker.
 - Never copy templates from Canva, Adobe, Pinterest or other sites (copyright). Add new designs as original code-drawn templates.
+- Studio editor (pop-up, front cover only): `src/components/CoverStudio.jsx` (UI, lazy-loaded and portalled to `document.body`) and `src/lib/studio.js` (layer model, drawing, hit-testing, resize/rotate maths, `seedLayers`). `seedLayers` records the template's own `fillText` calls to turn its title, subtitle, author and tagline into movable text layers; the template art is drawn with those four fields blank. Styles: `cover-studio.css`. Studio exports are PNG, JPG, WebP, PDF (no SVG) and reuse the same watermark and unlock gate.
+- Header search: `SiteSearch.jsx` over the static index in `src/data/searchIndex.js`. Add new pages and services there.
+- Scroll performance: endless animations on buttons and dots are paused off-screen by `useOffscreenPause` in `Layout.jsx` (`.is-off` in motion.css). Avoid `backdrop-filter` on repeated or animated elements.
 
 ## Conventions
 - Respect `prefers-reduced-motion`. Keep one H1 per page. Decorative images use `alt=""`.

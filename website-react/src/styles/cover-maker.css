@@ -155,3 +155,8 @@
   .cm-mini canvas { width: 100%; height: auto; display: block; border-radius: 4px; }
   .cm-mini span { position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%); background: var(--glacier); color: #fff; font-size: .68rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; }
 }
+
+/* Button that opens the studio editor, and its loading note */
+.cm-studio-btn { display: grid; gap: 2px; width: 100%; margin: 14px 0 6px; padding: 14px 18px; text-align: center; }
+.cm-studio-btn small { font-weight: 500; font-size: .78rem; opacity: .85; }
+.cm-studio-loading { position: fixed; inset: 0; z-index: 1900; display: grid; place-items: center; background: rgba(11,28,53,.85); color: #fff; font-weight: 700; }

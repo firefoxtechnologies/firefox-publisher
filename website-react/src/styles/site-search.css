@@ -25,3 +25,9 @@
 .ss__empty a { color: #1d5fa8; font-weight: 700; }
 @media (max-width: 520px) { .ss__kind { display: none; } }
 @media (prefers-reduced-motion: reduce) { .ss-back, .ss { animation: none; } }
+
+/* Very narrow phones: shrink the fox mark a little so the logo, search and Menu all fit on one row. */
+@media (max-width: 420px) {
+  .header .brand .brand__fox { width: 76px; height: auto; }
+  .header .ss-btn { margin-right: 6px; }
+}
