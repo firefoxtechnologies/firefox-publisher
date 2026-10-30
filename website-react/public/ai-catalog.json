@@ -154,13 +154,13 @@
       "type": "text/html",
       "url": "https://firefoxpublisher.com/audiobook-production",
       "displayName": "Audiobook Production",
-      "description": "Narration, voice selection, recording, editing and final audiobook files.",
+      "description": "Narration, voice selection, recording, editing and final audiobook files, with playable audiobook samples.",
       "tags": [
         "service",
         "ebook",
         "publishing"
       ],
-      "updatedAt": "2026-10-24T00:00:00Z",
+      "updatedAt": "2026-10-30T00:00:00Z",
       "publisher": {
         "identifier": "firefoxpublisher.com",
         "displayName": "Firefox Publisher",

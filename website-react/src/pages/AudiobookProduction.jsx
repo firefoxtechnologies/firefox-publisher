@@ -6,6 +6,9 @@ import { AnimatedList } from "../components/ui/animated-list";
 import { Reveal, stagger } from "../components/ui.jsx";
 import { useEffect, useState } from "react";
 import ServiceSchema from "../components/Schema.jsx";
+import AudioSample from "../components/AudioSample.jsx";
+import { AUDIOBOOKS, audioUrl, coverUrl, isoDuration } from "../data/audiobooks.js";
+import "../styles/audio-sample.css";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
@@ -66,6 +69,7 @@ const WHO = [
 ];
 
 const FAQ = [
+  ["Can I hear an audiobook sample before I hire you?", "Yes. Press play on any of the audiobook samples on this page to hear the narration, pacing and sound quality. Then tell us about your book and we will discuss narration, recording and editing for it."],
   ["What is audiobook production?", "Audiobook production is the process of transforming written content into audio, which can include narration, recording, editing, sound refinement, and preparing the final audio files."],
   ["Can you turn my existing ebook into an audiobook?", "Yes! If you already have a completed ebook or manuscript, we can discuss converting its content into an audiobook."],
   ["Can I choose the narration style?", "You can share your preferences for tone, delivery, and voice style. We\u2019ll discuss suitable options for your content and project requirements."],
@@ -153,9 +157,30 @@ function TypedTitle() {
 
 export default function AudiobookProduction() {
   usePageMeta(
-    "Audiobook Production Services | Firefox Publisher",
-    "Turn your book into an audiobook: narration, voice selection, recording, editing and files ready for your platform. Hoboken, NJ audio team."
+    "Audiobook Production Services & Samples | Firefox Publisher",
+    "Listen to audiobook samples, then turn your book into audio: narration, recording, editing and final files. Hoboken, NJ team serving authors across the USA."
   );
+
+  const samplesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Audiobook samples from Firefox Publisher",
+    itemListElement: AUDIOBOOKS.map((b, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "AudioObject",
+        name: `${b.title} by ${b.by}: audiobook sample`,
+        description: `Listen to the introduction of ${b.title} by ${b.by}.`,
+        contentUrl: `https://firefoxpublisher.com${audioUrl(b)}`,
+        thumbnailUrl: `https://firefoxpublisher.com${coverUrl(b)}`,
+        encodingFormat: "audio/mpeg",
+        duration: isoDuration(b.seconds),
+        inLanguage: "en",
+        url: `https://firefoxpublisher.com/audiobook-production#audio-${b.slug}`,
+      },
+    })),
+  };
 
   const faqSchema = {
     "@context": "https://schema.org",
@@ -166,6 +191,7 @@ export default function AudiobookProduction() {
   return (
     <div className="bw-page">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(samplesSchema) }} />
       <ServiceSchema name="Audiobook Production Services" path="audiobook-production" description="Turn your ebook into an audiobook: narration, voice selection, recording, editing, audio enhancement and final files prepared for your chosen platform." />
 
       {/* Hero */}
@@ -178,7 +204,7 @@ export default function AudiobookProduction() {
             <p className="lead">Some people love reading with their eyes. Others would rather press play, put on their headphones, and let a story take them somewhere new.</p>
             <div className="hero__cta">
               <Link className="btn btn--primary" to="/#contact">Let&rsquo;s turn my ebook into audio!</Link>
-              <Link className="btn btn--secondary" to="#bw-process">See how it works</Link>
+              <Link className="btn btn--secondary" to="#audio-sample">Listen to samples</Link>
             </div>
             <p className="bw-hero__note">Your story is written. Its next chapter could be heard!</p>
           </div>
@@ -270,6 +296,18 @@ export default function AudiobookProduction() {
               ))}
             </AnimatedList>
           </Reveal>
+        </div>
+      </section>
+
+      {/* Sample */}
+      <section className="section section--ice" id="audio-sample">
+        <div className="wrap">
+          <Head eyebrow="Listen" title="Hear the Audiobooks We&rsquo;ve Worked On" />
+          <nav className="as__jump" aria-label="Audiobook samples">
+            {AUDIOBOOKS.map((b) => <a key={b.slug} href={"#audio-" + b.slug}>{b.title}</a>)}
+          </nav>
+          {AUDIOBOOKS.map((b, i) => <AudioSample key={b.slug} book={b} index={i} />)}
+          <p className="as__note center">Press play to hear each introduction. Want your own book to sound this good? <Link to="/#contact">Tell us about it</Link>.</p>
         </div>
       </section>
 
