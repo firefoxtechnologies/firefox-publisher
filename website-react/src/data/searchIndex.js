@@ -9,7 +9,7 @@ const PAGES = [
   { title: "Audiobooks", to: "/audiobooks", kind: "Page", text: "Listen to our audiobook samples", words: "audio book listen narration sample play" },
   { title: "Portfolio", to: "/portfolio", kind: "Page", text: "Book covers we have designed", words: "covers work designs gallery" },
   { title: "Books", to: "/books", kind: "Page", text: "Sample covers and public-domain classics", words: "classics samples shelf" },
-  { title: "Free Book Cover Maker", to: "/free-book-cover-maker", kind: "Tool", text: "Design a book cover online for free", words: "cover maker free template design download png jpg" },
+  { title: "Free Book Cover Maker", to: "/free-book-cover-maker", kind: "Tool", text: "Design a book cover online for free", words: "cover maker free template design download png jpg book cover creator ebook kindle kdp wrap spine back cover studio editor generator" },
   { title: "Book Publishing Services USA", to: "/book-publishing-services-usa", kind: "Page", text: "Nationwide book publishing for authors in all 50 states", words: "usa america nationwide self-publishing amazon kdp" },
   { title: "Book Publishing in New Jersey & New York", to: "/book-publishing-new-jersey-new-york", kind: "Page", text: "Hoboken, NJ and NYC book publishing", words: "hoboken jersey city nj ny nyc new york local" },
   { title: "About Firefox Publisher", to: "/about", kind: "Page", text: "Who we are and what we do", words: "company team mission" },

@@ -153,3 +153,10 @@
   .sttpls { grid-template-columns: repeat(4, 1fr); }
 }
 @media (prefers-reduced-motion: reduce) { .sts button:hover { transform: none; } }
+
+/* front / back switch and the wrap section of the download menu */
+.st__sides { display: flex; margin-left: 10px; padding: 3px; border-radius: 9px; background: rgba(255,255,255,.1); }
+.st__sides button { height: 32px; padding: 0 14px; border: 0; border-radius: 7px; background: transparent; color: rgba(255,255,255,.8); font-weight: 700; font-size: .82rem; cursor: pointer; white-space: nowrap; }
+.st__sides button.is-on { background: #fff; color: #12294a; }
+.st__menu h4 { margin: 8px 12px 2px; font-size: .68rem; letter-spacing: .06em; text-transform: uppercase; color: #5b6d8a; }
+@media (max-width: 760px) { .st__sides { margin-left: 4px; } .st__sides button { padding: 0 8px; font-size: .74rem; } .st__name { display: none; } }

@@ -1,4 +1,4 @@
-import { FONTS, drawCover } from "./coverTemplates.js";
+import { FONTS, drawCover, drawBack, wrapDims } from "./coverTemplates.js";
 
 // Engine for the cover studio: a layer model (text, images, shapes), drawing, hit-testing and
 // the geometry for moving, resizing and rotating. Everything is in "design units" = pixels of
@@ -303,7 +303,10 @@ export function hexToRgb(hex) {
 // The template is drawn once while every fillText call is recorded. The recorded lines are
 // grouped by field, which gives each text layer the exact font, size, colour and position the
 // template used, so the customer starts from the real design and can move anything.
-export function seedLayers(tpl, state, fields, W, H) {
+export const FRONT_TEXT = [["title", "Title"], ["subtitle", "Subtitle"], ["author", "Author"], ["tagline", "Tagline"]];
+export const BACK_TEXT = [["blurb", "Description"], ["bio", "About the author"], ["website", "Website"], ["tagline", "Tagline"]];
+
+export function seedLayers(tpl, state, fields, W, H, side = "front") {
   const c = document.createElement("canvas");
   c.width = W; c.height = H;
   const ctx = c.getContext("2d");
@@ -313,9 +316,9 @@ export function seedLayers(tpl, state, fields, W, H) {
     rec.push({ t: String(t), x, y, font: ctx.font, fill: ctx.fillStyle, align: ctx.textAlign, ls: parseFloat(ctx.letterSpacing) || 0, sc: ctx.shadowColor, sb: ctx.shadowBlur, so: ctx.shadowOffsetY, w: ctx.measureText(String(t)).width });
     orig(t, x, y, mw);
   };
-  drawCover(c, W, H, tpl, { ...state, ...fields }, null, 0);
+  (side === "back" ? drawBack : drawCover)(c, W, H, tpl, { ...state, ...fields }, null, 0);
 
-  const keys = [["title", "Title"], ["subtitle", "Subtitle"], ["author", "Author"], ["tagline", "Tagline"]];
+  const keys = side === "back" ? BACK_TEXT : FRONT_TEXT;
   const norm = (s) => String(s || "").toLowerCase().replace(/\s+/g, " ").trim();
   const groups = new Map(keys.map(([k]) => [k, []]));
   rec.forEach((r) => {
@@ -361,4 +364,33 @@ export function seedLayers(tpl, state, fields, W, H) {
     });
   });
   return layers;
+}
+
+/* ---------- full print wrap: back + spine + front with bleed ---------- */
+// Front and back are finished panels (art plus layers). Each is placed at its trim position and a
+// stretched copy fills the bleed, which is trimmed off when printed. The spine is drawn like the
+// quick editor draws it, with the title and author from the front layers.
+export function composeWrap(size, pages, bg, frontC, backC, title, author) {
+  const d = wrapDims(size, pages);
+  const c = document.createElement("canvas");
+  c.width = d.w; c.height = d.h;
+  const ctx = c.getContext("2d");
+  ctx.fillStyle = bg.c1; ctx.fillRect(0, 0, d.w, d.h);
+  ctx.save(); ctx.beginPath(); ctx.rect(0, 0, d.pw, d.ph); ctx.clip();
+  ctx.drawImage(backC, 0, 0, d.pw, d.ph); ctx.drawImage(backC, d.bleed, d.bleed); ctx.restore();
+  const x1 = d.pw + d.spine;
+  ctx.save(); ctx.beginPath(); ctx.rect(x1, 0, d.pw, d.ph); ctx.clip();
+  ctx.drawImage(frontC, x1, 0, d.pw, d.ph); ctx.drawImage(frontC, x1, d.bleed); ctx.restore();
+  const x0 = d.pw;
+  ctx.fillStyle = bg.c2; ctx.fillRect(x0, 0, d.spine, d.h);
+  ctx.fillStyle = bg.accent; ctx.fillRect(x0, 0, d.spine, d.h * 0.012); ctx.fillRect(x0, d.h * 0.988, d.spine, d.h * 0.012);
+  if (d.spineIn >= 0.18) {
+    ctx.save(); ctx.translate(x0 + d.spine / 2, d.h / 2); ctx.rotate(Math.PI / 2);
+    ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.letterSpacing = "0px";
+    const ts = Math.min(d.spine * 0.5, d.h * 0.05);
+    ctx.fillStyle = bg.text; ctx.font = `700 ${ts}px "${bg.font}", serif`; ctx.fillText(String(title || "").slice(0, 40), -d.h * 0.1, 0);
+    ctx.fillStyle = bg.accent; ctx.font = `700 ${ts * 0.7}px "Montserrat", sans-serif`; ctx.fillText(String(author || "").toUpperCase().slice(0, 30), d.h * 0.32, 0);
+    ctx.restore();
+  }
+  return { canvas: c, dims: d };
 }

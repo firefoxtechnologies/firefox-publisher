@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { COVERS, GENRES, FRAMES, TEXTURES, LIGHTING, drawCover, watermark } from "../lib/coverTemplates.js";
+import { COVERS, GENRES, FRAMES, TEXTURES, LIGHTING, drawCover, drawBack, watermark } from "../lib/coverTemplates.js";
 import { jpegToPdf } from "../lib/pdf.js";
 import {
-  FONT_LIST, HANDLES, aabb, centerOf, drawLayers, hitTest, loadStudioFonts,
+  BACK_TEXT, FONT_LIST, FRONT_TEXT, HANDLES, aabb, centerOf, composeWrap, drawLayers, hitTest, loadStudioFonts,
   makeImage, makeShape, makeText, resizeLayer, seedLayers, snapMove, uid,
 } from "../lib/studio.js";
 import "../styles/cover-studio.css";
@@ -105,13 +105,14 @@ function Thumb({ cv, active, onPick }) {
   );
 }
 
-export default function CoverStudio({ cover, size, fields, colors, font, deco, img, dim, unlocked, onClose, onLocked, onQuick }) {
+export default function CoverStudio({ cover, size, pages = 200, fields, colors, font, deco, img, dim, unlocked, onClose, onLocked, onQuick }) {
   const W = size.w, H = size.h;
   const imgs = useRef(new Map());
   const [initial] = useState(() => {
     if (img) imgs.current.set("bg", img);
     const bg = { c1: colors.c1, c2: colors.c2, accent: colors.accent, text: colors.text, font, deco: { ...deco }, dim, imgId: img ? "bg" : null, coverId: cover.id };
-    return { bg, layers: seedLayers(cover.tpl, { ...colors, font, ...deco }, fields, W, H) };
+    const st = { ...colors, font, ...deco };
+    return { bg, layers: seedLayers(cover.tpl, st, fields, W, H), backLayers: seedLayers(cover.tpl, st, fields, W, H, "back") };
   });
   const [design, setDesign] = useState(initial);
   const [sel, setSel] = useState(null);
@@ -127,6 +128,7 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
   const [busy, setBusy] = useState(false);
   const [status, setStatus] = useState("");
   const [sheet, setSheet] = useState(true);
+  const [side, setSide] = useState("front");
 
   const root = useRef(null), stage = useRef(null), canvas = useRef(null), baseCv = useRef(null), baseKey = useRef(""), wm = useRef({ key: "", cv: null });
   const drag = useRef(null);
@@ -136,7 +138,8 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
 
   const curCover = useMemo(() => COVERS.find((c) => c.id === design.bg.coverId) || cover, [design.bg.coverId, cover]);
   const locked = curCover.premium && !unlocked;
-  const layers = design.layers;
+  const LK = side === "back" ? "backLayers" : "layers";
+  const layers = design[LK];
   const selLayer = layers.find((l) => l.id === sel) || null;
 
   /* ----- history (undo / redo) ----- */
@@ -166,22 +169,22 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
   const ensureFont = (name, weight) => document.fonts?.load(`${weight || 400} 40px "${name}"`).then(() => setTick((t) => t + 1)).catch(() => {});
 
   /* ----- layer helpers ----- */
-  const upd = (id, p) => setDesign((d) => ({ ...d, layers: d.layers.map((l) => (l.id === id ? { ...l, ...(typeof p === "function" ? p(l) : p) } : l)) }));
+  const upd = (id, p) => setDesign((d) => ({ ...d, [LK]: d[LK].map((l) => (l.id === id ? { ...l, ...(typeof p === "function" ? p(l) : p) } : l)) }));
   const setBg = (p) => setDesign((d) => ({ ...d, bg: { ...d.bg, ...p } }));
-  const add = (l) => { setDesign((d) => ({ ...d, layers: [...d.layers, l] })); setSel(l.id); setEditing(null); setSheet(true); };
-  const remove = (id) => { setDesign((d) => ({ ...d, layers: d.layers.filter((l) => l.id !== id) })); setSel(null); setEditing(null); };
+  const add = (l) => { setDesign((d) => ({ ...d, [LK]: [...d[LK], l] })); setSel(l.id); setEditing(null); setSheet(true); };
+  const remove = (id) => { setDesign((d) => ({ ...d, [LK]: d[LK].filter((l) => l.id !== id) })); setSel(null); setEditing(null); };
   const duplicate = (id) => {
     const l = layers.find((x) => x.id === id); if (!l) return;
     const n = { ...JSON.parse(JSON.stringify(l)), id: uid(), x: l.x + W * 0.03, y: l.y + W * 0.03, name: l.name.replace(/ copy$/, "") + " copy", locked: false };
-    setDesign((d) => { const i = d.layers.findIndex((x) => x.id === id); const ls = d.layers.slice(); ls.splice(i + 1, 0, n); return { ...d, layers: ls }; });
+    setDesign((d) => { const i = d[LK].findIndex((x) => x.id === id); const ls = d[LK].slice(); ls.splice(i + 1, 0, n); return { ...d, [LK]: ls }; });
     setSel(n.id);
   };
   const reorder = (id, how) => setDesign((d) => {
-    const ls = d.layers.slice(), i = ls.findIndex((l) => l.id === id); if (i < 0) return d;
+    const ls = d[LK].slice(), i = ls.findIndex((l) => l.id === id); if (i < 0) return d;
     const [it] = ls.splice(i, 1);
     const ni = how === "front" ? ls.length : how === "back" ? 0 : how === "up" ? Math.min(ls.length, i + 1) : Math.max(0, i - 1);
     ls.splice(ni, 0, it);
-    return { ...d, layers: ls };
+    return { ...d, [LK]: ls };
   });
   const alignPage = (id, how) => {
     const l = layers.find((x) => x.id === id); if (!l) return;
@@ -221,19 +224,19 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
   const scale = bw / W;
 
   /* ----- drawing ----- */
-  const paintState = (bg) => ({ title: "", subtitle: "", author: "", tagline: "", c1: bg.c1, c2: bg.c2, accent: bg.accent, text: bg.text, font: bg.font, ...bg.deco });
+  const paintState = (bg) => ({ title: "", subtitle: "", author: "", tagline: "", blurb: "", bio: "", website: "", c1: bg.c1, c2: bg.c2, accent: bg.accent, text: bg.text, font: bg.font, ...bg.deco });
   const bgImg = design.bg.imgId ? imgs.current.get(design.bg.imgId) : null;
   useEffect(() => {
     const id = requestAnimationFrame(() => {
       const c = canvas.current; if (!c) return;
       const ctx = c.getContext("2d");
-      const key = JSON.stringify([design.bg, bw, bh, tick, !!bgImg]);
+      const key = JSON.stringify([design.bg, bw, bh, tick, !!bgImg, side]);
       baseCv.current ||= document.createElement("canvas");
-      if (baseKey.current !== key) { drawCover(baseCv.current, bw, bh, curCover.tpl, paintState(design.bg), bgImg, design.bg.dim); baseKey.current = key; }
+      if (baseKey.current !== key) { (side === "back" ? drawBack : drawCover)(baseCv.current, bw, bh, curCover.tpl, paintState(design.bg), bgImg, design.bg.dim); baseKey.current = key; }
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, bw, bh);
       ctx.drawImage(baseCv.current, 0, 0);
-      drawLayers(ctx, design.layers, imgs.current, scale, editing);
+      drawLayers(ctx, layers, imgs.current, scale, editing);
       if (locked) {
         const wk = `${bw}x${bh}`;
         if (wm.current.key !== wk) { const w = document.createElement("canvas"); w.width = bw; w.height = bh; watermark(w); wm.current = { key: wk, cv: w }; }
@@ -244,7 +247,7 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
   }); // runs after every render on purpose: it is cheap and keeps the canvas in step with the design
 
   /* ----- pointer interactions ----- */
-  live.current = { design, k, W, H, sel };
+  live.current = { design, k, W, H, sel, LK };
   const toDesign = (e) => { const r = canvas.current.getBoundingClientRect(); return { x: ((e.clientX - r.left) / r.width) * W, y: ((e.clientY - r.top) / r.height) * H }; };
 
   const begin = (d) => {
@@ -252,10 +255,10 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
     const onMove = (e) => {
       const dd = drag.current; if (!dd) return;
       const p = toDesign(e);
-      const { k: kk, design: des } = live.current;
+      const { k: kk, design: des, LK: lk } = live.current;
       if (dd.mode === "move") {
         const nx = dd.orig.x + (p.x - dd.start.x), ny = dd.orig.y + (p.y - dd.start.y);
-        const sn = e.altKey ? { dx: 0, dy: 0, guides: [] } : snapMove({ ...dd.orig, x: nx, y: ny }, des.layers.filter((l) => l.id !== dd.id && !l.hidden), W, H, 7 / kk);
+        const sn = e.altKey ? { dx: 0, dy: 0, guides: [] } : snapMove({ ...dd.orig, x: nx, y: ny }, des[lk].filter((l) => l.id !== dd.id && !l.hidden), W, H, 7 / kk);
         setGuides(sn.guides);
         upd(dd.id, { x: nx + sn.dx, y: ny + sn.dy });
       } else if (dd.mode === "resize") {
@@ -315,7 +318,7 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
         e.preventDefault();
         const step = (e.shiftKey ? 10 : 1) / kk;
         upd(s, (l) => ({ x: l.x + (e.key === "ArrowRight" ? step : e.key === "ArrowLeft" ? -step : 0), y: l.y + (e.key === "ArrowDown" ? step : e.key === "ArrowUp" ? -step : 0) }));
-      } else if (e.key === "Enter" && s && live.current.design.layers.find((l) => l.id === s)?.type === "text") { e.preventDefault(); setEditing(s); }
+      } else if (e.key === "Enter" && s && live.current.design[live.current.LK].find((l) => l.id === s)?.type === "text") { e.preventDefault(); setEditing(s); }
       else if (e.key === "Escape") { if (s) setSel(null); else requestClose(); }
     };
     window.addEventListener("keydown", onKey);
@@ -335,9 +338,9 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
 
   /* ----- export ----- */
   const toBlob = (c, type, q) => new Promise((res) => c.toBlob(res, type, q));
-  const save = async (blob, ext) => {
-    const title = layers.find((l) => l.type === "text" && /title/i.test(l.name))?.text || "book-cover";
-    const name = `${slug(title)}-studio.${ext}`;
+  const save = async (blob, ext, label) => {
+    const title = design.layers.find((l) => l.type === "text" && l.name === "Title")?.text || "book-cover";
+    const name = `${slug(title)}-studio-${label}.${ext}`;
     if (isIOS() && navigator.canShare) {
       const file = new File([blob], name, { type: blob.type });
       if (navigator.canShare({ files: [file] })) {
@@ -350,55 +353,64 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
     setTimeout(() => URL.revokeObjectURL(a.href), 4000);
     setStatus(`Downloaded ${name}.`);
   };
-  const download = async (kind) => {
+  // One finished side of the cover: the template art plus that side's layers at full size.
+  const renderSide = (sd) => {
+    const c = document.createElement("canvas");
+    (sd === "back" ? drawBack : drawCover)(c, W, H, curCover.tpl, paintState(design.bg), bgImg, design.bg.dim);
+    drawLayers(c.getContext("2d"), sd === "back" ? design.backLayers : design.layers, imgs.current, 1);
+    return c;
+  };
+  const textOf = (name) => design.layers.find((l) => l.type === "text" && l.name === name)?.text || "";
+  const download = async (kind, target = "side") => {
     setMenu(false);
     if (locked) return onLocked(curCover.name);
     setBusy(true); setStatus("Preparing your file...");
     try {
       await new Promise((r) => setTimeout(r, 30));
-      const c = document.createElement("canvas");
-      drawCover(c, W, H, curCover.tpl, paintState(design.bg), bgImg, design.bg.dim);
-      drawLayers(c.getContext("2d"), design.layers, imgs.current, 1);
-      if (kind === "png") await save(await toBlob(c, "image/png"), "png");
-      if (kind === "jpg") await save(await toBlob(c, "image/jpeg", 0.95), "jpg");
-      if (kind === "webp") await save(await toBlob(c, "image/webp", 0.95), "webp");
+      let c, pt = size.pt, label = side;
+      if (target === "wrap") {
+        const w = composeWrap(size, pages, design.bg, renderSide("front"), renderSide("back"), textOf("Title"), textOf("Author"));
+        c = w.canvas; pt = [(c.width * 72) / w.dims.inch, (c.height * 72) / w.dims.inch]; label = "wrap";
+      } else c = renderSide(side);
+      if (kind === "png") await save(await toBlob(c, "image/png"), "png", label);
+      if (kind === "jpg") await save(await toBlob(c, "image/jpeg", 0.95), "jpg", label);
+      if (kind === "webp") await save(await toBlob(c, "image/webp", 0.95), "webp", label);
       if (kind === "pdf") {
         const jpeg = new Uint8Array(await (await toBlob(c, "image/jpeg", 0.95)).arrayBuffer());
-        await save(jpegToPdf(jpeg, c.width, c.height, size.pt[0], size.pt[1]), "pdf");
+        await save(jpegToPdf(jpeg, c.width, c.height, pt[0], pt[1]), "pdf", label);
       }
     } catch { setStatus("Sorry, that file could not be made. Please try again."); }
     finally { setBusy(false); }
   };
 
   /* ----- template swap ----- */
-  // A new template brings its own title, subtitle, author and tagline styling. Those four text
-  // layers are rebuilt from the new template (keeping the words the customer typed), so the text
-  // always suits the new art. Shapes, images and extra text they added are left untouched.
-  const TEMPLATE_TEXT = ["Title", "Subtitle", "Author", "Tagline"];
-  const currentWords = () => {
-    const words = { ...fields };
-    [["Title", "title"], ["Subtitle", "subtitle"], ["Author", "author"], ["Tagline", "tagline"]].forEach(([name, key]) => {
-      const l = layers.find((x) => x.type === "text" && x.name === name);
-      if (l) words[key] = l.text;
-    });
-    return words;
+  // A new template brings its own text styling for the title, subtitle, author, tagline and the
+  // back cover blocks. Those layers are rebuilt from the new template (keeping the words the
+  // customer typed), so the text always suits the new art. Shapes, images and extra text they
+  // added are left untouched.
+  const wordsFrom = (list, ls) => {
+    const w = { ...fields };
+    list.forEach(([key, name]) => { const l = ls.find((x) => x.type === "text" && x.name === name); if (l) w[key] = l.text; });
+    return w;
   };
+  const keepers = (ls, list) => ls.filter((l) => !(l.type === "text" && list.some(([, n]) => n === l.name)));
   const applyTemplate = (cv) => {
-    const words = currentWords();
     const nb = { c1: cv.palette.c1, c2: cv.palette.c2, accent: cv.palette.accent, text: cv.palette.text, font: cv.font, ...cv.deco };
     ensureFont(cv.font, FONT_LIST.find((f) => f.name === cv.font)?.weight);
-    const fresh = seedLayers(cv.tpl, nb, words, W, H);
+    const front = seedLayers(cv.tpl, nb, wordsFrom(FRONT_TEXT, design.layers), W, H, "front");
+    const back = seedLayers(cv.tpl, nb, wordsFrom(BACK_TEXT, design.backLayers), W, H, "back");
     setDesign((d) => ({
       ...d,
       bg: { ...d.bg, coverId: cv.id, c1: cv.palette.c1, c2: cv.palette.c2, accent: cv.palette.accent, text: cv.palette.text, font: cv.font, deco: { ...cv.deco } },
-      layers: [...fresh, ...d.layers.filter((l) => !(l.type === "text" && TEMPLATE_TEXT.includes(l.name)))],
+      layers: [...front, ...keepers(d.layers, FRONT_TEXT)],
+      backLayers: [...back, ...keepers(d.backLayers, BACK_TEXT)],
     }));
     setSel(null);
   };
   const resetLayout = () => {
-    const bg = design.bg;
-    const fresh = seedLayers(curCover.tpl, { c1: bg.c1, c2: bg.c2, accent: bg.accent, text: bg.text, font: bg.font, ...bg.deco }, currentWords(), W, H);
-    setDesign((d) => ({ ...d, layers: [...fresh, ...d.layers.filter((l) => !(l.type === "text" && TEMPLATE_TEXT.includes(l.name)))] }));
+    const bg = design.bg, list = side === "back" ? BACK_TEXT : FRONT_TEXT;
+    const fresh = seedLayers(curCover.tpl, { c1: bg.c1, c2: bg.c2, accent: bg.accent, text: bg.text, font: bg.font, ...bg.deco }, wordsFrom(list, layers), W, H, side);
+    setDesign((d) => ({ ...d, [LK]: [...fresh, ...keepers(d[LK], list)] }));
     setSel(null);
   };
   const shown = useMemo(() => COVERS.filter((c) => genre === "All" || c.genre === genre).slice(0, 60), [genre]);
@@ -579,7 +591,7 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
         <li><b>Arrow keys</b> nudge. <b>Shift</b> nudges faster and snaps rotation. <b>Alt</b> turns off snapping.</li>
         <li><b>Ctrl+Z</b> undo, <b>Ctrl+Shift+Z</b> redo, <b>Ctrl+D</b> duplicate, <b>Delete</b> removes.</li>
       </ul>
-      <p className="stnote">This studio edits the front cover. Use the quick form on the page for the back cover, spine and full wrap.</p>
+      <p className="stnote">Switch between the front and back cover at the top. Download either side, or a full print wrap with the spine for paperbacks. Set the page count in the quick form.</p>
       <button type="button" className="stbtn" onClick={() => { onQuick(); }}>Back to the quick form</button>
     </>
   );
@@ -589,6 +601,11 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
       <header className="st__top">
         <button type="button" className="st__x" onClick={requestClose} aria-label="Close the studio"><Ico d={ico.close} /></button>
         <strong className="st__name">Cover studio<small>{curCover.name}</small></strong>
+        <div className="st__sides" role="group" aria-label="Which side to edit">
+          {[["front", "Front cover"], ["back", "Back cover"]].map(([v, t]) => (
+            <button key={v} type="button" className={side === v ? "is-on" : ""} aria-pressed={side === v} onClick={() => { setSide(v); setSel(null); setEditing(null); }}>{t}</button>
+          ))}
+        </div>
         <span className="st__sp" />
         <button type="button" className="st__ib" onClick={undo} disabled={!canUndo && JSON.stringify(design) === hist.current.stack[hist.current.i]} aria-label="Undo"><Ico d={ico.undo} /></button>
         <button type="button" className="st__ib" onClick={redo} disabled={!canRedo} aria-label="Redo"><Ico d={ico.redo} /></button>
@@ -604,7 +621,12 @@ export default function CoverStudio({ cover, size, fields, colors, font, deco, i
               {[["png", "PNG", "Best quality"], ["jpg", "JPG", "Smaller file"], ["pdf", "PDF", "For printing"], ["webp", "WebP", "Web and apps"]].map(([kk, t, h]) => (
                 <button key={kk} type="button" role="menuitem" onClick={() => download(kk)}><strong>{t}</strong><small>{h}</small></button>
               ))}
-              <p>{size.w} x {size.h} px, front cover</p>
+              {size.print && (<>
+                <h4>Full print wrap</h4>
+                <button type="button" role="menuitem" onClick={() => download("pdf", "wrap")}><strong>Wrap PDF</strong><small>Back, spine, front</small></button>
+                <button type="button" role="menuitem" onClick={() => download("png", "wrap")}><strong>Wrap PNG</strong><small>With 0.125 in bleed</small></button>
+              </>)}
+              <p>{size.w} x {size.h} px, {side} cover{size.print ? `. Wrap uses ${pages} pages.` : ""}</p>
             </div>
           )}
         </div>
