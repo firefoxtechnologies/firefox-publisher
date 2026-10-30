@@ -8,7 +8,9 @@ import BookCarousel from "../components/ui/feature-carousel";
 const HERO_IMAGES = PORTFOLIO_BOOKS.map((b) => ({ src: b.src, alt: b.title }));
 
 export default function Portfolio() {
-  usePageMeta("Book Design Portfolio | Firefox Publisher", "Sample book cover, interior and branding projects from Firefox Publisher: the objective, the work completed and what was delivered.");
+  usePageMeta(
+    "Book Design Portfolio & Cover Design | Firefox Publisher",
+    "Book cover design portfolio: thriller, romance, fantasy, sci-fi, western and children's covers from Firefox Publisher, a Hoboken, NJ book design team.");
   return (
     <>
       <section className="page-hero portfolio-hero">

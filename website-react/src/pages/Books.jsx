@@ -6,7 +6,9 @@ import { usePageMeta } from "../hooks.js";
 import { PageSchema } from "../components/Schema.jsx";
 
 export default function Books() {
-  usePageMeta("Book Cover Samples & Classics | Firefox Publisher", "Browse sample book covers and public-domain classics Firefox Publisher can design, format and publish across fantasy, thriller, romance and more.");
+  usePageMeta(
+    "Book Cover Samples & Classics | Firefox Publisher",
+    "Browse sample book covers and public-domain classics Firefox Publisher can design, format and publish across fantasy, thriller, romance and more.");
   const [genre, setGenre] = useState("all");
   const chips = ["all", ...GENRES];
   return (

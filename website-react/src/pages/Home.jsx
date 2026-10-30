@@ -379,8 +379,8 @@ function Contact({ plan }) {
 
 export default function Home() {
   usePageMeta(
-    "Firefox Publisher | Ebook Publishing & Design Services",
-    "Ebook publishing services for authors: book writing, editing, cover and interior design, audiobooks, marketing and trailers. Your story, our craft."
+    "Firefox Publisher | Ebook Publishing & Design, USA",
+    "Ebook publishing services for authors: writing, editing, cover and interior design, audiobooks, marketing and trailers. Self-publish with KDP. Hoboken, NJ based, serving all 50 states."
   );
   const [plan, setPlan] = useState(null);
   // The estimator and the stage picker share these two values.

@@ -148,8 +148,8 @@ function TypedTitle() {
 
 export default function BookPrinting() {
   usePageMeta(
-    "Book Printing Services | Firefox Publisher",
-    "Book formatting, interior layout and print-ready PDF preparation to your printer's specifications, ready to send to your chosen printer."
+    "Book Printing Services & Print Files | Firefox Publisher",
+    "Book formatting, interior layout and print-ready PDF files for paperback and hardcover, to your printer's specs, including KDP print. Hoboken, NJ."
   );
 
   const faqSchema = {

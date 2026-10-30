@@ -155,8 +155,8 @@ function TypedTitle() {
 
 export default function BookWriting() {
   usePageMeta(
-    "Book Writing Services | Firefox Publisher",
-    "Turn your idea into a book. Fiction, nonfiction, ghostwriting, memoir, children's books and editing, with a simple process and help whenever you need it."
+    "Book Writing Services & Ghostwriting | Firefox Publisher",
+    "Turn your idea into a book: fiction, nonfiction, ghostwriting, memoir and children's books, plus editing. Hoboken, NJ writers serving authors across the USA."
   );
 
   const faqSchema = {

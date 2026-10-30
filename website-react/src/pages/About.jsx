@@ -125,8 +125,8 @@ function TypedTitle() {
 
 export default function About() {
   usePageMeta(
-    "About Firefox Publisher | Firefox Publisher",
-    "Firefox Publisher is a creative partner for ebook authors: manuscript support, formatting, branding, audiobooks and marketing under one roof."
+    "About Firefox Publisher | Hoboken, NJ Publisher",
+    "Firefox Publisher is a creative partner for ebook authors in Hoboken, NJ: manuscript support, formatting, branding, audiobooks and marketing under one roof."
   );
 
   return (

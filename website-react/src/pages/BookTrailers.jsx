@@ -153,7 +153,7 @@ function TypedTitle() {
 export default function BookTrailers() {
   usePageMeta(
     "Book Video Trailer Services | Firefox Publisher",
-    "Custom book trailers with eye-catching visuals, animated text, music and social-ready formats that spark curiosity and give readers a reason to look closer."
+    "Custom book trailers with eye-catching visuals, animated text, music and social-ready formats for TikTok, Instagram and YouTube. Hoboken, NJ video team."
   );
 
   const faqSchema = {

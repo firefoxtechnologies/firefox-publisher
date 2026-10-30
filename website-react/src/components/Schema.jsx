@@ -14,7 +14,7 @@ export default function ServiceSchema({ name, path, description }) {
         description,
         url,
         provider: { "@id": `${ORIGIN}/#organization` },
-        areaServed: "Worldwide",
+        areaServed: ["United States", "New Jersey", "New York", "Hoboken", "Jersey City", "New York City"],
       },
       {
         "@type": "BreadcrumbList",

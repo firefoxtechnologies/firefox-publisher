@@ -156,8 +156,8 @@ function TypedTitle() {
 
 export default function EbookPublishing() {
   usePageMeta(
-    "Ebook Publishing Services | Firefox Publisher",
-    "Ebook publishing help: formatting, cover and interior preparation, platform setup and upload support, so your finished manuscript can reach readers."
+    "Ebook Publishing Services & Amazon KDP | Firefox Publisher",
+    "Ebook publishing help: formatting, cover and interior prep, ISBN, platform setup and Amazon KDP upload support. Hoboken, NJ team serving authors nationwide."
   );
 
   const faqSchema = {

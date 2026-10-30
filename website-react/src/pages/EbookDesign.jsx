@@ -155,7 +155,7 @@ function TypedTitle() {
 export default function EbookDesign() {
   usePageMeta(
     "Ebook Cover & Interior Design | Firefox Publisher",
-    "Eye-catching ebook covers and clean, readable interiors that suit your genre: cover design, interior layout, chapter styling and visuals."
+    "Eye-catching ebook covers and readable interiors: book cover design, ebook formatting, chapter styling and layout for every genre. Hoboken, NJ design team."
   );
 
   const faqSchema = {

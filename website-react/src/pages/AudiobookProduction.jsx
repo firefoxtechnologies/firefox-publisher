@@ -154,7 +154,7 @@ function TypedTitle() {
 export default function AudiobookProduction() {
   usePageMeta(
     "Audiobook Production Services | Firefox Publisher",
-    "Turn your ebook into an audiobook: narration, voice selection, recording, editing, audio enhancement and final files prepared for your chosen platform."
+    "Turn your book into an audiobook: narration, voice selection, recording, editing and files ready for your platform. Hoboken, NJ audio team."
   );
 
   const faqSchema = {

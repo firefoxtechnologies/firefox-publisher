@@ -257,7 +257,7 @@ function Header() {
 }
 
 const FOOTER_COLUMNS = [
-  { title: "Company", links: [{ label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
+  { title: "Company", links: [{ label: "About", href: "/about" }, { label: "Portfolio", href: "/portfolio" }, { label: "Books", href: "/books" }, { label: "Publishing Services USA", href: "/book-publishing-services-usa" }, { label: "Publishing in NJ & NY", href: "/book-publishing-new-jersey-new-york" }, { label: "Process", href: "/#process" }, { label: "Contact", href: "/#contact" }] },
   { title: "Services", links: [{ label: "Book Writing", href: "/book-writing" }, { label: "Book Editing", href: "/book-editing" }, { label: "Ebook Cover & Interior Design", href: "/ebook-design" }, { label: "Free Book Cover Maker", href: "/free-book-cover-maker" }, { label: "Ebook Publishing", href: "/ebook-publishing" }, { label: "Book Marketing", href: "/book-marketing" }, { label: "Audiobook Production", href: "/audiobook-production" }, { label: "All services: what we do", href: "/#services" }] },
   { title: "Contact", links: [{ label: SITE.email, href: "mailto:" + SITE.email }, { label: SITE.phone, href: SITE.phoneHref }, { label: "333 Washington St #233, Hoboken NJ 07030" }, { label: "Social media", social: true }] },
 ];

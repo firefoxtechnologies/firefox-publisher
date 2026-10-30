@@ -184,6 +184,62 @@
         "displayName": "Firefox Publisher",
         "identityType": "dns"
       }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:tool:free-book-cover-maker",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/free-book-cover-maker",
+      "displayName": "Free Book Cover Maker",
+      "description": "Free online book cover maker with genre templates, editable text and colours, and PNG/JPG downloads. Premium designs and SVG vector files are paid.",
+      "tags": [
+        "tool",
+        "book-cover",
+        "design"
+      ],
+      "updatedAt": "2026-10-30T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:service:book-publishing-new-jersey-new-york",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/book-publishing-new-jersey-new-york",
+      "displayName": "Book Publishing in New Jersey & New York",
+      "description": "Hoboken-based book publishing for authors in NJ, New York City and across the USA: editing, cover design, ghostwriting and Amazon KDP publishing.",
+      "tags": [
+        "service",
+        "publishing",
+        "new-jersey",
+        "new-york"
+      ],
+      "updatedAt": "2026-10-30T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:service:book-publishing-services-usa",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/book-publishing-services-usa",
+      "displayName": "Book Publishing Services USA",
+      "description": "Nationwide, online book publishing for authors in all 50 states: ghostwriting, editing, cover design, ebook formatting and Amazon KDP publishing.",
+      "tags": [
+        "service",
+        "publishing",
+        "usa",
+        "nationwide"
+      ],
+      "updatedAt": "2026-10-30T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     }
   ]
 }

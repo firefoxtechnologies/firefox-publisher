@@ -152,8 +152,8 @@ function TypedTitle() {
 
 export default function BookEditing() {
   usePageMeta(
-    "Book Editing Services | Firefox Publisher",
-    "Developmental editing, line editing, copyediting and proofreading that polish your manuscript and keep your voice. Tell us about your book."
+    "Book Editing Services & Proofreading | Firefox Publisher",
+    "Developmental editing, line editing, copyediting and proofreading that polish your manuscript and keep your voice. Hoboken, NJ editors serving the USA."
   );
 
   const faqSchema = {

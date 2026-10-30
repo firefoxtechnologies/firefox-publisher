@@ -150,8 +150,8 @@ function TypedTitle() {
 
 export default function BookMarketing() {
   usePageMeta(
-    "Book Marketing Services | Firefox Publisher",
-    "Ebook launch marketing, social media content, author branding, promotional copy and strategy to help the right readers discover your ebook."
+    "Book Marketing Services & Launch Plans | Firefox Publisher",
+    "Ebook launch marketing, social media content, author branding, promo copy and strategy to help readers find your book. Hoboken, NJ team serving the USA."
   );
 
   const faqSchema = {

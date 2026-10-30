@@ -13,6 +13,8 @@ import AuthorBranding from "./pages/AuthorBranding.jsx";
 import AudiobookProduction from "./pages/AudiobookProduction.jsx";
 import BookTrailers from "./pages/BookTrailers.jsx";
 import FreeBookCoverMaker from "./pages/FreeBookCoverMaker.jsx";
+import BookPublishingUSA from "./pages/BookPublishingUSA.jsx";
+import BookPublishingNJNY from "./pages/BookPublishingNJNY.jsx";
 import About from "./pages/About.jsx";
 import ThankYou from "./pages/ThankYou.jsx";
 import NotFound from "./pages/NotFound.jsx";
@@ -34,6 +36,8 @@ export default function App() {
         <Route path="audiobook-production" element={<AudiobookProduction />} />
         <Route path="book-trailers" element={<BookTrailers />} />
         <Route path="free-book-cover-maker" element={<FreeBookCoverMaker />} />
+        <Route path="book-publishing-services-usa" element={<BookPublishingUSA />} />
+        <Route path="book-publishing-new-jersey-new-york" element={<BookPublishingNJNY />} />
         <Route path="about" element={<About />} />
         <Route path="thank-you" element={<ThankYou />} />
         <Route path="*" element={<NotFound />} />

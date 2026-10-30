@@ -6,7 +6,7 @@ export const PORTFOLIO_BOOKS = [
   book("oasis.jpg", "Oasis", "Dima Zales", "Sci-Fi"),
   book("anchored-by-the-sea.jpg", "Anchored By The Sea", "Eve Bennett", "Romance"),
   book("ambitious.jpg", "Ambitious", "Ayden Presley", "Contemporary"),
-  book("big-big-secrets.png", "Big Big Secrets", "Robert Arley", "Middle Grade"),
+  book("big-big-secrets.jpg", "Big Big Secrets", "Robert Arley", "Middle Grade"),
   book("archon-protocol.jpg", "Archon Protocol", "Dominic Jackson", "Sci-Fi"),
   book("the-soul-trade.jpg", "The Soul Trade", "Edward Rose", "Urban Fantasy"),
   book("dragon.jpg", "Dragon", "Zoe Dawson", "Romance"),
