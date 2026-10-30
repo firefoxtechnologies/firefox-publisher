@@ -390,8 +390,8 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <CoverMakerPromo />
       <Stats />
+      <CoverMakerPromo />
       <Services />
       <Work />
       <AudiobookPromo />

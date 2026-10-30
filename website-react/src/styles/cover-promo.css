@@ -1,4 +1,4 @@
-.section.cmp { padding-bottom: clamp(150px, 16vw, 190px); background: linear-gradient(135deg, #0b1c35 0%, #12294a 60%, #1d3f73 100%); color: #e6eefb; overflow: hidden; }
+.section.cmp { padding-bottom: clamp(48px, 6vw, 88px); background: linear-gradient(135deg, #0b1c35 0%, #12294a 60%, #1d3f73 100%); color: #e6eefb; overflow: hidden; }
 .cmp__in { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; }
 .cmp h2 { color: #fff; font-size: clamp(2rem, 4.4vw, 3.2rem); letter-spacing: -.03em; }
 .cmp h2 span { color: var(--glacier); }
@@ -32,3 +32,7 @@
   .cmp-book { width: 26%; }
   .cmp-book--2 { width: 30%; }
 }
+
+/* the strip overhangs the hero; below the overhang the wrapper takes the promo's colour so no white shows beside it */
+.stats-wrap:has(+ .section.cmp) { background: linear-gradient(to bottom, transparent 70px, #0b1c35 70px); }
+@media (max-width: 900px) { .stats-wrap:has(+ .section.cmp) { background: linear-gradient(to bottom, transparent 50px, #0b1c35 50px); } }
