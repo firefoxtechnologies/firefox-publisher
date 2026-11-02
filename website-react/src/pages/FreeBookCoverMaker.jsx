@@ -5,6 +5,7 @@ import { usePageMeta, useRafScroll } from "../hooks.js";
 import { COVERS, GENRES, SIZES, FONTS, FRAMES, TEXTURES, LIGHTING, FIELD_DEFAULTS, drawCover, coverToSVG, drawBack, backToSVG, drawWrap, wrapDims, watermark, logoReady } from "../lib/coverTemplates.js";
 import { jpegToPdf } from "../lib/pdf.js";
 import { saveFile } from "../lib/saveFile.js";
+import { readPreset } from "../lib/helperPresets.js";
 import { PAYMENT_LINK, PRICES, isUnlocked } from "../data/premium.js";
 import { CoverMakerSchema } from "../components/Schema.jsx";
 import "../styles/cover-maker.css";
@@ -146,18 +147,24 @@ export default function FreeBookCoverMaker() {
   );
 
   const saved = useMemo(() => (typeof window === "undefined" ? {} : loadSaved()), []);
-  const [coverId, setCoverId] = useState(() => (COVERS.some((c) => c.id === saved.coverId) ? saved.coverId : COVERS[0].id));
+  // A link from the Ask AI cover helper can start the maker filtered by style, recoloured and at a chosen size.
+  const preset = useMemo(() => (typeof window === "undefined" ? {} : readPreset(location.search)), []);
+  const [coverId, setCoverId] = useState(() => {
+    const byStyle = preset.genre && COVERS.find((c) => c.genre === preset.genre && !c.premium);
+    if (byStyle) return byStyle.id;
+    return COVERS.some((c) => c.id === saved.coverId) ? saved.coverId : COVERS[0].id;
+  });
   const cover = useMemo(() => COVERS.find((c) => c.id === coverId), [coverId]);
   const tpl = cover.tpl;
-  const [genre, setGenre] = useState("All");
+  const [genre, setGenre] = useState(preset.genre || "All");
   const [tier, setTier] = useState("all");
   const [query, setQuery] = useState("");
   const [count, setCount] = useState(PAGE);
   const [fields, setFields] = useState({ ...FIELD_DEFAULTS, ...(saved.fields || {}) });
-  const [colors, setColors] = useState({ ...cover.palette });
+  const [colors, setColors] = useState({ ...cover.palette, ...(preset.palette || {}) });
   const [font, setFont] = useState(cover.font);
   const [deco, setDeco] = useState({ ...cover.deco });
-  const [sizeId, setSizeId] = useState(SIZES.some((s) => s.id === saved.sizeId) ? saved.sizeId : SIZES[0].id);
+  const [sizeId, setSizeId] = useState(preset.sizeId || (SIZES.some((s) => s.id === saved.sizeId) ? saved.sizeId : SIZES[0].id));
   const [pages, setPages] = useState(saved.pages || 200);
   const [view, setView] = useState("front");
   const [img, setImg] = useState(null);

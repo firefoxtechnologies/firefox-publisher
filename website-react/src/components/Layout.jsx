@@ -5,6 +5,7 @@ import { prefersReducedMotion, useRafScroll } from "../hooks.js";
 import ContactPopup from "./ContactPopup.jsx";
 import SiteSearch from "./SiteSearch.jsx";
 import { InstallButton, InstallCard } from "./InstallApp.jsx";
+import AskAI from "./AskAI.jsx";
 import HalftoneWordmarkFooter from "./ui/halftone-wordmark-footer";
 import {
   NavigationMenu,
@@ -389,6 +390,7 @@ export default function Layout() {
       <ScrollManager />
       <ContactPopup />
       <InstallCard />
+      <AskAI />
     </>
   );
 }

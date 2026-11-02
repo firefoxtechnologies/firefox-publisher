@@ -22,8 +22,10 @@ if ("serviceWorker" in navigator && !isNativeApp() && (location.protocol === "ht
   addEventListener("load", () => navigator.serviceWorker.register("/sw.js").catch(() => {}));
 }
 
-const first = loaders[`./pages/${pageName(location.pathname) || "NotFound"}.jsx`];
-Promise.resolve(first?.()).catch(() => {}).then(() => {
+const firstName = pageName(location.pathname) || "NotFound";
+// The page being opened is used as a plain component once fetched, so it renders in the first pass
+// (scrolling to a #hash target needs the content to exist on the first render).
+Promise.resolve(loaders[`./pages/${firstName}.jsx`]?.()).then((m) => { if (m?.default) pages[firstName] = m.default; }, () => {}).then(() => {
   createRoot(document.getElementById("root")).render(
     <StrictMode>
       <BrowserRouter>

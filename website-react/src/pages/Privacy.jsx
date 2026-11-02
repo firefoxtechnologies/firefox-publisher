@@ -18,7 +18,7 @@ const SECTIONS = [
   ]],
   ["Who we share it with", [
     "We share information only with service providers that help us run the site and talk to you, and only as needed:",
-    ["Cloudflare, which hosts the website and handles the email that delivers contact form messages to us.", "Tawk.to, which provides the live chat window.", "Google Fonts, which supplies the site's typefaces."],
+    ["Cloudflare, which hosts the website and handles the email that delivers contact form messages to us.", "Tawk.to, which provides the live chat window.", "Cloudflare Workers AI, which writes the answers in the Ask AI helper. Questions typed into Ask AI are sent to it to be answered. Please do not type passwords, card numbers or other private details into it. If the AI service is unavailable the helper answers with basic built-in replies and nothing is sent.", "Google Fonts, which supplies the site's typefaces."],
     "We may also disclose information if the law requires it or to protect our rights and the safety of others.",
   ]],
   ["Cookies and tracking", [
