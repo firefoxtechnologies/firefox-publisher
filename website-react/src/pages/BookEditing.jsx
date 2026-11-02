@@ -12,14 +12,14 @@ import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 const TYPES = [
   { badge: "Big picture", title: "Developmental Editing", description: "Let\u2019s fix the big picture! Is your story going in the right direction? Do your chapters flow well? Are your ideas easy to follow? We\u2019ll look at the bigger picture and help you make your story stronger, clearer, and more enjoyable.", image: "/assets/journey/discovery.jpg", alt: "Two people talking through the structure of a book" },
   { badge: "Sentences", title: "Line Editing", description: "Make every sentence shine! Sometimes a sentence just doesn\u2019t sound right, and that\u2019s okay. We\u2019ll smooth out awkward wording, improve sentence flow, and make your writing sound natural while keeping your unique style.", image: "/assets/writing/editing.jpg", alt: "A hand marking up a manuscript with a red pen" },
-  { badge: "Mistakes", title: "Copyediting", description: "Goodbye, little mistakes! Missed a comma? Mixed up a word? Spotted three different spellings of the same name? We\u2019ll help catch grammar, spelling, punctuation, and consistency mistakes so your book reads more smoothly.", image: "/assets/services/book-editing.jpg", alt: "An editor checking a printed manuscript" },
+  { badge: "Mistakes", title: "Copyediting", description: "Goodbye, little mistakes! Missed a comma? Mixed up a word? Spotted three different spellings of the same name? We\u2019ll help catch grammar, spelling, punctuation, and consistency mistakes so your book reads more smoothly.", image: "/assets/services/book-editing.webp", alt: "An editor checking a printed manuscript" },
   { badge: "Final check", title: "Proofreading", description: "One last check! Your book is almost ready to go. We\u2019ll look for leftover typos, punctuation mistakes, and small errors before your manuscript moves to the next stage.", image: "/assets/stages/edited.jpg", alt: "A final proofread of a manuscript with a red pen" },
 ];
 
 const STEPS = [
   { title: "Send Us Your Book", description: "Share your manuscript, tell us what you\u2019ve written, and let us know what you\u2019d like to improve.", image: { url: "/assets/stages/draft.jpg", alt: "A finished draft on the desk next to a laptop" } },
   { title: "Let\u2019s Make a Plan", description: "We\u2019ll discuss your book and help you choose the editing service that fits your needs.", image: { url: "/assets/journey/discovery.jpg", alt: "Two people planning a project together" } },
-  { title: "Time to Polish!", description: "We\u2019ll get to work on your manuscript, focusing on the improvements included in your chosen service.", image: { url: "/assets/services/book-editing.jpg", alt: "An editor polishing a manuscript" } },
+  { title: "Time to Polish!", description: "We\u2019ll get to work on your manuscript, focusing on the improvements included in your chosen service.", image: { url: "/assets/services/book-editing.webp", alt: "An editor polishing a manuscript" } },
   { title: "Take a Look", description: "Review the edits, share your feedback, and let us know if anything needs another look within the agreed project scope.", image: { url: "/assets/journey/editorial.jpg", alt: "A hand marking up a manuscript with a red pen" } },
   { title: "Ready for the Next Chapter!", description: "Your edited manuscript is ready for your next step toward publishing. Cue the happy dance! \u{1F483}", image: { url: "/assets/journey/design-production.jpg", alt: "A finished book ready for design and production" } },
 ].map((s) => ({ ...s, image: { ...s.image, width: 900, height: 900 } }));
@@ -182,7 +182,7 @@ export default function BookEditing() {
             <p className="bw-hero__note">Not sure what your book needs? Don&rsquo;t worry. We&rsquo;ve got you!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/services/book-editing.jpg" alt="An editor polishing a manuscript" width="900" height="900" />
+            <img src="/assets/services/book-editing.webp" alt="An editor polishing a manuscript" width="900" height="900" />
           </div>
         </div>
       </section>

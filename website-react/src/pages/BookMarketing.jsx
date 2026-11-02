@@ -10,15 +10,15 @@ import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
   { badge: "Launch", title: "Ebook Launch Marketing", description: "Make some noise! Launching your ebook? Let\u2019s make it an occasion. We help plan promotional activities that introduce your ebook to potential readers and build excitement around its release.", image: "/assets/journey/launch.jpg", alt: "Planning a book launch on a laptop" },
-  { badge: "Social", title: "Social Media Marketing", description: "Scroll-stopping starts here. Your next reader could be scrolling right now! We help create engaging social media content that showcases your ebook, highlights what makes it special, and encourages people to learn more.", image: "/assets/services/book-marketing.jpg", alt: "Promoting a book on social media" },
-  { badge: "Brand", title: "Author Branding", description: "Make your name memorable. Readers don\u2019t just connect with stories. They connect with the people behind them, too. Build a recognizable author presence that reflects your writing style, personality, and work.", image: "/assets/services/author-branding.jpg", alt: "An author at their desk building a personal brand" },
+  { badge: "Social", title: "Social Media Marketing", description: "Scroll-stopping starts here. Your next reader could be scrolling right now! We help create engaging social media content that showcases your ebook, highlights what makes it special, and encourages people to learn more.", image: "/assets/services/book-marketing.webp", alt: "Promoting a book on social media" },
+  { badge: "Brand", title: "Author Branding", description: "Make your name memorable. Readers don\u2019t just connect with stories. They connect with the people behind them, too. Build a recognizable author presence that reflects your writing style, personality, and work.", image: "/assets/services/author-branding.webp", alt: "An author at their desk building a personal brand" },
   { badge: "Content", title: "Ebook Promotional Content", description: "Give them a reason to click. From intriguing book teasers to compelling promotional copy, we help turn your ebook\u2019s best features into content that catches attention and sparks curiosity.", image: "/assets/stages/launch.jpg", alt: "A display of new books with eye-catching promotion" },
   { badge: "Strategy", title: "Marketing Strategy", description: "Less guesswork, more direction. Not sure where to start? We help shape a marketing plan around your ebook, intended audience, goals, and available promotional channels.", image: "/assets/journey/discovery.jpg", alt: "Two people planning a marketing strategy together" },
 ];
 
 const STEPS = [
   { title: "Tell Us About Your Ebook", description: "Share your ebook, genre, target readers, and what you hope to achieve.", image: { url: "/assets/journey/discovery.jpg", alt: "Two people talking through a book project" } },
-  { title: "We Build Your Marketing Plan", description: "We identify suitable promotional approaches and content ideas based on your ebook and goals.", image: { url: "/assets/services/book-marketing.jpg", alt: "A marketing plan taking shape" } },
+  { title: "We Build Your Marketing Plan", description: "We identify suitable promotional approaches and content ideas based on your ebook and goals.", image: { url: "/assets/services/book-marketing.webp", alt: "A marketing plan taking shape" } },
   { title: "Let\u2019s Get Creative", description: "We help develop engaging promotional content and campaigns to introduce your ebook to potential readers.", image: { url: "/assets/journey/design-production.jpg", alt: "Creating promotional content" } },
   { title: "Put Your Ebook Out There", description: "Launch your promotional activities, review how they perform, and use the results to guide your next steps.", image: { url: "/assets/journey/growth.jpg", alt: "A small plant growing on a pile of books" } },
 ].map((s) => ({ ...s, image: { ...s.image, width: 900, height: 900 } }));
@@ -180,7 +180,7 @@ export default function BookMarketing() {
             <p className="bw-hero__note">Your ebook has a story to tell. Let&rsquo;s help the world discover it!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/services/book-marketing.jpg" alt="Promoting a book to readers online" width="900" height="900" />
+            <img src="/assets/services/book-marketing.webp" alt="Promoting a book to readers online" width="900" height="900" />
           </div>
         </div>
       </section>

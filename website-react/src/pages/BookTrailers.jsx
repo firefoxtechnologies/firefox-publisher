@@ -9,17 +9,17 @@ import ServiceSchema from "../components/Schema.jsx";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
-  { badge: "Trailer", title: "Custom Book Trailer", description: "Lights, camera, book! Give your ebook its own moment in the spotlight. We create promotional videos that introduce your book, highlight its appeal, and invite viewers to discover what\u2019s inside.", image: "/assets/services/video-trailers.jpg", alt: "A video editor cutting a trailer on a desktop" },
+  { badge: "Trailer", title: "Custom Book Trailer", description: "Lights, camera, book! Give your ebook its own moment in the spotlight. We create promotional videos that introduce your book, highlight its appeal, and invite viewers to discover what\u2019s inside.", image: "/assets/services/video-trailers.webp", alt: "A video editor cutting a trailer on a desktop" },
   { badge: "Visuals", title: "Eye-Catching Visuals", description: "Make them stop scrolling. First impressions happen fast! We combine suitable imagery, typography, and visual elements to create a trailer that catches attention and reflects the personality of your ebook.", image: "/assets/journey/design-production.jpg", alt: "Designing the look of a promotional video" },
   { badge: "Motion", title: "Animated Text & Motion Graphics", description: "Let your words move! Your book title, key phrases, and intriguing lines deserve more than a static screen. We use motion and text animation to make your message more dynamic and memorable.", image: "/assets/stages/designed.jpg", alt: "A cleanly laid-out book spread, ready for animated text" },
-  { badge: "Sound", title: "Music & Sound Design", description: "Set the mood. Suspenseful? Heartwarming? Inspirational? The right audio can help establish the atmosphere of your trailer and complement your ebook\u2019s theme.", image: "/assets/services/audiobook-production.jpg", alt: "Headphones and a microphone for sound design" },
+  { badge: "Sound", title: "Music & Sound Design", description: "Set the mood. Suspenseful? Heartwarming? Inspirational? The right audio can help establish the atmosphere of your trailer and complement your ebook\u2019s theme.", image: "/assets/services/audiobook-production.webp", alt: "Headphones and a microphone for sound design" },
   { badge: "Highlights", title: "Story Highlights", description: "Tease, don\u2019t tell! Give viewers a glimpse of what makes your ebook special without revealing everything. We help select key ideas, themes, or story elements that build interest while keeping the best parts waiting inside.", image: "/assets/journey/editorial.jpg", alt: "Choosing the key moments to feature in a trailer" },
   { badge: "Social", title: "Social Media-Ready Videos", description: "Made to be shared. Give your ebook a promotional asset you can use across suitable digital channels. We can discuss video dimensions and formats based on where you plan to share it.", image: "/assets/journey/launch.jpg", alt: "Planning where to share a book trailer online" },
 ];
 
 const STEPS = [
   { title: "Tell Us About Your Ebook", description: "Share your ebook, its genre or subject, target audience, and what makes it worth discovering.", image: { url: "/assets/journey/discovery.jpg", alt: "Two people talking through a book project" } },
-  { title: "Find the Right Vibe", description: "We explore the creative direction, visual style, tone, and mood that suit your book.", image: { url: "/assets/services/video-trailers.jpg", alt: "Exploring the look and mood of a trailer" } },
+  { title: "Find the Right Vibe", description: "We explore the creative direction, visual style, tone, and mood that suit your book.", image: { url: "/assets/services/video-trailers.webp", alt: "Exploring the look and mood of a trailer" } },
   { title: "Lights, Camera, Creation!", description: "We bring the agreed concept together using visuals, animated text, music, and other suitable elements.", image: { url: "/assets/journey/design-production.jpg", alt: "A trailer being put together" } },
   { title: "Ready for Its Close-Up", description: "Review your trailer, request adjustments within the agreed scope, and receive the final video in the agreed format.", image: { url: "/assets/journey/growth.jpg", alt: "A small plant growing on a pile of books" } },
 ].map((s) => ({ ...s, image: { ...s.image, width: 900, height: 900 } }));
@@ -182,7 +182,7 @@ export default function BookTrailers() {
             <p className="bw-hero__note">Your ebook is the story. Let&rsquo;s create the preview that gets people hooked!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/services/video-trailers.jpg" alt="A video editor cutting a book trailer" width="900" height="900" />
+            <img src="/assets/services/video-trailers.webp" alt="A video editor cutting a book trailer" width="900" height="900" />
           </div>
         </div>
       </section>

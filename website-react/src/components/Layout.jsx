@@ -177,11 +177,11 @@ function Header() {
   }, [open]);
 
   // Warm the cache so the service photos are ready the first time the menu opens.
+  // Done after the page has settled, so these photos never compete with what is on screen.
   useEffect(() => {
-    SERVICES.forEach((s) => {
-      const img = new Image();
-      img.src = s.image;
-    });
+    const warm = () => SERVICES.forEach((s) => { const img = new Image(); img.src = s.image; });
+    const t = setTimeout(() => ("requestIdleCallback" in window ? requestIdleCallback(warm) : warm()), 4000);
+    return () => clearTimeout(t);
   }, []);
 
   const current = SERVICES[preview];
@@ -190,7 +190,7 @@ function Header() {
     <header className="header">
       <div className="wrap header__in">
         <Link className="brand" to="/" aria-label="Firefox Publisher, home">
-          <img className="brand__fox" src="/assets/logo-fox-mark.webp" alt="" width="700" height="379" />
+          <img className="brand__fox" src="/assets/logo-fox-mark-sm.webp" alt="" width="280" height="152" fetchPriority="high" />
           <span className="brand__name" role="img" aria-label="Firefox Publisher"><span aria-hidden="true">FIREFOX</span><span className="spread" aria-hidden="true">{[..."PUBLISHER"].map((c, i) => <span key={i}>{c}</span>)}</span></span>
         </Link>
         <SiteSearch />
@@ -345,7 +345,7 @@ function Footer() {
       wordmark="firefox publisher"
       logo={(
         <span className="footer-lockup">
-          <img className="footer-fox" src="/assets/logo-fox-mark.webp" alt="" width="700" height="379" />
+          <img className="footer-fox" src="/assets/logo-fox-mark.webp" alt="" width="700" height="379" loading="lazy" />
           <span className="footer-lockup__name" role="img" aria-label="Firefox Publisher"><span aria-hidden="true">FIREFOX</span><span className="spread" aria-hidden="true">{[..."PUBLISHER"].map((c, i) => <span key={i}>{c}</span>)}</span></span>
         </span>
       )}

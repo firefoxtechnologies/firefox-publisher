@@ -60,7 +60,7 @@ const SERVICE_MEDIA = [
   ["video-trailers", "Video"],
 ];
 SERVICES.forEach((s, i) => {
-  s.image = `/assets/services/${SERVICE_MEDIA[i][0]}.jpg`;
+  s.image = `/assets/services/${SERVICE_MEDIA[i][0]}.webp`;
   s.meta = SERVICE_MEDIA[i][1];
 });
 

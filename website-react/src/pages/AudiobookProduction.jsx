@@ -12,17 +12,17 @@ import "../styles/audio-sample.css";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
-  { badge: "Narration", title: "Audiobook Narration", description: "Let your story speak! Every story has a voice. We help bring yours to life through narration that suits your content, tone, and intended audience, making your words engaging to listen to.", image: "/assets/services/audiobook-production.jpg", alt: "Studio headphones and a microphone ready for narration" },
+  { badge: "Narration", title: "Audiobook Narration", description: "Let your story speak! Every story has a voice. We help bring yours to life through narration that suits your content, tone, and intended audience, making your words engaging to listen to.", image: "/assets/services/audiobook-production.webp", alt: "Studio headphones and a microphone ready for narration" },
   { badge: "Voice", title: "Voice Selection", description: "Find the perfect match. Warm and comforting? Clear and professional? Full of character? We help identify a suitable narration style for your ebook so the listening experience feels right for your content.", image: "/assets/illustrations/audiobook-headphones.svg", alt: "An illustration of headphones resting on a book" },
   { badge: "Recording", title: "Audio Recording", description: "Every word matters. Great audio starts with careful recording. We help turn your written content into spoken audio, with attention to clarity, consistency, and an enjoyable listening experience.", image: "/assets/journey/design-production.jpg", alt: "A production desk during a recording session" },
   { badge: "Editing", title: "Audio Editing", description: "Goodbye, unwanted pauses! Fumbling words and distracting background noise can take listeners out of the moment. Audio editing helps create a smoother, cleaner listening experience.", image: "/assets/journey/editorial.jpg", alt: "Careful editing and review of a production" },
-  { badge: "Enhancement", title: "Audio Enhancement", description: "Give every word room to shine. Consistent volume and clear sound help make an audiobook easier to enjoy. We help refine audio quality according to your project\u2019s production requirements.", image: "/assets/services/video-trailers.jpg", alt: "A producer refining sound quality at a desk" },
+  { badge: "Enhancement", title: "Audio Enhancement", description: "Give every word room to shine. Consistent volume and clear sound help make an audiobook easier to enjoy. We help refine audio quality according to your project\u2019s production requirements.", image: "/assets/services/video-trailers.webp", alt: "A producer refining sound quality at a desk" },
   { badge: "Delivery", title: "Final Audiobook Files", description: "Ready for listening! Receive your completed audio files in the agreed format, prepared for your intended distribution platform or publishing workflow.", image: "/assets/illustrations/ereader-stack.svg", alt: "An illustration of an e-reader stacked on books" },
 ];
 
 const STEPS = [
   { title: "Bring Us Your Ebook", description: "Share your manuscript and tell us about your audience, preferred narration style, and audiobook goals.", image: { url: "/assets/journey/discovery.jpg", alt: "Two people talking through an audiobook project" } },
-  { title: "Find Your Sound", description: "We discuss the voice, tone, and production approach that best suit your content.", image: { url: "/assets/services/audiobook-production.jpg", alt: "Headphones and a microphone for choosing a narration style" } },
+  { title: "Find Your Sound", description: "We discuss the voice, tone, and production approach that best suit your content.", image: { url: "/assets/services/audiobook-production.webp", alt: "Headphones and a microphone for choosing a narration style" } },
   { title: "Let the Recording Begin", description: "Your written content moves into the audio production process, including the agreed narration, recording, editing, and sound refinement.", image: { url: "/assets/journey/design-production.jpg", alt: "A recording session in progress" } },
   { title: "Get Ready to Press Play", description: "Receive your completed audiobook files in the agreed format, ready for your next publishing step.", image: { url: "/assets/journey/growth.jpg", alt: "A small plant growing on a pile of books" } },
 ].map((s) => ({ ...s, image: { ...s.image, width: 900, height: 900 } }));
@@ -187,7 +187,7 @@ export default function AudiobookProduction() {
             <p className="bw-hero__note">Your story is written. Its next chapter could be heard!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/services/audiobook-production.jpg" alt="Studio headphones and a microphone for narration" width="900" height="900" />
+            <img src="/assets/services/audiobook-production.webp" alt="Studio headphones and a microphone for narration" width="900" height="900" />
           </div>
         </div>
       </section>

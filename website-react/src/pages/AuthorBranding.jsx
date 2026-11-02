@@ -9,8 +9,8 @@ import ServiceSchema from "../components/Schema.jsx";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
-  { badge: "Logo", title: "Author Logo Design", description: "Put your name on the map. Your name deserves a signature look! We create author logos that reflect your personality, writing style, and the kind of stories you want to be known for.", image: "/assets/services/author-branding.jpg", alt: "An author\u2019s desk with a personal brand mark" },
-  { badge: "Identity", title: "Author Brand Identity", description: "Make your name memorable. Romantic storyteller? Fantasy-world builder? Business expert? Let\u2019s create a visual identity that feels like you and helps keep your author presence consistent across your digital platforms.", image: "/assets/services/cover-interior-design.jpg", alt: "Book covers sharing one consistent visual style" },
+  { badge: "Logo", title: "Author Logo Design", description: "Put your name on the map. Your name deserves a signature look! We create author logos that reflect your personality, writing style, and the kind of stories you want to be known for.", image: "/assets/services/author-branding.webp", alt: "An author\u2019s desk with a personal brand mark" },
+  { badge: "Identity", title: "Author Brand Identity", description: "Make your name memorable. Romantic storyteller? Fantasy-world builder? Business expert? Let\u2019s create a visual identity that feels like you and helps keep your author presence consistent across your digital platforms.", image: "/assets/services/cover-interior-design.webp", alt: "Book covers sharing one consistent visual style" },
   { badge: "Kits", title: "Author Branding Kits", description: "Your creative toolkit. Bring your visual identity together with coordinated branding elements you can use across your author website, social media profiles, ebook promotions, and other digital touchpoints.", image: "/assets/journey/design-production.jpg", alt: "A designer assembling coordinated brand assets" },
   { badge: "Illustration", title: "Ebook Illustrations", description: "Let your imagination take shape. Some ideas deserve to be seen, not just read! We help bring your ebook to life with illustrations that complement your content, enhance the reading experience, and give your ideas a visual voice.", image: "/assets/illustrations/open-book-digital.svg", alt: "An illustration of an open digital book" },
   { badge: "Characters", title: "Character Illustrations", description: "Meet the faces of your story. Give your characters a look readers can picture and remember. Character illustrations can add personality and visual appeal to suitable fiction, children\u2019s ebooks, and other illustrated digital publications.", image: "/assets/writing/childrens.jpg", alt: "Two children looking at an illustrated storybook" },
@@ -19,7 +19,7 @@ const TYPES = [
 
 const STEPS = [
   { title: "Tell Us Your Story", description: "Share your ebook, your author personality, your creative ideas, and the look you\u2019re hoping to achieve.", image: { url: "/assets/journey/discovery.jpg", alt: "Two people sharing ideas for a book" } },
-  { title: "Find Your Creative Style", description: "We explore visual directions that fit your writing, audience, genre, and goals.", image: { url: "/assets/services/author-branding.jpg", alt: "Exploring visual directions for an author brand" } },
+  { title: "Find Your Creative Style", description: "We explore visual directions that fit your writing, audience, genre, and goals.", image: { url: "/assets/services/author-branding.webp", alt: "Exploring visual directions for an author brand" } },
   { title: "Let\u2019s Make It Visual", description: "We develop your agreed branding elements and illustrations, with opportunities to review and request adjustments within your project scope.", image: { url: "/assets/journey/design-production.jpg", alt: "A designer creating branding and illustrations" } },
   { title: "Show the World Your Style", description: "Receive your final agreed assets, ready to use across your author platforms and ebook projects.", image: { url: "/assets/journey/growth.jpg", alt: "A small plant growing on a pile of books" } },
 ].map((s) => ({ ...s, image: { ...s.image, width: 900, height: 900 } }));
@@ -182,7 +182,7 @@ export default function AuthorBranding() {
             <p className="bw-hero__note">Your words tell the story. Your style makes it unforgettable!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/services/author-branding.jpg" alt="An author building a personal brand" width="900" height="900" />
+            <img src="/assets/services/author-branding.webp" alt="An author building a personal brand" width="900" height="900" />
           </div>
         </div>
       </section>

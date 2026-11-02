@@ -10,16 +10,16 @@ import ServiceSchema from "../components/Schema.jsx";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
-  { badge: "Guidance", title: "Ebook Publishing Assistance", description: "Let\u2019s get you published! Not sure what comes after writing? We\u2019ll help you understand the publishing process, prepare your files, and work through the steps required for your chosen publishing platform. Less confusion. More progress!", image: "/assets/services/book-publishing.jpg", alt: "A finished book ready to be published" },
+  { badge: "Guidance", title: "Ebook Publishing Assistance", description: "Let\u2019s get you published! Not sure what comes after writing? We\u2019ll help you understand the publishing process, prepare your files, and work through the steps required for your chosen publishing platform. Less confusion. More progress!", image: "/assets/services/book-publishing.webp", alt: "A finished book ready to be published" },
   { badge: "Formatting", title: "Ebook Formatting", description: "Make those pages publication-ready! Your manuscript needs to look right on digital screens, too. We help prepare your ebook with clean formatting, organized chapters, and readable text so your content is ready for the next stage of publishing.", image: "/assets/stages/designed.jpg", alt: "An open book with a cleanly laid-out photo spread" },
-  { badge: "Cover & interior", title: "Ebook Cover & Interior Preparation", description: "Dress your book for success! A great book deserves a great presentation. We can help prepare your cover and interior files according to your project\u2019s needs and the specifications of your chosen platform. Already have a design? Great! Need one? Let\u2019s discuss your options.", image: "/assets/services/cover-interior-design.jpg", alt: "Colourful book covers laid out side by side" },
+  { badge: "Cover & interior", title: "Ebook Cover & Interior Preparation", description: "Dress your book for success! A great book deserves a great presentation. We can help prepare your cover and interior files according to your project\u2019s needs and the specifications of your chosen platform. Already have a design? Great! Need one? Let\u2019s discuss your options.", image: "/assets/services/cover-interior-design.webp", alt: "Colourful book covers laid out side by side" },
   { badge: "Platforms", title: "Publishing Platform Setup Assistance", description: "Let\u2019s figure it out! Different publishing platforms have different rules. We\u2019ll help you understand the requirements for your chosen platform and guide you through the relevant setup and submission steps, according to the agreed service.", image: "/assets/journey/launch.jpg", alt: "Planning a book launch on a laptop" },
   { badge: "Upload", title: "Final File & Upload Support", description: "Almost there! File formats, metadata, book descriptions\u2026 there\u2019s a lot to think about before publishing. We\u2019ll help you prepare the required materials and, where included in your package, assist with the upload or submission process.", image: "/assets/stages/launch.jpg", alt: "A display of newly published books" },
 ];
 
 const STEPS = [
   { title: "Tell Us About Your Book", description: "Share your manuscript, genre, book title, and publishing goals. Already have a cover and formatted files? Even better!", image: { url: "/assets/journey/discovery.jpg", alt: "Two people talking through a book project" } },
-  { title: "Let\u2019s Make a Publishing Plan", description: "We\u2019ll discuss your chosen platform, identify the materials you need, and explain the steps involved in preparing your ebook.", image: { url: "/assets/services/book-publishing.jpg", alt: "A publishing plan on a desk" } },
+  { title: "Let\u2019s Make a Publishing Plan", description: "We\u2019ll discuss your chosen platform, identify the materials you need, and explain the steps involved in preparing your ebook.", image: { url: "/assets/services/book-publishing.webp", alt: "A publishing plan on a desk" } },
   { title: "Get Your Ebook Ready", description: "We\u2019ll help prepare your manuscript, formatting, cover files, and other publishing materials according to the services you\u2019ve selected.", image: { url: "/assets/journey/design-production.jpg", alt: "Preparing book files for publishing" } },
   { title: "Let\u2019s Handle the Details", description: "We\u2019ll work through the agreed publishing tasks and help you understand any platform-specific requirements that need your attention.", image: { url: "/assets/journey/editorial.jpg", alt: "Checking the details of a manuscript" } },
   { title: "Hello, Published Author!", description: "Once your ebook has been submitted and accepted by the publishing platform, readers can discover your work according to that platform\u2019s review process, release settings, and availability.", image: { url: "/assets/journey/growth.jpg", alt: "A small plant growing on a pile of books" } },
@@ -186,7 +186,7 @@ export default function EbookPublishing() {
             <p className="bw-hero__note">Your story deserves to be read. Let&rsquo;s help it find its way to readers!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/services/book-publishing.jpg" alt="A finished book ready to be published" width="900" height="900" />
+            <img src="/assets/services/book-publishing.webp" alt="A finished book ready to be published" width="900" height="900" />
           </div>
         </div>
       </section>

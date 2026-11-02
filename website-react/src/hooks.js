@@ -83,3 +83,16 @@ export function useInView(ref, threshold = 0.12) {
   }, [ref, seen, threshold]);
   return seen;
 }
+
+// True once the element is within `margin` of the screen (and stays true). Used to load heavy code just before it is needed.
+export function useNear(ref, margin = 600) {
+  const [near, setNear] = useState(() => typeof IntersectionObserver === "undefined");
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || near) return;
+    const io = new IntersectionObserver(([en]) => { if (en.isIntersecting) { setNear(true); io.disconnect(); } }, { rootMargin: margin + "px" });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [ref, near, margin]);
+  return near;
+}

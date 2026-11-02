@@ -10,7 +10,7 @@ import ServiceSchema from "../components/Schema.jsx";
 import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 
 const TYPES = [
-  { badge: "Cover", title: "Ebook Cover Design", description: "Make them look twice! Your cover is the first thing readers see, so let\u2019s make it count. We create eye-catching ebook covers that match your book\u2019s personality, genre, and message. Bold and dramatic? Clean and professional? Magical and whimsical? We\u2019ll help bring your vision to life.", image: "/assets/services/cover-interior-design.jpg", alt: "Colourful book covers laid out side by side" },
+  { badge: "Cover", title: "Ebook Cover Design", description: "Make them look twice! Your cover is the first thing readers see, so let\u2019s make it count. We create eye-catching ebook covers that match your book\u2019s personality, genre, and message. Bold and dramatic? Clean and professional? Magical and whimsical? We\u2019ll help bring your vision to life.", image: "/assets/services/cover-interior-design.webp", alt: "Colourful book covers laid out side by side" },
   { badge: "Interior", title: "Ebook Interior Design", description: "Give your words a beautiful home! Nobody wants to read a book that feels like a giant wall of text. We design clean, attractive ebook interiors with readable typography, thoughtful spacing, and well-organized chapters, for a smoother, more enjoyable reading experience.", image: "/assets/stages/designed.jpg", alt: "An open book with a cleanly laid-out photo spread" },
   { badge: "Details", title: "Chapter & Page Styling", description: "Little details, big difference! Chapter headings, page layouts, section breaks, and text styling might seem like small things, but they can make a big difference. We\u2019ll help give your ebook a consistent look so everything feels polished and easy to follow.", image: "/assets/journey/design-production.jpg", alt: "A designer laying out book pages" },
   { badge: "Visuals", title: "Images & Visual Elements", description: "Let\u2019s add some personality! Some books need more than words. Depending on your project, we can help incorporate illustrations, images, graphics, and other visual elements to complement your content.", image: "/assets/stages/launch.jpg", alt: "A display of finished books with attractive covers" },
@@ -18,7 +18,7 @@ const TYPES = [
 
 const STEPS = [
   { title: "Tell Us About Your Book", description: "Share your manuscript, book title, genre, and ideas for the design. Have a mood board or a cover you love? Show us!", image: { url: "/assets/journey/discovery.jpg", alt: "Two people sharing ideas for a book" } },
-  { title: "Let\u2019s Find Your Style", description: "We\u2019ll discuss the look and feel that suits your book, your audience, and your vision.", image: { url: "/assets/services/cover-interior-design.jpg", alt: "Book covers in a range of styles" } },
+  { title: "Let\u2019s Find Your Style", description: "We\u2019ll discuss the look and feel that suits your book, your audience, and your vision.", image: { url: "/assets/services/cover-interior-design.webp", alt: "Book covers in a range of styles" } },
   { title: "Time to Get Creative!", description: "We\u2019ll work on your ebook cover, interior layout, or both, depending on the services you\u2019ve chosen.", image: { url: "/assets/journey/design-production.jpg", alt: "A designer working on a book layout" } },
   { title: "Review the Design", description: "Take a look, share your feedback, and let us know what you\u2019d like adjusted within the agreed project scope.", image: { url: "/assets/journey/editorial.jpg", alt: "Reviewing pages and giving feedback" } },
   { title: "Ready for the Spotlight!", description: "Once approved, your design files will be prepared in the agreed formats, ready for the next step in your ebook publishing journey.", image: { url: "/assets/stages/launch.jpg", alt: "A display of newly published books" } },
@@ -184,7 +184,7 @@ export default function EbookDesign() {
             <p className="bw-hero__note">Great stories deserve great designs. Let&rsquo;s make yours stand out! Want to try first? <Link to="/free-book-cover-maker">Design a cover free with our book cover maker</Link>.</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/services/cover-interior-design.jpg" alt="Colourful book covers and interior layouts" width="900" height="900" />
+            <img src="/assets/services/cover-interior-design.webp" alt="Colourful book covers and interior layouts" width="900" height="900" />
           </div>
         </div>
       </section>

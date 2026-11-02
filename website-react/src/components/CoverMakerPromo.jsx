@@ -1,28 +1,18 @@
-import { useEffect, useRef } from "react";
+import { Suspense, lazy, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Reveal } from "./ui.jsx";
-import { COVERS, FIELD_DEFAULTS, drawCover } from "../lib/coverTemplates.js";
+import { useNear } from "../hooks.js";
 import "../styles/cover-promo.css";
 
 // Home-page banner for the free cover maker: five live-drawn covers fanned out, a pitch and two buttons.
-const PICKS = ["noir-0", "realm-0", "bloom-0", "neon-0", "stack-0"].map((id) => COVERS.find((c) => c.id === id));
-
-function Mini({ cover, i }) {
-  const ref = useRef(null);
-  useEffect(() => {
-    // Draw once the fonts are available so the titles render in their real typefaces.
-    let off = false;
-    const paint = () => !off && ref.current && drawCover(ref.current, 260, 390, cover.tpl, { ...cover.palette, ...FIELD_DEFAULTS, font: cover.font, ...cover.deco });
-    paint();
-    document.fonts?.ready.then(paint);
-    return () => { off = true; };
-  }, [cover]);
-  return <canvas ref={ref} className={"cmp-book cmp-book--" + i} width="260" height="390" aria-hidden="true" />;
-}
+// The covers (and the template library behind them) load only when the banner is about to be seen.
+const PromoBooks = lazy(() => import("./PromoBooks.jsx"));
 
 export default function CoverMakerPromo() {
+  const ref = useRef(null);
+  const near = useNear(ref);
   return (
-    <section className="section cmp" id="cover-maker" aria-labelledby="cmp-title">
+    <section ref={ref} className="section cmp" id="cover-maker" aria-labelledby="cmp-title">
       <div className="wrap cmp__in">
         <Reveal className="cmp__text">
           <p className="eyebrow">Free tool</p>
@@ -39,7 +29,7 @@ export default function CoverMakerPromo() {
           </div>
         </Reveal>
         <Reveal className="cmp__art" delay={120}>
-          {PICKS.map((c, i) => <Mini key={c.id} cover={c} i={i} />)}
+          {near && <Suspense fallback={null}><PromoBooks /></Suspense>}
         </Reveal>
       </div>
     </section>

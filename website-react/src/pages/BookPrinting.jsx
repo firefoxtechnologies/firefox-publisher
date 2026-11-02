@@ -11,8 +11,8 @@ import { usePageMeta, prefersReducedMotion } from "../hooks.js";
 const TYPES = [
   { badge: "Structure", title: "Book Formatting", description: "Give your words some structure. No awkward spacing. No messy pages. Just a clean, consistent layout that lets your words shine and your readers enjoy the journey.", image: "/assets/stages/designed.jpg", alt: "An open book with a cleanly laid-out photo spread" },
   { badge: "Layout", title: "Interior Layout Design", description: "Every page has a part to play. Chapter headings, page numbers, text alignment, and spacing: we bring all the little details together to create a polished reading experience.", image: "/assets/journey/design-production.jpg", alt: "A designer laying out book pages" },
-  { badge: "Files", title: "Print-Ready File Preparation", description: "Ready, set, print! We prepare your files according to your selected printer\u2019s specifications, helping you move toward printing with greater confidence.", image: "/assets/services/book-printing.jpg", alt: "Printed book pages coming off the press" },
-  { badge: "Page setup", title: "Margins, Bleed & Page Setup", description: "The little details that make a big difference. Page dimensions and print settings matter! We help prepare your layout with the required margins, bleed, and sizing based on your printing requirements.", image: "/assets/services/cover-interior-design.jpg", alt: "Book covers and pages laid out at different sizes" },
+  { badge: "Files", title: "Print-Ready File Preparation", description: "Ready, set, print! We prepare your files according to your selected printer\u2019s specifications, helping you move toward printing with greater confidence.", image: "/assets/services/book-printing.webp", alt: "Printed book pages coming off the press" },
+  { badge: "Page setup", title: "Margins, Bleed & Page Setup", description: "The little details that make a big difference. Page dimensions and print settings matter! We help prepare your layout with the required margins, bleed, and sizing based on your printing requirements.", image: "/assets/services/cover-interior-design.webp", alt: "Book covers and pages laid out at different sizes" },
   { badge: "Final PDF", title: "Final PDF Preparation", description: "Your manuscript\u2019s big moment. Get a professionally prepared print-ready PDF to submit to your chosen printing provider. Your manuscript is one step closer to becoming a book you can hold in your hands!", image: "/assets/stages/launch.jpg", alt: "A table of finished printed books" },
 ];
 
@@ -20,7 +20,7 @@ const STEPS = [
   { title: "You Bring the Words", description: "Send us your manuscript and tell us about your book, preferred size, and printing requirements.", image: { url: "/assets/stages/draft.jpg", alt: "A finished manuscript on the desk next to a laptop" } },
   { title: "We Give It a Professional Polish", description: "We work on the formatting, interior layout, and file setup to get your manuscript looking its best.", image: { url: "/assets/journey/design-production.jpg", alt: "A designer working on a book layout" } },
   { title: "You Take a Look", description: "Review the formatted files and share any adjustments covered by your project.", image: { url: "/assets/journey/editorial.jpg", alt: "Reviewing formatted pages and giving feedback" } },
-  { title: "You\u2019re Ready for the Next Chapter", description: "Receive your final print-ready files and send them to your chosen printing company.", image: { url: "/assets/services/book-printing.jpg", alt: "Printed books ready to ship" } },
+  { title: "You\u2019re Ready for the Next Chapter", description: "Receive your final print-ready files and send them to your chosen printing company.", image: { url: "/assets/services/book-printing.webp", alt: "Printed books ready to ship" } },
 ].map((s) => ({ ...s, image: { ...s.image, width: 900, height: 900 } }));
 
 const SLIDE_COLORS = [
@@ -178,7 +178,7 @@ export default function BookPrinting() {
             <p className="bw-hero__note">Your story is written. Let&rsquo;s make it look the part!</p>
           </div>
           <div className="bw-hero3__art">
-            <img src="/assets/services/book-printing.jpg" alt="Printed book pages ready for the press" width="900" height="900" />
+            <img src="/assets/services/book-printing.webp" alt="Printed book pages ready for the press" width="900" height="900" />
           </div>
         </div>
       </section>
