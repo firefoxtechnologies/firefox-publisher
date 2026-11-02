@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b1c35">
+  <title>You are offline | Firefox Publisher</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 24px; background: #0b1c35; color: #eaf3fd; font: 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+    main { width: min(440px, 100%); text-align: center; }
+    img { border-radius: 22px; }
+    h1 { margin: 18px 0 8px; font-size: 1.6rem; }
+    p { margin: 0 0 14px; color: #bcd0ea; }
+    a, button { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border-radius: 8px; font: 700 1rem inherit; text-decoration: none; cursor: pointer; }
+    button { border: 0; background: #f28c28; color: #1b1203; }
+    a { color: #eaf3fd; border: 1px solid rgba(255,255,255,.4); margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="/icon-192.png" width="96" height="96" alt="">
+    <h1>You are offline</h1>
+    <p>This page has not been saved on your device yet. Pages you have already opened still work. Check your connection and try again.</p>
+    <button type="button" onclick="location.reload()">Try again</button>
+    <p style="margin-top:22px">Need us now? <a href="mailto:contactus@firefoxpublisher.com">contactus@firefoxpublisher.com</a></p>
+  </main>
+</body>
+</html>

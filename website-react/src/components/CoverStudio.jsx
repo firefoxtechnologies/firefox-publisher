@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { COVERS, GENRES, FRAMES, TEXTURES, LIGHTING, drawCover, drawBack, watermark } from "../lib/coverTemplates.js";
 import { jpegToPdf } from "../lib/pdf.js";
+import { saveFile } from "../lib/saveFile.js";
 import {
   BACK_TEXT, FONT_CATS, FONT_LIST, FRONT_TEXT, HANDLES, aabb, centerOf, composeWrap, drawLayers, hitTest, loadFamily,
   makeImage, makeShape, makeText, resizeLayer, seedLayers, snapMove, uid,
@@ -45,7 +46,6 @@ const SHAPE_ICON = {
 };
 const SWATCHES = ["#ffffff", "#000000", "#f28c28", "#1d5fa8", "#e63946", "#2a9d8f", "#ffd166", "#7b2cbf"];
 const slug = (t) => (t || "book-cover").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "book-cover";
-const isIOS = () => typeof navigator !== "undefined" && (/iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
 
 let hexCtx = null;
 function toHex(v) {
@@ -346,17 +346,8 @@ export default function CoverStudio({ cover, size, pages = 200, fields, colors, 
   const save = async (blob, ext, label) => {
     const title = design.layers.find((l) => l.type === "text" && l.name === "Title")?.text || "book-cover";
     const name = `${slug(title)}-studio-${label}.${ext}`;
-    if (isIOS() && navigator.canShare) {
-      const file = new File([blob], name, { type: blob.type });
-      if (navigator.canShare({ files: [file] })) {
-        try { await navigator.share({ files: [file], title: name }); setStatus(`Shared ${name}.`); return; } catch (e) { if (e.name === "AbortError") return; }
-      }
-    }
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob); a.download = name;
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-    setStatus(`Downloaded ${name}.`);
+    const how = await saveFile(blob, name);
+    if (how !== "cancelled") setStatus(how === "shared" ? `Shared ${name}.` : `Downloaded ${name}.`);
   };
   // One finished side of the cover: the template art plus that side's layers at full size.
   const renderSide = (sd) => {

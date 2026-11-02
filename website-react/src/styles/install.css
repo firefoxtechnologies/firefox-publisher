@@ -1,0 +1,30 @@
+/* "Install app" buttons, the phone install card and the step-by-step help */
+.ia-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 14px; border-radius: 7px; border: 1px solid rgba(255,255,255,.4); background: rgba(255,255,255,.08); color: #fff; font: 700 .86rem var(--font-sans, inherit); cursor: pointer; white-space: nowrap; }
+.ia-btn:hover { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.7); }
+.ia-btn:focus-visible { outline: 3px solid #f28c28; outline-offset: 2px; }
+/* header: only on wide screens, the menu button and the menu panel cover the rest */
+.ia-btn--header { margin-right: 8px; }
+@media (max-width: 1100px) { .ia-btn--header { display: none; } }
+.ia-btn--menu { display: none; }
+@media (max-width: 1100px) { .ia-btn--menu { display: inline-flex; width: 100%; margin-top: 8px; } }
+.ia-btn--footer { margin-top: 14px; }
+
+.ia-back { position: fixed; inset: 0; z-index: 2300; display: grid; place-items: center; padding: 16px; background: rgba(8,20,40,.62); }
+.ia-dialog { width: min(420px, 100%); background: #fff; color: #12294a; border-radius: 12px; padding: 22px 22px 20px; box-shadow: 0 40px 90px -30px rgba(0,0,0,.7); }
+.ia-dialog h2 { margin: 0 0 12px; font-size: 1.2rem; }
+.ia-dialog ol { margin: 0 0 18px; padding-left: 1.25rem; display: grid; gap: 8px; line-height: 1.45; }
+
+/* once-a-month card on phones. Sits left of the round buttons in the bottom-right corner. */
+.ia-card { position: fixed; left: 12px; right: 84px; bottom: 12px; z-index: 120; display: grid; grid-template-columns: 44px 1fr; gap: 10px 12px; align-items: center; padding: 12px; border-radius: 12px; background: #fff; color: #12294a; box-shadow: 0 18px 40px -12px rgba(8,20,40,.55); border: 1px solid #d7e3f3; animation: ia-up .35s ease both; }
+.ia-card img { border-radius: 10px; }
+.ia-card__txt { display: grid; line-height: 1.3; min-width: 0; }
+.ia-card__txt strong { font-size: .95rem; }
+.ia-card__txt span { font-size: .78rem; color: #4b5f7e; }
+.ia-card__act { grid-column: 1 / -1; display: flex; gap: 8px; }
+.ia-card__go, .ia-card__no { flex: 1; min-height: 44px; border-radius: 8px; font: 700 .88rem var(--font-sans, inherit); cursor: pointer; }
+.ia-card__go { border: 0; background: #f28c28; color: #1b1203; }
+.ia-card__no { border: 1px solid #c9d8ec; background: #f4f8fd; color: #3e5272; }
+.ia-card button:focus-visible { outline: 3px solid #1d5fa8; outline-offset: 2px; }
+@keyframes ia-up { from { opacity: 0; transform: translateY(16px); } }
+@media (min-width: 761px) { .ia-card { display: none; } }
+@media (prefers-reduced-motion: reduce) { .ia-card { animation: none; } }

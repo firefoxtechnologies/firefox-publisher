@@ -7,9 +7,17 @@
     "dev": "vite --port 5180",
     "build": "vite build && vite build --ssr src/entry-server.jsx --outDir dist-ssr && node scripts/prerender.mjs",
     "preview": "vite preview --port 5180",
+    "app:sync": "npm run build && cap sync",
+    "app:android": "cap open android",
+    "app:ios": "cap open ios",
     "lastmod": "node scripts/update-lastmod.mjs"
   },
   "dependencies": {
+    "@capacitor/android": "^8.6.0",
+    "@capacitor/core": "^8.6.0",
+    "@capacitor/filesystem": "^8.1.5",
+    "@capacitor/ios": "^8.6.0",
+    "@capacitor/share": "^8.0.3",
     "embla-carousel-react": "^8.6.0",
     "motion": "^14.6.0",
     "radix-ui": "^1.8.1",
@@ -19,6 +27,7 @@
     "react-use-measure": "^2.1.7"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.6.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.2",

@@ -4,6 +4,7 @@ import { NAV, SERVICES, SITE } from "../data/site.js";
 import { prefersReducedMotion, useRafScroll } from "../hooks.js";
 import ContactPopup from "./ContactPopup.jsx";
 import SiteSearch from "./SiteSearch.jsx";
+import { InstallButton, InstallCard } from "./InstallApp.jsx";
 import HalftoneWordmarkFooter from "./ui/halftone-wordmark-footer";
 import {
   NavigationMenu,
@@ -192,6 +193,7 @@ function Header() {
           <span className="brand__name" role="img" aria-label="Firefox Publisher"><span aria-hidden="true">FIREFOX</span><span className="spread" aria-hidden="true">{[..."PUBLISHER"].map((c, i) => <span key={i}>{c}</span>)}</span></span>
         </Link>
         <SiteSearch />
+        <InstallButton variant="header" />
         <button
           ref={btnRef}
           type="button"
@@ -290,6 +292,7 @@ function Header() {
           </nav>
 
           <Link className="btn btn--primary" to="/#contact">Start a project</Link>
+          <InstallButton variant="menu" />
         </div>
       </div>
     </header>
@@ -349,6 +352,7 @@ function Footer() {
       legal={
         <>
           A child company of <ParentLink />. Fees apply; results vary. We do not guarantee sales or bestseller status. All rights reserved.
+          <InstallButton variant="footer" />
         </>
       }
       columns={FOOTER_COLUMNS}
@@ -384,6 +388,7 @@ export default function Layout() {
       <BackToTop />
       <ScrollManager />
       <ContactPopup />
+      <InstallCard />
     </>
   );
 }

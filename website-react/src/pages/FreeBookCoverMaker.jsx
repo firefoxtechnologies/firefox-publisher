@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { usePageMeta, useRafScroll } from "../hooks.js";
 import { COVERS, GENRES, SIZES, FONTS, FRAMES, TEXTURES, LIGHTING, FIELD_DEFAULTS, drawCover, coverToSVG, drawBack, backToSVG, drawWrap, wrapDims, watermark, logoReady } from "../lib/coverTemplates.js";
 import { jpegToPdf } from "../lib/pdf.js";
+import { saveFile } from "../lib/saveFile.js";
 import { PAYMENT_LINK, PRICES, isUnlocked } from "../data/premium.js";
 import { CoverMakerSchema } from "../components/Schema.jsx";
 import "../styles/cover-maker.css";
@@ -116,7 +117,6 @@ function Card({ cover, active, onPick, ready, sample, index }) {
 
 const STORE = "fp-cover-maker-v2";
 const loadSaved = () => { try { return JSON.parse(localStorage.getItem(STORE)) || {}; } catch { return {}; } };
-const isIOS = () => typeof navigator !== "undefined" && (/iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1));
 const VIEWS = [["front", "Front cover"], ["back", "Back cover"], ["wrap", "Full wrap"]];
 
 function Downloads({ onDownload, locked, unlocked, view, canWrap, busy }) {
@@ -272,19 +272,8 @@ export default function FreeBookCoverMaker() {
   // Android and desktop browsers download directly; iPhones open the share sheet so the file can be saved to Photos or Files.
   const save = async (blob, ext) => {
     const name = `${slug(fields.title)}-${activeView}.${ext}`;
-    if (isIOS() && navigator.canShare) {
-      const file = new File([blob], name, { type: blob.type });
-      if (navigator.canShare({ files: [file] })) {
-        try { await navigator.share({ files: [file], title: name }); setStatus(`Shared ${name}. Choose Save Image or Save to Files.`); return; }
-        catch (e) { if (e.name === "AbortError") { setStatus("Download cancelled."); return; } }
-      }
-    }
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = name;
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
-    setStatus(`Downloaded ${name}. Check your Downloads folder.`);
+    const how = await saveFile(blob, name);
+    setStatus(how === "cancelled" ? "Download cancelled." : how === "shared" ? `Shared ${name}. Choose Save Image or Save to Files.` : `Downloaded ${name}. Check your Downloads folder.`);
   };
 
   const render = () => {

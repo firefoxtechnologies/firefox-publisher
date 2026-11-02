@@ -1,0 +1,24 @@
+{
+  "id": "/",
+  "name": "Firefox Publisher",
+  "short_name": "Firefox",
+  "description": "Ebook publishing and design services for authors, plus a free book cover maker.",
+  "lang": "en-US",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1c35",
+  "theme_color": "#0b1c35",
+  "categories": ["books", "business", "productivity"],
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Free Book Cover Maker", "short_name": "Cover maker", "url": "/free-book-cover-maker?source=shortcut", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Start a project", "short_name": "Contact", "url": "/#contact", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] },
+    { "name": "Audiobook samples", "short_name": "Audiobooks", "url": "/audiobooks", "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
