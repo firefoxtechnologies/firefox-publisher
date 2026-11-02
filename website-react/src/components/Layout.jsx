@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { NAV, SERVICES, SITE } from "../data/site.js";
 import { prefersReducedMotion, useRafScroll } from "../hooks.js";
@@ -37,7 +37,7 @@ function ScrollManager() {
 // Keyed on the path so every page change replays the soft fade-in defined in motion.css.
 function RoutedMain() {
   const { pathname } = useLocation();
-  return <main id="main" key={pathname}><Outlet /></main>;
+  return <main id="main" key={pathname}><Suspense fallback={null}><Outlet /></Suspense></main>;
 }
 
 // The page height is measured only when the layout changes, not on every scroll event
