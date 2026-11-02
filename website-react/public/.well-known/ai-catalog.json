@@ -290,6 +290,78 @@
         "displayName": "Firefox Publisher",
         "identityType": "dns"
       }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:service:book-cover-design-services",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/book-cover-design-services",
+      "displayName": "Book Cover Design Services",
+      "description": "Custom ebook and paperback cover design: front cover, spine and back cover, and KDP-ready files. A free cover maker is also available.",
+      "tags": [
+        "service",
+        "cover-design",
+        "book-cover"
+      ],
+      "updatedAt": "2026-11-02T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:service:amazon-kdp-publishing-help",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/amazon-kdp-publishing-help",
+      "displayName": "Amazon KDP Publishing Help",
+      "description": "Ebook and paperback formatting, cover files, listing setup and upload for Amazon KDP. The author keeps the account, ISBN and royalties.",
+      "tags": [
+        "service",
+        "publishing",
+        "kdp"
+      ],
+      "updatedAt": "2026-11-02T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:service:ghostwriting-services-usa",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/ghostwriting-services-usa",
+      "displayName": "Ghostwriting Services USA",
+      "description": "Ghostwriting and memoir writing for authors across the USA: fiction, nonfiction and children's books, written with you and published under your name.",
+      "tags": [
+        "service",
+        "ghostwriting",
+        "writing"
+      ],
+      "updatedAt": "2026-11-02T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
+    },
+    {
+      "identifier": "urn:air:firefoxpublisher.com:service:childrens-book-illustration-publishing",
+      "type": "text/html",
+      "url": "https://firefoxpublisher.com/childrens-book-illustration-publishing",
+      "displayName": "Children's Book Illustration and Publishing",
+      "description": "Illustration, page layout, cover design and publishing for children's picture books, with ebook and print-ready files.",
+      "tags": [
+        "service",
+        "childrens-books",
+        "illustration"
+      ],
+      "updatedAt": "2026-11-02T00:00:00Z",
+      "publisher": {
+        "identifier": "firefoxpublisher.com",
+        "displayName": "Firefox Publisher",
+        "identityType": "dns"
+      }
     }
   ]
 }
