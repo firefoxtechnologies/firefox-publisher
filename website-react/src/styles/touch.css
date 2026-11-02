@@ -54,3 +54,13 @@
 @media (min-width: 1101px) and (max-width: 1179px) {
   .header .ia-btn--header { display: none; }
 }
+
+/* up to 1439px both buttons are icons so everything fits inside the header bar; from 1440px the bar is wider and shows the full labels */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .header .ss-btn { width: 44px; padding: 0; justify-content: center; }
+  .header .ss-btn .ss-btn__txt { display: none; }
+}
+@media (min-width: 1440px) {
+  .header .header__in { width: min(1380px, calc(100% - 32px)); max-width: 1380px; }
+}
+@media (min-width: 1101px) and (max-width: 1279px) { .header .header__in { gap: 14px; } }

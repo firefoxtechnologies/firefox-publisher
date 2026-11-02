@@ -93,7 +93,7 @@ export async function handleAi(request, env) {
   if (turns.some((m) => m.role === "user" && wantsSecret(m.content))) {
     return json({ ok: true, mode: "ai", reply: REFUSE, links: pickLinks("contact", 1) }, 200, cors);
   }
-  if (!env.AI) return json({ ok: false, error: "unavailable", fallback: answerOffline(last.content) }, 503, cors);
+  if (!env.AI) return json({ ok: false, error: "unavailable", reason: "no_ai_binding", fallback: answerOffline(last.content) }, 503, cors);
 
   try {
     const messages = [
@@ -107,6 +107,7 @@ export async function handleAi(request, env) {
   } catch (err) {
     // Daily allowance used up, model error or network problem: the page falls back to offline answers.
     console.error("workers ai failed", err && err.message);
-    return json({ ok: false, error: "unavailable", fallback: answerOffline(last.content) }, 503, cors);
+    // `reason` is a short, clipped error name so a broken AI service can be diagnosed from outside.
+    return json({ ok: false, error: "unavailable", reason: String((err && err.message) || err).replace(/[^ -~]/g, " ").slice(0, 120), fallback: answerOffline(last.content) }, 503, cors);
   }
 }

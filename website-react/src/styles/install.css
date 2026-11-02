@@ -5,7 +5,7 @@
 /* header: only on wide screens, the menu button and the menu panel cover the rest */
 /* the header button shrinks to an icon on mid-width desktops so the logo, search and menu never collide */
 .ia-btn--header { margin-right: 8px; }
-@media (min-width: 1101px) and (max-width: 1359px) { .ia-btn--header { padding: 0; width: 44px; } .ia-btn--header span { display: none; } }
+@media (min-width: 1101px) and (max-width: 1439px) { .ia-btn--header { padding: 0; width: 44px; } .ia-btn--header span { display: none; } }
 @media (max-width: 1100px) { .ia-btn--header { display: none; } }
 .ia-btn--menu { display: none; }
 @media (max-width: 1100px) { .ia-btn--menu { display: inline-flex; width: 100%; margin-top: 8px; } }
