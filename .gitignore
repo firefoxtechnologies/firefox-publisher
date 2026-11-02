@@ -1,4 +1,29 @@
 node_modules
 dist
+dist-ssr
 .wrangler
 .DS_Store
+
+# Secrets: never commit these
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.pem
+*.key
+*.p12
+*.p8
+*.keystore
+*.jks
+keystore.properties
+google-services.json
+GoogleService-Info.plist
+service-account*.json
+
+# Mobile app build output (the native projects themselves are committed)
+website-react/android/app/build
+website-react/android/.gradle
+website-react/android/local.properties
+website-react/ios/App/Pods
+website-react/ios/App/build

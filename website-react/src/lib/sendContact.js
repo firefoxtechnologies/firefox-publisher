@@ -1,4 +1,8 @@
 import { SITE } from "../data/site.js";
+import { apiUrl } from "./api.js";
+
+// How long the visitor has been on the page. The server ignores forms that arrive faster than a person can type.
+const pageStart = Date.now();
 
 // Posts the contact form to the site's own /api/contact endpoint (a Cloudflare Worker that
 // emails the team). If that is unreachable, e.g. on a local dev server, fall back to the
@@ -11,9 +15,10 @@ export async function sendContact(values) {
     interest: values.interest,
     message: values.message.trim(),
     website: values.website || "",
+    elapsed: Date.now() - pageStart,
   };
   try {
-    const res = await fetch("/api/contact", {
+    const res = await fetch(apiUrl("/api/contact"), {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(payload),
@@ -21,7 +26,7 @@ export async function sendContact(values) {
     const data = await res.json().catch(() => ({}));
     if (res.ok && data.ok) return { ok: true, via: "api" };
     // A validation problem the server explains: show it instead of falling back.
-    if (res.status === 400 && data.error) return { ok: false, error: data.error };
+    if ((res.status === 400 || res.status === 429) && data.error) return { ok: false, error: data.error };
   } catch {
     /* network failure: fall through to mailto */
   }
