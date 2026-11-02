@@ -155,4 +155,8 @@ await test("helpers", () => {
   assert.equal(cleanReply("**Hi** [site](https://x.com) costs $1,200 or 300 USD"), "Hi site costs a price the team will confirm or a price the team will confirm");
 });
 
+await test("ai: keeps the team email, removes other addresses", () => {
+  assert.equal(cleanReply("Write to contactus@firefoxpublisher.com or bob@evil.com today"), "Write to contactus@firefoxpublisher.com or today");
+});
+
 console.log(`\n${passed} tests passed`);
