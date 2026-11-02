@@ -10,6 +10,7 @@ import "./styles/cinematic.css";
 import "./styles/polish.css";
 import "./styles/theme.css";
 import "./styles/motion.css";
+import "./styles/touch.css";
 
 // Every page is its own download. The page being opened is fetched first so the prerendered
 // HTML stays on screen until the real page is ready (no blank flash).

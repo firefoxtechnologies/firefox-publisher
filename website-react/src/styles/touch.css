@@ -1,0 +1,36 @@
+/* Phone tap targets: every button and link a thumb has to hit is at least 44 x 44 px.
+   Loaded last so it wins over the older per-component sizes. */
+@media (max-width: 1100px) {
+  .menu-btn { min-height: 44px; min-width: 44px; }
+}
+@media (max-width: 760px) {
+  .ss-btn { min-width: 44px; min-height: 44px; }
+  .hwf-col a, .nm-mobile a, .nm-mobile__toggle { display: inline-flex; align-items: center; min-height: 44px; }
+  .cm-chip, .est__chip, .as__btn, .fc__btn, [role="tab"], .as__rate, select { min-height: 44px; }
+  .fc__btn { min-width: 44px; }
+  .as__btn { min-width: 44px; }
+  .as__jump a, .hwf-up, summary { display: inline-flex; align-items: center; min-height: 44px; }
+  main details > summary { display: flex; align-items: center; min-height: 44px; }
+  input[type="range"] { min-height: 44px; }
+  .hwf-col a[aria-label] { min-width: 44px !important; min-height: 44px !important; }
+  /* the live-chat bubble owns the bottom-right corner; back-to-top sits above it */
+  .to-top { bottom: 92px; right: 16px; }
+  /* thin progress bars that act as step buttons keep their look but get a larger touch area */
+  .iss__bar { position: relative; }
+  .iss__bar::after { content: ""; position: absolute; inset: -20px -3px; }
+}
+
+/* very narrow phones: the logo, search and Menu buttons must fit on one row without touching */
+@media (max-width: 380px) {
+  .header .brand .brand__fox { height: auto; width: 56px; }
+  .header .brand { gap: 6px; }
+  .header .brand .brand__name > span:first-child { font-size: 1.15rem; letter-spacing: .04em; }
+  .header .brand .brand__name .spread { font-size: .7rem; }
+  .header .ss-btn { margin-right: 4px; }
+}
+@media (max-width: 340px) {
+  .header .brand .brand__fox { width: 46px; }
+  .header .brand .brand__name > span:first-child { font-size: 1rem; }
+  .header .brand .brand__name .spread { font-size: .6rem; }
+  .header .menu-btn { padding-inline: 8px; }
+}

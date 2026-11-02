@@ -150,7 +150,7 @@
 /* floating preview that follows the customer down the form on phones */
 .cm-mini { display: none; }
 @media (max-width: 900px) {
-  .cm-mini { display: block; position: fixed; left: 14px; bottom: 14px; z-index: 60; width: 84px; padding: 4px; border: 2px solid var(--glacier); border-radius: 10px; background: #0c1a30; box-shadow: 0 14px 30px -8px rgba(0,0,0,.7); cursor: pointer; }
+  .cm-mini { display: block; position: fixed; left: 14px; bottom: 76px; z-index: 115; width: 84px; padding: 4px; border: 2px solid var(--glacier); border-radius: 10px; background: #0c1a30; box-shadow: 0 14px 30px -8px rgba(0,0,0,.7); cursor: pointer; }
   .cm-mini--wide { width: 150px; }
   .cm-mini canvas { width: 100%; height: auto; display: block; border-radius: 4px; }
   .cm-mini span { position: absolute; left: 50%; bottom: -10px; transform: translateX(-50%); background: var(--glacier); color: #fff; font-size: .68rem; font-weight: 800; padding: 2px 8px; border-radius: 999px; }
