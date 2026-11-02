@@ -54,7 +54,7 @@ export function InstallButton({ variant = "header" }) {
   };
   return (
     <>
-      <button type="button" className={"ia-btn ia-btn--" + variant} onClick={click}>
+      <button type="button" className={"ia-btn ia-btn--" + variant} onClick={click} aria-label="Install app" title="Install app">
         <DownloadIcon />
         <span>Install app</span>
       </button>

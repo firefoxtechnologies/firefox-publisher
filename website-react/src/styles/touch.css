@@ -34,3 +34,23 @@
   .header .brand .brand__name .spread { font-size: .6rem; }
   .header .menu-btn { padding-inline: 8px; }
 }
+
+/* the logo never gets squeezed into the search button */
+.header .brand { flex-shrink: 0; }
+
+/* breathing room between the logo, search, install and the menu on desktop */
+@media (min-width: 1101px) {
+  .header .header__in { gap: 20px; justify-content: flex-start; }
+  .header .ss-btn { margin-left: 8px; margin-right: 0; }
+  .header .ia-btn--header { margin-right: 0; }
+  .header .nav { margin-left: auto; }
+}
+@media (min-width: 1101px) and (max-width: 1279px) {
+  .header .ss-btn { width: 44px; padding: 0; justify-content: center; }
+  .header .ss-btn .ss-btn__txt { display: none; }
+}
+.header .nav > .btn { white-space: nowrap; }
+/* narrowest desktop: the footer carries the Install button, so the header keeps room for the menu */
+@media (min-width: 1101px) and (max-width: 1179px) {
+  .header .ia-btn--header { display: none; }
+}
