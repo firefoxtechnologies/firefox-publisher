@@ -64,6 +64,7 @@ export function cleanReply(text) {
   t = t.replace(/\b(?:https?:\/\/|www\.)\S+/gi, "");
   t = t.replace(/\b[a-z0-9-]+(?:\.[a-z0-9-]+)*\.(?:com|net|org|io|co|app|dev|us|info|biz|xyz|ly|me)\b(?:\/\S*)?/gi, (m) => (/^firefoxpublisher\.com$/i.test(m) ? "our website" : ""));
   t = t.replace(/[*_`#>~|]/g, "");
+  t = t.replace(/MAIL/g, "contactus@firefoxpublisher.com");
   t = t.replace(/(?:USD|US\$|\$)\s?\d[\d,.]*(?:\s?(?:k|usd|dollars?))?|\b\d[\d,.]*\s?(?:usd|dollars?)\b/gi, "a price the team will confirm");
   t = t.replace(/\s+\n/g, "\n").replace(/[ \t]{2,}/g, " ").trim();
   return t.slice(0, MAX_REPLY);
