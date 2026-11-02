@@ -2,15 +2,15 @@
 //   Pages (HTML): network first, so visitors always get the newest page; the last copy is used offline.
 //   Hashed files in /assets/ and icons: cache first (the file name changes whenever the content does).
 //   Everything else on this site (images, search list): fast from cache, refreshed in the background.
-//   /api/ and other websites are never cached. With no network and nothing cached, /offline.html is shown.
-const VERSION = "v1";
+//   /api/ and other websites are never cached. With no network and nothing cached, /offline is shown.
+const VERSION = "v2";
 const PAGES = `fp-pages-${VERSION}`;
 const FILES = `fp-files-${VERSION}`;
 const MAX_FILES = 150;
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(PAGES).then((c) => c.addAll(["/offline.html", "/icon-192.png"])).then(() => self.skipWaiting())
+    caches.open(PAGES).then((c) => c.addAll(["/offline", "/icon-192.png"])).then(() => self.skipWaiting())
   );
 });
 
@@ -35,7 +35,7 @@ async function networkFirstPage(request) {
     if (res.ok) cache.put(request, res.clone());
     return res;
   } catch {
-    return (await cache.match(request, { ignoreSearch: true })) || (await cache.match("/offline.html"));
+    return (await cache.match(request, { ignoreSearch: true })) || (await cache.match("/offline"));
   }
 }
 
