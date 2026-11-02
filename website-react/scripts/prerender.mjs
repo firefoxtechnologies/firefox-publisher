@@ -8,7 +8,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
 const ORIGIN = "https://firefoxpublisher.com";
 
-const { render, ROUTES } = await import(pathToFileURL(join(root, "dist-ssr", "entry-server.js")).href);
+const { render, ROUTES, SEARCH_INDEX } = await import(pathToFileURL(join(root, "dist-ssr", "entry-server.js")).href);
 const template = readFileSync(join(dist, "index.html"), "utf8");
 const manifest = JSON.parse(readFileSync(join(dist, ".vite", "manifest.json"), "utf8"));
 
@@ -30,8 +30,30 @@ function assetsFor(name) {
   return { js: [...js], css: [...css] };
 }
 
+const searchPages = [];
+
+const decode = (s) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ");
+const tidy = (s) => decode(s.replace(/\s+/g, " ")).trim();
+
+// Pulls the readable text (headings, FAQs, paragraphs) out of a page's rendered <main> for the site search.
+function searchEntry(path, html, meta) {
+  const main = (html.match(/<main[^>]*>([\s\S]*)<\/main>/) || [, html])[1].replace(/<(script|style|svg|noscript)[\s\S]*?<\/\1>/g, " ");
+  const heads = [...main.matchAll(/<h([1-3])[^>]*>([\s\S]*?)<\/h\1>/g)].map((m) =>
+    tidy(m[2].replace(/<\/span>\s*<span class="tw__line"/g, "</span> <span").replace(/<[^>]+>/g, ""))
+  );
+  const body = tidy(main.replace(/<\/(p|li|h\d|div|section|summary|details|tr|td|button)>|<br\s*\/?>/g, " ").replace(/<[^>]+>/g, ""));
+  return {
+    path,
+    title: meta && meta.title ? meta.title.split(/\s[|–-]\s/)[0] : path,
+    text: (meta && meta.description) || "",
+    heads: [...new Set(heads)].filter(Boolean).slice(0, 40),
+    body: body.slice(0, 3500),
+  };
+}
+
 function page(url, canonical, noindex, name) {
   const { html, meta } = render(url);
+  if (!noindex && canonical) searchPages.push(searchEntry(url, html, meta));
   let out = template.replace('<div id="root"></div>', `<div id="root">${html}</div>`);
   if (meta) {
     const set = (re, val) => { out = out.replace(re, val); };
@@ -88,6 +110,20 @@ const xml = [
   "",
 ].join("\n");
 writeFileSync(join(dist, "sitemap.xml"), xml);
+
+// search-index.json: the hand-written entries enriched with each page's real headings and text.
+const enriched = new Set();
+const index = SEARCH_INDEX.map((it) => {
+  const base = { title: it.title, to: it.to, kind: it.kind, text: it.text, words: it.words || "" };
+  const sp = searchPages.find((s) => s.path === it.to && !enriched.has(s.path));
+  if (!sp) return base;
+  enriched.add(sp.path);
+  return { ...base, heads: sp.heads, body: sp.body };
+});
+for (const sp of searchPages) {
+  if (!enriched.has(sp.path)) index.push({ title: sp.title, to: sp.path, kind: "Page", text: sp.text, words: "", heads: sp.heads, body: sp.body });
+}
+writeFileSync(join(dist, "search-index.json"), JSON.stringify(index));
 
 // Every sitemap page should also be listed in llms.txt for AI assistants.
 const llms = readFileSync(join(root, "public", "llms.txt"), "utf8");

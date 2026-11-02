@@ -2,6 +2,8 @@ import { SERVICES, PACKAGES } from "./site.js";
 import { AUDIOBOOKS } from "./audiobooks.js";
 import { PORTFOLIO_BOOKS } from "./portfolioBooks.js";
 
+// The hand-written part of the header search index. scripts/prerender.mjs adds each page's headings and text
+// to these entries at build time and writes the result to /search-index.json, which the search loads when opened.
 // Everything the header search can find. `kind` is the label shown beside each result;
 // `words` adds search terms people may type that the title does not contain.
 const PAGES = [
@@ -40,25 +42,3 @@ export const SEARCH_INDEX = [
   ...AUDIOBOOKS.map((b) => ({ title: b.title, to: `/audiobooks#audio-${b.slug}`, kind: "Audiobook", text: `by ${b.by}`, words: "audiobook audio listen sample" })),
   ...PORTFOLIO_BOOKS.map((b) => ({ title: b.title, to: "/portfolio", kind: "Book cover", text: `by ${b.by}, ${b.genre}`, words: `${b.genre} book cover portfolio` })),
 ];
-
-const norm = (s) => s.toLowerCase().replace(/[^a-z0-9$\s]/g, " ");
-
-export function searchSite(query, limit = 8) {
-  const terms = norm(query).split(/\s+/).filter(Boolean);
-  if (!terms.length) return [];
-  const out = [];
-  for (const it of SEARCH_INDEX) {
-    const title = norm(it.title), text = norm(it.text), words = norm(it.words || "");
-    let score = 0;
-    let ok = true;
-    for (const t of terms) {
-      if (title.startsWith(t) || title.includes(" " + t)) score += 10;
-      else if (title.includes(t)) score += 6;
-      else if (text.includes(t)) score += 3;
-      else if (words.includes(t)) score += 2;
-      else { ok = false; break; }
-    }
-    if (ok) out.push({ it, score });
-  }
-  return out.sort((a, b) => b.score - a.score).slice(0, limit).map((r) => r.it);
-}
