@@ -2,7 +2,7 @@ import LegalPage from "../components/LegalPage.jsx";
 
 const SECTIONS = [
   ["Who we are", [
-    "Firefox Publisher (\"we\", \"us\") is a book publishing and design service based in Hoboken, New Jersey, and a child company of Firefox Technologies. This policy explains what information we collect through firefoxpublisher.com, why, and what choices you have.",
+    "Firefox Publisher (\"we\", \"us\") is a book publishing and design service based in Hoboken, New Jersey, and is powered by Firefox Technologies. This policy explains what information we collect through firefoxpublisher.com, why, and what choices you have.",
   ]],
   ["What we collect", [
     "Information you give us:",

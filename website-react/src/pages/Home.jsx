@@ -260,7 +260,7 @@ function About() {
       <div className="wrap">
         <Head eyebrow="Our approach" title="A capable publishing partner">
           <p>Our mission is to help authors and creators present, publish and promote their work with professional care.</p>
-          <p className="parent-line">Firefox Publisher is the publishing arm and a child company of <strong><ParentLink /></strong>, the digital agency behind our web, search and brand work.</p>
+          <p className="parent-line">Firefox Publisher is the publishing arm, powered by <strong><ParentLink /></strong>, the digital agency behind our web, search and brand work.</p>
         </Head>
         <div className="grid grid--3 about__grid">
           {APPROACH.map((c, i) => (
@@ -370,7 +370,7 @@ function Contact({ plan }) {
               </li>
             ))}
           </ul>
-          <p className="cx__parent">Firefox Publisher is a child company of <ParentLink />.</p>
+          <p className="cx__parent">Firefox Publisher is powered by <ParentLink />.</p>
         </Reveal>
         <ContactForm plan={plan} />
       </div>

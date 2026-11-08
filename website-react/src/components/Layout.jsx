@@ -352,7 +352,7 @@ function Footer() {
       meta={`\u00a9${new Date().getFullYear()} \u00b7 Hoboken, New Jersey`}
       legal={
         <>
-          A child company of <ParentLink />. Fees apply; results vary. We do not guarantee sales or bestseller status. All rights reserved.
+          Powered by <ParentLink />. Fees apply; results vary. We do not guarantee sales or bestseller status. All rights reserved.
           <InstallButton variant="footer" />
         </>
       }
@@ -374,7 +374,7 @@ export default function Layout() {
       <a className="skip" href="#main">Skip to content</a>
       <div className="topbar">
         <div className="wrap topbar__in">
-          <span className="topbar__brand">A child company of <strong><ParentLink /></strong></span>
+          <span className="topbar__brand">Powered by <strong><ParentLink /></strong></span>
           <span className="topbar__links">
             <a className="plain" href={"mailto:" + SITE.email}>{SITE.email}</a>
             <a className="plain" href={SITE.phoneHref}>{SITE.phone}</a>

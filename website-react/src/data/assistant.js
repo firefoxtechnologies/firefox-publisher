@@ -2,7 +2,7 @@
 // both read this file, so there is one source of truth. No prices are listed on purpose: the helper
 // must never state a price that was not given to it.
 
-export const FACTS = `Firefox Publisher is a creative partner for ebook authors in Hoboken, New Jersey, USA. It is a child company of Firefox Technologies. It works with authors across the USA online.
+export const FACTS = `Firefox Publisher is a creative partner for ebook authors in Hoboken, New Jersey, USA. It is powered by Firefox Technologies. It works with authors across the USA online.
 Services: book writing (fiction, nonfiction, ghostwriting, memoir, children's books); book editing (developmental, line, copyediting, proofreading); ebook cover and interior design with illustration; ebook publishing (formatting, platform setup, upload support for Amazon KDP and other stores); book printing means print-ready files only, not physical printing; book marketing (launch plans, social media content); author branding and illustration; audiobook production (narration, recording, editing, final files); book video trailers.
 Free tool: the Free Book Cover Maker has 700+ original cover designs and a studio editor for front cover, back cover and spine, with PNG, JPG, WebP and PDF downloads, including a print wrap for KDP. Some designs and vector files are paid.
 Contact: contactus@firefoxpublisher.com, phone +1 201-464-5345, 333 Washington St #233, Hoboken, NJ 07030. The contact form is on the home page.
